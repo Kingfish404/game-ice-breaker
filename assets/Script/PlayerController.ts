@@ -1,5 +1,5 @@
 
-import { _decorator, Component, Node, systemEvent, SystemEvent, EventKeyboard, macro, Vec3, RigidBody2D, Vec2 } from 'cc';
+import { _decorator, Component, Node, systemEvent, SystemEvent, EventKeyboard, macro, Vec3, RigidBody2D, Vec2, Collider2D, Contact2DType } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('PlayerController')
@@ -12,11 +12,34 @@ export class PlayerController extends Component {
 
     private _xForce: number = 0;
     private _yForce: number = 0;
+    private _force: number = 100;
+    private isUping: boolean = false;
+    public maxspeed: number = 10;
 
     @property({ type: Node })
     public player: Node | null = null;
 
     start() {
+        this.init();
+    }
+
+    init() {
+        if (this.player) {
+            const collider: Collider2D | null = this.player.getComponent(Collider2D);
+            const rigidBody2d: RigidBody2D | null = this.player.getComponent(RigidBody2D);
+            if (collider) {
+                // 设定碰撞事件
+                let that = this;
+                collider.on(Contact2DType.BEGIN_CONTACT, () => {
+                    that.isUping = false;
+                    console.log('hit');
+                }, this);
+            }
+            if (rigidBody2d) {
+                // 禁止主角旋转
+                rigidBody2d.fixedRotation = true;
+            }
+        }
     }
 
     setInputActive(active: boolean) {
@@ -33,16 +56,29 @@ export class PlayerController extends Component {
         this._isMoving = true;
         switch (event.keyCode) {
             case macro.KEY.a:
-                this._xForce = -10;
-                break;
-            case macro.KEY.w:
-                this._yForce = 10;
-                break;
-            case macro.KEY.s:
+            case macro.KEY.left:
+                this._xForce = -this._force / 2;
                 this._yForce = 0;
                 break;
             case macro.KEY.d:
-                this._xForce = 10;
+            case macro.KEY.right:
+                this._xForce = this._force / 2;
+                this._yForce = 0;
+                break;
+            case macro.KEY.w:
+            case macro.KEY.up:
+                if (!this.isUping) {
+                    this.isUping = true;
+                    this._yForce = this._force;
+                    let that = this;
+                    setTimeout(() => {
+                        that._yForce = 0;
+                    }, 200)
+                }
+                break;
+            case macro.KEY.s:
+            case macro.KEY.down:
+                this._yForce = 0;
                 break;
         }
     }
@@ -52,26 +88,37 @@ export class PlayerController extends Component {
         this._keydown = String(event.keyCode);
         switch (event.keyCode) {
             case macro.KEY.a:
+            case macro.KEY.left:
             case macro.KEY.d:
+            case macro.KEY.right:
                 this._xForce = 0;
                 break;
             case macro.KEY.w:
             case macro.KEY.s:
-                this._yForce = 0;
+                // this._yForce = 0;
                 break;
-
         }
     }
 
     update(deltaTime: number) {
-        if (this._isMoving) {
-            console.log('IsMoving by:' + this._keydown);
-            if (this.player) {
-                let player = this.player;
-                let rigidbody2d: RigidBody2D | null = player.getComponent(RigidBody2D);
+        if (this.player) {
+            const player = this.player;
+            const rigidbody2d: RigidBody2D | null = player.getComponent(RigidBody2D);
+            if (rigidbody2d) {
                 // 使用刚体运动
                 // https://docs.cocos.com/creator/3.0/manual/zh/physics/physics-collider.html
-                rigidbody2d?.applyForceToCenter(new Vec2(this._xForce,this._yForce),true);
+                rigidbody2d?.applyForceToCenter(new Vec2(this._xForce, this._yForce), true);
+                const velocity: Vec2 = rigidbody2d?.linearVelocity;
+                if (velocity) {
+                    // 限制刚体速度
+                    if (Math.abs(velocity.x) > this.maxspeed) {
+                        velocity.x = velocity.x > 0 ? this.maxspeed : -this.maxspeed;
+                    }
+                    if (this._xForce == 0) {
+                        velocity.x /= 1.1;
+                    }
+                    rigidbody2d.linearVelocity = velocity;
+                }
             }
         }
     }

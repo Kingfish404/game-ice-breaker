@@ -1,5 +1,5 @@
 
-import { _decorator, Component, Node, PhysicsSystem2D, EPhysics2DDrawFlags, Canvas } from 'cc';
+import { _decorator, Component, Node, PhysicsSystem2D, PHYSICS_2D_PTM_RATIO, v2 } from 'cc';
 import { PlayerController } from './PlayerController';
 const { ccclass, property } = _decorator;
 
@@ -9,6 +9,7 @@ enum GameState {
     GS_END,
 };
 
+// 游戏控制脚本
 @ccclass('GameManager')
 export class GameManager extends Component {
     // 控制的玩家对象
@@ -40,6 +41,8 @@ export class GameManager extends Component {
         
 
         PhysicsSystem2D.instance.enable = true;
+        PhysicsSystem2D.instance.gravity = v2(0, -20 * PHYSICS_2D_PTM_RATIO);
+
         // enable debug for Physics
         // PhysicsSystem2D.instance.debugDrawFlags = EPhysics2DDrawFlags.Aabb;
     }
