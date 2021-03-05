@@ -1,5 +1,5 @@
 
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component, Node, director } from 'cc';
 const { ccclass, property } = _decorator;
 
 //  场景渲染控制脚本
@@ -12,8 +12,12 @@ export class SceneManager extends Component {
     // @property
     // serializableDummy = 0;
 
-    start () {
+    start() {
         // [3]
+        // 预加载关卡
+        director.preloadScene('caption-1', () => {
+            console.log('Preloaded successed!');
+        })
     }
 
     // update (deltaTime: number) {

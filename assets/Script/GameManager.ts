@@ -1,5 +1,5 @@
 
-import { _decorator, Component, Node, PhysicsSystem2D, PHYSICS_2D_PTM_RATIO, v2 } from 'cc';
+import { _decorator, Component, Node, PhysicsSystem2D, PHYSICS_2D_PTM_RATIO, v2, game, director } from 'cc';
 import { PlayerController } from './PlayerController';
 const { ccclass, property } = _decorator;
 
@@ -24,21 +24,34 @@ export class GameManager extends Component {
     @property({ type: Node })
     public startMenu: Node | null = null;
 
+    @property({ type: Node })
+    public tipsMenu: Node | null = null;
+
     // 设置当前游戏状态
     private _curState: GameState = GameState.GS_INIT;
 
     start() {
         this.curState = GameState.GS_INIT;
-        if (this.playerCtrl){
-            this.playerCtrl.setInputActive(true);
+
+        this.init();
+        console.log('load game manager');
+
+        if (this.playerCtrl) {
+            this.playerCtrl.node.on('dead', this.onGameEnd, this);
         }
+
+        // 设置当前节点为常驻节点
+        // https://docs.cocos.com/creator/3.0/manual/zh/scripting/scene-managing.html
+        game.addPersistRootNode(this.node);
     }
 
     init() {
         if (this.startMenu) {
             this.startMenu.active = true;
         }
-        
+        if (this.playerCtrl) {
+            this.playerCtrl.setInputActive(true);
+        }
 
         PhysicsSystem2D.instance.enable = true;
         PhysicsSystem2D.instance.gravity = v2(0, -20 * PHYSICS_2D_PTM_RATIO);
@@ -53,22 +66,41 @@ export class GameManager extends Component {
                 this.init();
                 break;
             case GameState.GS_PLAYING:
-                if(this.startMenu){
+                if (this.startMenu) {
                     this.startMenu.active = false;
+                }
+                if (this.playerCtrl) {
+                    this.playerCtrl.init();
+                    this.playerCtrl.setInputActive(true);
                 }
                 break;
             case GameState.GS_END:
+                this.init();
                 break;
         }
         this._curState = value;
+    }
+
+    onGameEnd() {
+        this.curState = GameState.GS_END;
     }
 
     onStartButtonClicked() {
         this.curState = GameState.GS_PLAYING;
     }
 
-    onBackButtonClicked(){
+    onTipsButtonClicked() {
+        if (this.tipsMenu) {
+            this.tipsMenu.active = this.tipsMenu.active ? false : true;
+        }
+    }
+
+    onBackButtonClicked() {
         this.curState = GameState.GS_INIT;
+    }
+
+    onNextButtonClicked() {
+        director.loadScene('caption-1');
     }
 
     update(deltaTime: number) {
