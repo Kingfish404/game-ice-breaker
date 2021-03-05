@@ -83,6 +83,7 @@
     },
     "_enabled": true,
     "__prefab": null,
+    "captureNum": 1,
     "playerCtrl": {
       "__id__": 4
     },
@@ -91,6 +92,9 @@
     },
     "startMenu": null,
     "tipsMenu": null,
+    "map": null,
+    "groundCubePrfb": null,
+    "waterCubePrfb": null,
     "_id": "0cvATHQbVIM40gXYHknz+L"
   },
   {

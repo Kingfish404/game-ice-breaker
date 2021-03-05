@@ -1,5 +1,6 @@
 
 import { _decorator, Component, Node, systemEvent, SystemEvent, EventKeyboard, macro, Vec3, RigidBody2D, Vec2, Collider2D, Contact2DType, Camera, IPhysics2DContact } from 'cc';
+import { CubeType } from './GameManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('PlayerController')
@@ -59,15 +60,15 @@ export class PlayerController extends Component {
         this.isUping = false;
 
         // 判断是否碰到了水
-        if (otherCollider.node.name == 'water') {
+        if (otherCollider.node.name == String(CubeType.CUBE_WATER)) {
             console.log('dead!');
             // 发送死亡事件
             this.setInputActive(false);
             this._xForce = 0;
             this._yForce = 0;
-            setTimeout(() =>{
+            setTimeout(() => {
                 this.node.emit('dead');
-            },500)
+            }, 500)
         }
     }
 
