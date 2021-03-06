@@ -11,6 +11,10 @@ export enum CubeType {
     CUBE_GROUND,
     CUBE_WATER,
     CUBE_WALL,
+    CUBE_BOUNCE,
+    CUBE_DISAPPEAR,
+    CUBE_SKIP,
+    CUBE_CLOUD
 }
 
 // 游戏状态
@@ -52,6 +56,18 @@ export class GameManager extends Component {
 
     @property({ type: Prefab })
     public waterCubePrfb: Prefab | null = null;
+
+    @property({ type: Prefab})
+    public bounceCubePrfb: Prefab | null = null;
+
+    @property({ type: Prefab})
+    public disappearCubePrfb: Prefab | null = null;
+
+    @property({ type: Prefab})
+    public skipCubePrfb: Prefab | null = null;
+
+    @property({ type: Prefab})
+    public cloudCubePrfb: Prefab | null = null;
 
     start() {
         this.curState = GameState.GS_INIT;
@@ -105,7 +121,7 @@ export class GameManager extends Component {
 
     // 根据类型返回方块
     spawnCubeByType(type: CubeType) {
-        if (!this.groundCubePrfb || !this.waterCubePrfb) {
+        if (!this.groundCubePrfb || !this.waterCubePrfb || !this.bounceCubePrfb || !this.disappearCubePrfb || !this.skipCubePrfb || !this.cloudCubePrfb) {
             return null;
         } else {
             let block: Node | null = null;
@@ -115,6 +131,18 @@ export class GameManager extends Component {
                     break;
                 case CubeType.CUBE_WATER:
                     block = instantiate(this.waterCubePrfb);
+                    break;
+                case CubeType.CUBE_BOUNCE:
+                    block = instantiate(this.bounceCubePrfb);
+                    break;
+                case CubeType.CUBE_DISAPPEAR:
+                    block = instantiate(this.disappearCubePrfb);
+                    break;
+                case CubeType.CUBE_SKIP:
+                    block = instantiate(this.skipCubePrfb);
+                    break;
+                case CubeType.CUBE_CLOUD:
+                    block = instantiate(this.cloudCubePrfb);
                     break;
             }
 

@@ -111,6 +111,18 @@
     "waterCubePrfb": {
       "__uuid__": "728ff3ae-fe2a-4c1c-a493-5c1fff509600"
     },
+    "bounceCubePrfb": {
+      "__uuid__": "14b43b8e-77bb-4f45-809b-d28dc0e65a8b"
+    },
+    "disappearCubePrfb": {
+      "__uuid__": "4780ce05-cafd-4775-ae26-d12f8749abcf"
+    },
+    "skipCubePrfb": {
+      "__uuid__": "82f27f5c-097d-4c1d-b066-a2e3bcdc3b83"
+    },
+    "cloudCubePrfb": {
+      "__uuid__": "94a0dc1f-aee7-42b6-b66c-dad1b778341b"
+    },
     "_id": "f4f/XpsDNJK73NeOCXUfHq"
   },
   {
