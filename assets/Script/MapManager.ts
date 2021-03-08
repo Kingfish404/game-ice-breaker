@@ -52,7 +52,7 @@ class MapManager {
             road[10].fill(CubeType.CUBE_GROUND, 4, 7);
             road[10].fill(CubeType.CUBE_GROUND, 10, 12);
             road[10].fill(CubeType.CUBE_SKIP, 22, 23);
-            road[10].fill(CubeType.CUBE_SKIP, 28, 29);
+            road[10].fill(CubeType.CUBE_SKIP, 30, 31);
 
             road[11].fill(CubeType.CUBE_GROUND, 10, 12);
             road[11].fill(CubeType.CUBE_GROUND, 22, 30);
