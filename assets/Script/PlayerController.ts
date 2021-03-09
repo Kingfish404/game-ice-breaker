@@ -80,12 +80,12 @@ export class PlayerController extends Component {
             }, 500)
         }
         // 碰到穿越方块
-        if(otherCollider.node.name == String(CubeType.CUBE_SKIP)){
+        if (otherCollider.node.name == String(CubeType.CUBE_SKIP)) {
             console.log('skipcube');
             console.log(this.player?.position);
         }
         // 碰到弹跳方块
-        if(otherCollider.node.name == String(CubeType.CUBE_BOUNCE)){
+        if (otherCollider.node.name == String(CubeType.CUBE_BOUNCE)) {
             console.log('bouncecube');
             console.log(this.player?.position);
             if (!this.isUping) {
@@ -98,26 +98,26 @@ export class PlayerController extends Component {
             }
         }
         // 碰到消失方块
-        if(otherCollider.node.name == String(CubeType.CUBE_DISAPPEAR)){
+        if (otherCollider.node.name == String(CubeType.CUBE_DISAPPEAR)) {
             console.log('disappearcube');
-            setTimeout(() =>{
+            setTimeout(() => {
                 otherCollider.node.active = false;
             }, this.disappearTime);//延时0.5s消失
-            setTimeout(() =>{
+            setTimeout(() => {
                 otherCollider.node.active = true;
             }, this.recoverTime)//再8秒后将active再设置为true
         }
     }
 
-    onPreSolve(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact  | any | null){
+    onPreSolve(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | any | null) {
         // 碰到云方块
-        if(otherCollider.node.name == String(CubeType.CUBE_CLOUD)){
+        if (otherCollider.node.name == String(CubeType.CUBE_CLOUD)) {
             this._cloudPos = otherCollider.node.getWorldPosition();
             this._playerPos = selfCollider.node.getWorldPosition();
             /*console.log(this._cloudPos);
             console.log(this._playerPos);*/
             // 接触位置在云块下方
-            if(this._cloudPos.y > this._playerPos.y){
+            if (this._cloudPos.y > this._playerPos.y) {
                 contact.disabled = true; // 禁用contact使玩家穿过云块,禁用contact仅在本次有效
                 // 禁用contact
                 // https://docs.cocos.com/creator/3.0/manual/zh/physics-2d/physics-2d-contact-callback.html
@@ -152,7 +152,7 @@ export class PlayerController extends Component {
             case macro.KEY.up:
                 if (!this.isUping) {
                     this.isUping = true;
-                    this._yForce = this._force;
+                    this._yForce = this._force * 2;
                     let that = this;
                     setTimeout(() => {
                         that._yForce = 0;
