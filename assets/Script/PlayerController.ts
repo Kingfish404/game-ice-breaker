@@ -90,7 +90,7 @@ export class PlayerController extends Component {
             console.log(this.player?.position);
             if (!this.isUping) {
                 this.isUping = true;
-                this._yForce = 2 * this._force;
+                this._yForce = 4 * this._force;
                 let that = this;
                 setTimeout(() => {
                     that._yForce = 0;
@@ -114,8 +114,8 @@ export class PlayerController extends Component {
         if (otherCollider.node.name == String(CubeType.CUBE_CLOUD)) {
             this._cloudPos = otherCollider.node.getWorldPosition();
             this._playerPos = selfCollider.node.getWorldPosition();
-            /*console.log(this._cloudPos);
-            console.log(this._playerPos);*/
+            console.log('cloud:',this._cloudPos);
+            console.log('player:',this._playerPos);
             // 接触位置在云块下方
             if (this._cloudPos.y > this._playerPos.y) {
                 contact.disabled = true; // 禁用contact使玩家穿过云块,禁用contact仅在本次有效
