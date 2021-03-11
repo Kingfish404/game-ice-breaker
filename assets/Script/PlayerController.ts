@@ -152,7 +152,7 @@ export class PlayerController extends Component {
             case macro.KEY.up:
                 if (!this.isUping) {
                     this.isUping = true;
-                    this._yForce = this._force * 2;
+                    this._yForce = this._force;
                     let that = this;
                     setTimeout(() => {
                         that._yForce = 0;
