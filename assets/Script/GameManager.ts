@@ -16,7 +16,10 @@ export enum CubeType {
     CUBE_SKIP,
     CUBE_CLOUD,
     CUBE_ICE,
-    CUBE_GRASS
+    CUBE_GRASS,
+    CUBE_MONSTER,
+    CUBE_LASER,
+    CUBE_BOX
 }
 
 // 游戏状态
@@ -30,7 +33,7 @@ enum GameState {
 @ccclass('GameManager')
 export class GameManager extends Component {
     @property({ type: CCInteger })
-    public captureNum: number = 0;
+    public captureNum: number = 1;
 
     // 控制的玩家对象
     @property({ type: PlayerController })
@@ -74,9 +77,18 @@ export class GameManager extends Component {
     @property({ type: Prefab})
     public grassCubePrfb: Prefab | null = null;
 
-
     @property({ type: Prefab})
     public iceCubePrfb: Prefab | null = null;
+
+    @property({ type:Prefab})
+    public monsterCubePrfb: Prefab | null = null;
+
+    @property({ type:Prefab})
+    public laserCubePrfb: Prefab | null = null;
+
+    @property({ type:Prefab})
+    public boxCubePrfb: Prefab | null = null;
+
 
     start() {
         this.curState = GameState.GS_INIT;
@@ -130,8 +142,8 @@ export class GameManager extends Component {
 
     // 根据类型返回方块
     spawnCubeByType(type: CubeType) {
-        if (!this.groundCubePrfb || !this.waterCubePrfb || !this.bounceCubePrfb || !this.disappearCubePrfb || !this.skipCubePrfb || !this.cloudCubePrfb || !this.iceCubePrfb || !this.grassCubePrfb) {
-            return null;
+        if (!this.groundCubePrfb || !this.waterCubePrfb || !this.bounceCubePrfb || !this.disappearCubePrfb || !this.skipCubePrfb || !this.cloudCubePrfb || !this.iceCubePrfb || !this.grassCubePrfb || !this.boxCubePrfb || !this.monsterCubePrfb || !this.laserCubePrfb) {
+            return null; 
         } else {
             let block: Node | null = null;
             switch (type) {
@@ -158,6 +170,15 @@ export class GameManager extends Component {
                     break;
                 case CubeType.CUBE_GRASS:
                     block = instantiate(this.grassCubePrfb);
+                    break;
+                case CubeType.CUBE_LASER:
+                    block = instantiate(this.laserCubePrfb);
+                    break;
+                case CubeType.CUBE_MONSTER:
+                    block = instantiate(this.monsterCubePrfb);
+                    break;
+                case CubeType.CUBE_BOX:
+                    block = instantiate(this.boxCubePrfb);
                     break;
             }
 
