@@ -23,10 +23,11 @@ export enum CubeType {
 }
 
 // 游戏状态
-enum GameState {
+export enum GameState {
     GS_INIT,
     GS_PLAYING,
     GS_END,
+    GS_SKIP
 };
 
 // 游戏控制脚本
@@ -143,7 +144,7 @@ export class GameManager extends Component {
     // 根据类型返回方块
     spawnCubeByType(type: CubeType) {
         if (!this.groundCubePrfb || !this.waterCubePrfb || !this.bounceCubePrfb || !this.disappearCubePrfb || !this.skipCubePrfb || !this.cloudCubePrfb || !this.iceCubePrfb || !this.grassCubePrfb || !this.boxCubePrfb || !this.monsterCubePrfb || !this.laserCubePrfb) {
-            return null; 
+            return null;
         } else {
             let block: Node | null = null;
             switch (type) {
@@ -206,6 +207,12 @@ export class GameManager extends Component {
                 if (this.playerCtrl) {
                     this.playerCtrl.setInputActive(false);
                     this.playerCtrl.init();
+                }
+                break;
+            case GameState.GS_SKIP:
+                if(this.playerCtrl){
+                    this.playerCtrl.skip();//传送函数
+                    this.playerCtrl.setInputActive(true);
                 }
                 break;
         }
