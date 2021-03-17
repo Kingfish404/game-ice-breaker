@@ -13,7 +13,8 @@ export enum CubeType {
     CUBE_WALL,
     CUBE_BOUNCE,
     CUBE_DISAPPEAR,
-    CUBE_SKIP,
+    CUBE_SKIPIN,
+    CUBE_SKIPOUT,
     CUBE_CLOUD,
     CUBE_ICE,
     CUBE_GRASS,
@@ -26,8 +27,7 @@ export enum CubeType {
 export enum GameState {
     GS_INIT,
     GS_PLAYING,
-    GS_END,
-    GS_SKIP
+    GS_END
 };
 
 // 游戏控制脚本
@@ -70,7 +70,10 @@ export class GameManager extends Component {
     public disappearCubePrfb: Prefab | null = null;
 
     @property({ type: Prefab})
-    public skipCubePrfb: Prefab | null = null;
+    public skipInCubePrfb: Prefab | null = null;
+
+    @property({ type: Prefab})
+    public skipOutCubePrfb: Prefab | null = null;
 
     @property({ type: Prefab})
     public cloudCubePrfb: Prefab | null = null;
@@ -143,7 +146,7 @@ export class GameManager extends Component {
 
     // 根据类型返回方块
     spawnCubeByType(type: CubeType) {
-        if (!this.groundCubePrfb || !this.waterCubePrfb || !this.bounceCubePrfb || !this.disappearCubePrfb || !this.skipCubePrfb || !this.cloudCubePrfb || !this.iceCubePrfb || !this.grassCubePrfb || !this.boxCubePrfb || !this.monsterCubePrfb || !this.laserCubePrfb) {
+        if (!this.groundCubePrfb || !this.waterCubePrfb || !this.bounceCubePrfb || !this.disappearCubePrfb || !this.skipInCubePrfb || !this.skipOutCubePrfb|| !this.cloudCubePrfb || !this.iceCubePrfb || !this.grassCubePrfb || !this.boxCubePrfb || !this.monsterCubePrfb || !this.laserCubePrfb) {
             return null;
         } else {
             let block: Node | null = null;
@@ -160,8 +163,11 @@ export class GameManager extends Component {
                 case CubeType.CUBE_DISAPPEAR:
                     block = instantiate(this.disappearCubePrfb);
                     break;
-                case CubeType.CUBE_SKIP:
-                    block = instantiate(this.skipCubePrfb);
+                case CubeType.CUBE_SKIPIN:
+                    block = instantiate(this.skipInCubePrfb);
+                    break;
+                case CubeType.CUBE_SKIPOUT:
+                    block = instantiate(this.skipOutCubePrfb);
                     break;
                 case CubeType.CUBE_CLOUD:
                     block = instantiate(this.cloudCubePrfb);
@@ -209,12 +215,6 @@ export class GameManager extends Component {
                     this.playerCtrl.init();
                 }
                 break;
-            case GameState.GS_SKIP:
-                if(this.playerCtrl){
-                    this.playerCtrl.skip();//传送函数
-                    this.playerCtrl.setInputActive(true);
-                }
-                break;
         }
         this._curState = value;
     }
@@ -242,5 +242,9 @@ export class GameManager extends Component {
     }
 
     update(deltaTime: number) {
+        if(this.playerCtrl?.skipJudge){
+            this.playerCtrl.player.setWorldPosition(1087, 525, 0);
+            this.playerCtrl.skipJudge = false;
+        }
     }
 }

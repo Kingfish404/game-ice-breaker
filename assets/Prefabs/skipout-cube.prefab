@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "skip-cube",
+    "_name": "skipout-cube",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -39,8 +39,8 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 481.509,
-      "y": 319.4545,
+      "x": 0,
+      "y": 0,
       "z": 0
     },
     "_lrot": {
@@ -168,7 +168,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "32bOnd3W5IWqkYvWxSCQuY"
+    "fileId": "a75AdfG31C16gVmLvYX4Fy"
   },
   {
     "__type__": "cc.BoxCollider2D",
@@ -201,10 +201,10 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "33jcJUnulNwK+g9lsp1t7e"
+    "fileId": "02SRn5hylHdYysnEWU/l/I"
   },
   {
-    "__type__": "fcb08gZrbpK3o9/0R0hh6OZ",
+    "__type__": "a7c67DNI7tO1JBrENslFPh7",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -218,7 +218,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "64cZ2Ol+NHc7oSPx0MzLkB"
+    "fileId": "4apF0jdaJOPaS4lc7/1NyK"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -228,6 +228,6 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "58TpgK2sdLLaqAb9vrq6+w"
+    "fileId": "cakOSiOxZCgI4WLW6OJ/q8"
   }
 ]

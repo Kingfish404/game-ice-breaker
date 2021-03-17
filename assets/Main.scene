@@ -117,8 +117,11 @@
     "disappearCubePrfb": {
       "__uuid__": "d16c4aa8-9f89-434b-86a1-09fb975382ae"
     },
-    "skipCubePrfb": {
+    "skipInCubePrfb": {
       "__uuid__": "f01c10a6-abff-4e46-ad0b-2a27eb835212"
+    },
+    "skipOutCubePrfb": {
+      "__uuid__": "6a481da3-63c5-4eab-8f8a-f1cc20045327"
     },
     "cloudCubePrfb": {
       "__uuid__": "0355a555-23d2-4758-b370-33ffb77ee30d"
@@ -155,7 +158,9 @@
     "playerCamera": {
       "__id__": 43
     },
-    "gameCtrl": null,
+    "gameCtrl": {
+      "__id__": 3
+    },
     "_id": "92X/W2SShKI6BOPKJCfpeo"
   },
   {

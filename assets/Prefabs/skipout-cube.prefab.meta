@@ -2,12 +2,12 @@
   "ver": "1.1.27",
   "importer": "prefab",
   "imported": true,
-  "uuid": "f01c10a6-abff-4e46-ad0b-2a27eb835212",
+  "uuid": "6a481da3-63c5-4eab-8f8a-f1cc20045327",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "skip-cube"
+    "syncNodeName": "skipout-cube"
   }
 }
