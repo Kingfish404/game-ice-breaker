@@ -123,6 +123,21 @@
     "cloudCubePrfb": {
       "__uuid__": "0355a555-23d2-4758-b370-33ffb77ee30d"
     },
+    "grassCubePrfb": {
+      "__uuid__": "049a4a59-ac0d-4017-81ab-092cc2300f97"
+    },
+    "iceCubePrfb": {
+      "__uuid__": "7a82ea65-a1ea-4613-883c-4bafa576b61e"
+    },
+    "monsterCubePrfb": {
+      "__uuid__": "1358ac24-31ea-4db0-9815-139668678fc3"
+    },
+    "laserCubePrfb": {
+      "__uuid__": "86cfac75-7e60-4412-9d74-4884dea3de49"
+    },
+    "boxCubePrfb": {
+      "__uuid__": "08b919bb-81c4-4e5c-a51f-43e44e358ec1"
+    },
     "_id": "f4f/XpsDNJK73NeOCXUfHq"
   },
   {
@@ -140,6 +155,7 @@
     "playerCamera": {
       "__id__": 43
     },
+    "gameCtrl": null,
     "_id": "92X/W2SShKI6BOPKJCfpeo"
   },
   {
@@ -1157,7 +1173,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 658.867924528302,
+    "_orthoHeight": 361.4117647058824,
     "_near": 1,
     "_far": 2000,
     "_color": {
@@ -1419,7 +1435,7 @@
     "_size": {
       "__type__": "cc.Size",
       "width": 33,
-      "height": 45
+      "height": 44
     },
     "_id": "edxsRJQx9LPqr6XDuvzfQF"
   },
@@ -1444,7 +1460,7 @@
     "node": {
       "__id__": 45
     },
-    "_enabled": true,
+    "_enabled": false,
     "__prefab": null,
     "tag": 0,
     "_group": 1,
@@ -1510,7 +1526,7 @@
       "__type__": "cc.Vec3",
       "x": -350,
       "y": 270,
-      "z": -1000
+      "z": -500
     },
     "_lrot": {
       "__type__": "cc.Quat",
@@ -1832,7 +1848,7 @@
       "__type__": "cc.Vec3",
       "x": -100,
       "y": 270,
-      "z": -1000
+      "z": -500
     },
     "_lrot": {
       "__type__": "cc.Quat",
@@ -3715,7 +3731,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 658,
+    "_orthoHeight": 361.4117647058824,
     "_near": 1,
     "_far": 2000,
     "_color": {

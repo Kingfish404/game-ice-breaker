@@ -8,7 +8,7 @@ const { ccclass, property } = _decorator;
 export class CloudCube extends Component {
 
     start () {
-        // 云方块的name均为water，玩家碰到了会死
+        // 云方块，玩家可以从下面穿过该方块
         this.node.name = String(CubeType.CUBE_CLOUD);
     }
 }

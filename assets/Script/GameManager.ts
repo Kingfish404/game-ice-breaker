@@ -14,21 +14,27 @@ export enum CubeType {
     CUBE_BOUNCE,
     CUBE_DISAPPEAR,
     CUBE_SKIP,
-    CUBE_CLOUD
+    CUBE_CLOUD,
+    CUBE_ICE,
+    CUBE_GRASS,
+    CUBE_MONSTER,
+    CUBE_LASER,
+    CUBE_BOX
 }
 
 // 游戏状态
-enum GameState {
+export enum GameState {
     GS_INIT,
     GS_PLAYING,
     GS_END,
+    GS_SKIP
 };
 
 // 游戏控制脚本
 @ccclass('GameManager')
 export class GameManager extends Component {
     @property({ type: CCInteger })
-    public captureNum: number = 0;
+    public captureNum: number = 1;
 
     // 控制的玩家对象
     @property({ type: PlayerController })
@@ -68,6 +74,22 @@ export class GameManager extends Component {
 
     @property({ type: Prefab})
     public cloudCubePrfb: Prefab | null = null;
+
+    @property({ type: Prefab})
+    public grassCubePrfb: Prefab | null = null;
+
+    @property({ type: Prefab})
+    public iceCubePrfb: Prefab | null = null;
+
+    @property({ type:Prefab})
+    public monsterCubePrfb: Prefab | null = null;
+
+    @property({ type:Prefab})
+    public laserCubePrfb: Prefab | null = null;
+
+    @property({ type:Prefab})
+    public boxCubePrfb: Prefab | null = null;
+
 
     start() {
         this.curState = GameState.GS_INIT;
@@ -121,7 +143,7 @@ export class GameManager extends Component {
 
     // 根据类型返回方块
     spawnCubeByType(type: CubeType) {
-        if (!this.groundCubePrfb || !this.waterCubePrfb || !this.bounceCubePrfb || !this.disappearCubePrfb || !this.skipCubePrfb || !this.cloudCubePrfb) {
+        if (!this.groundCubePrfb || !this.waterCubePrfb || !this.bounceCubePrfb || !this.disappearCubePrfb || !this.skipCubePrfb || !this.cloudCubePrfb || !this.iceCubePrfb || !this.grassCubePrfb || !this.boxCubePrfb || !this.monsterCubePrfb || !this.laserCubePrfb) {
             return null;
         } else {
             let block: Node | null = null;
@@ -143,6 +165,21 @@ export class GameManager extends Component {
                     break;
                 case CubeType.CUBE_CLOUD:
                     block = instantiate(this.cloudCubePrfb);
+                    break;
+                case CubeType.CUBE_ICE:
+                    block = instantiate(this.iceCubePrfb);
+                    break;
+                case CubeType.CUBE_GRASS:
+                    block = instantiate(this.grassCubePrfb);
+                    break;
+                case CubeType.CUBE_LASER:
+                    block = instantiate(this.laserCubePrfb);
+                    break;
+                case CubeType.CUBE_MONSTER:
+                    block = instantiate(this.monsterCubePrfb);
+                    break;
+                case CubeType.CUBE_BOX:
+                    block = instantiate(this.boxCubePrfb);
                     break;
             }
 
@@ -170,6 +207,12 @@ export class GameManager extends Component {
                 if (this.playerCtrl) {
                     this.playerCtrl.setInputActive(false);
                     this.playerCtrl.init();
+                }
+                break;
+            case GameState.GS_SKIP:
+                if(this.playerCtrl){
+                    this.playerCtrl.skip();//传送函数
+                    this.playerCtrl.setInputActive(true);
                 }
                 break;
         }
