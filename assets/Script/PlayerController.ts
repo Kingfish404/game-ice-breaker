@@ -18,6 +18,8 @@ export class PlayerController extends Component {
     private _initPos: Vec3 | null = null;
     public maxspeed: number = 10;
 
+    public skipJudge: boolean = false;
+
     public disappearTime: number = 500;//碰到消失方块消失前的间隔时间
     public recoverTime: number = 8500;//消失方块复原的时间
 
@@ -31,7 +33,7 @@ export class PlayerController extends Component {
     @property({ type: Camera })
     public playerCamera: Camera | null = null;
 
-    @property({ type: GameManager})
+    @property({ type: Component})
     public gameCtrl: GameManager | null = null;
 
     start() {
@@ -107,11 +109,10 @@ export class PlayerController extends Component {
             }, 500)
         }
         // 碰到穿越方块
-        if (otherCollider.node.name == String(CubeType.CUBE_SKIP)) {
-            console.log('skipcube');
-            console.log(this.player?.position);
-            if(this.gameCtrl){
-                this.gameCtrl.curState = GameState.GS_SKIP;
+        if (otherCollider.node.name == String(CubeType.CUBE_SKIPIN)) {
+            console.log("skipcube");
+            if(!this.skipJudge){
+                this.skipJudge = true;
             }
         }
         // 碰到弹跳方块

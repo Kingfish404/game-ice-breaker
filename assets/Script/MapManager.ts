@@ -60,8 +60,8 @@ class MapManager {
             road[10].fill(CubeType.CUBE_ICE, 2, 3);
             road[10].fill(CubeType.CUBE_ICE, 4, 7);
             road[10].fill(CubeType.CUBE_GROUND, 10, 12);
-            road[10].fill(CubeType.CUBE_SKIP, 22, 23);
-            road[10].fill(CubeType.CUBE_SKIP, 29, 30);
+            road[10].fill(CubeType.CUBE_SKIPOUT, 22, 23);
+            road[10].fill(CubeType.CUBE_SKIPIN, 29, 30);
 
             road[11].fill(CubeType.CUBE_GROUND, 10, 12);
             road[11].fill(CubeType.CUBE_GROUND, 22, 30);
@@ -152,9 +152,9 @@ class MapManager {
 
             road[5].fill(CubeType.CUBE_GROUND, 0, 1);
             road[5].fill(CubeType.CUBE_GROUND, 13, 14);
-            road[5].fill(CubeType.CUBE_SKIP, 14, 15);
+            road[5].fill(CubeType.CUBE_SKIPOUT, 14, 15);
             road[5].fill(CubeType.CUBE_GROUND, 15, 16);
-            road[5].fill(CubeType.CUBE_SKIP, 20, 21);
+            road[5].fill(CubeType.CUBE_SKIPIN, 20, 21);
             road[5].fill(CubeType.CUBE_GROUND, 21, 23);
             road[5].fill(CubeType.CUBE_ICE, 29, 31);
             road[5].fill(CubeType.CUBE_CLOUD, 31, 33);
