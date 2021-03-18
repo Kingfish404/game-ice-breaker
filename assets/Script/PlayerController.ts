@@ -1,6 +1,6 @@
 
-import { _decorator, Component, Node, systemEvent, SystemEvent, EventKeyboard, macro, Vec3, RigidBody2D, Vec2, Collider2D, Contact2DType, Camera, IPhysics2DContact, Tween, Game } from 'cc';
-import { CubeType, GameManager, GameState} from './GameManager';
+import { _decorator, Component, Node, systemEvent, SystemEvent, EventKeyboard, macro, Vec3, RigidBody2D, Vec2, Collider2D, Contact2DType, Camera, IPhysics2DContact, Animation, Sprite, SpriteFrame } from 'cc';
+import { CubeType, GameManager, GameState } from './GameManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('PlayerController')
@@ -27,13 +27,27 @@ export class PlayerController extends Component {
     public _cloudPos: Vec3 | null = null;
     public _playerPos: Vec3 | null = null;
 
+    // 当前角色正在朝右
+    public _playerFaceRigth: boolean = true;
+
+    // 角色节点组件
     @property({ type: Node })
     public player: Node | null = null;
 
+    // 角色动画组件
+    @property({ type: Animation })
+    public playAnim: Animation | null = null;
+
+    // 角色静态图片资源
+    @property({ type: SpriteFrame })
+    public playFrame_Right: SpriteFrame | null = null;
+
+    // 玩家摄像头
     @property({ type: Camera })
     public playerCamera: Camera | null = null;
 
-    @property({ type: Component})
+    // 游戏控制对象
+    @property({ type: Component })
     public gameCtrl: GameManager | null = null;
 
     start() {
@@ -68,7 +82,7 @@ export class PlayerController extends Component {
         }
     }
 
-    skip(){
+    skip() {
         if (this.player) {
             const collider: Collider2D | null = this.player.getComponent(Collider2D);
             const rigidBody2d: RigidBody2D | null = this.player.getComponent(RigidBody2D);
@@ -111,7 +125,7 @@ export class PlayerController extends Component {
         // 碰到穿越方块
         if (otherCollider.node.name == String(CubeType.CUBE_SKIPIN)) {
             console.log("skipcube");
-            if(!this.skipJudge){
+            if (!this.skipJudge) {
                 this.skipJudge = true;
             }
         }
@@ -121,7 +135,7 @@ export class PlayerController extends Component {
             console.log(this.player?.position);
             if (!this.isUping) {
                 this.isUping = true;
-                this._yForce = 4 * this._force;
+                this._yForce = 2 * this._force;
                 let that = this;
                 setTimeout(() => {
                     that._yForce = 0;
@@ -145,8 +159,8 @@ export class PlayerController extends Component {
         if (otherCollider.node.name == String(CubeType.CUBE_CLOUD)) {
             this._cloudPos = otherCollider.node.getWorldPosition();
             this._playerPos = selfCollider.node.getWorldPosition();
-            console.log('cloud:',this._cloudPos);
-            console.log('player:',this._playerPos);
+            console.log('cloud:', this._cloudPos);
+            console.log('player:', this._playerPos);
             // 接触位置在云块下方
             if (this._cloudPos.y > this._playerPos.y) {
                 contact.disabled = true; // 禁用contact使玩家穿过云块,禁用contact仅在本次有效
@@ -171,17 +185,32 @@ export class PlayerController extends Component {
         switch (event.keyCode) {
             case macro.KEY.a:
             case macro.KEY.left:
+                if (this.playAnim) {
+                    this.playAnim.play('playmove-left');
+                }
+                this._playerFaceRigth = false;
                 this._xForce = -this._force / 2;
                 this._yForce = 0;
                 break;
             case macro.KEY.d:
             case macro.KEY.right:
-                this._xForce = this._force / 2;
+                if (this.playAnim) {
+                    this.playAnim.play('playmove-right');
+                }
+                this._playerFaceRigth = true;
+                this._xForce = this._force / 2.5;
                 this._yForce = 0;
                 break;
             case macro.KEY.w:
             case macro.KEY.up:
                 if (!this.isUping) {
+                    if (this.playAnim) {
+                        if (this._playerFaceRigth) {
+                            this.playAnim.play('playmove-right-jump');
+                        } else {
+                            this.playAnim.play('playmove-left-jump');
+                        }
+                    }
                     this.isUping = true;
                     this._yForce = this._force;
                     let that = this;
@@ -209,7 +238,7 @@ export class PlayerController extends Component {
                 break;
             case macro.KEY.w:
             case macro.KEY.s:
-                // this._yForce = 0;
+                this._yForce = 0;
                 break;
         }
     }

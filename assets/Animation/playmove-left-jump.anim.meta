@@ -2,12 +2,12 @@
   "ver": "1.0.11",
   "importer": "animation-clip",
   "imported": true,
-  "uuid": "9f5f2cbe-bc44-44fb-bd76-44579e712285",
+  "uuid": "d51c7a50-8cee-4866-b82e-a21c8bdb7a33",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "name": "playmove-left"
+    "name": "playmove-left-jump"
   }
 }
