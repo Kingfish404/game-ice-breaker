@@ -1,5 +1,5 @@
 
-import { _decorator, Component, Node, PhysicsSystem2D, PHYSICS_2D_PTM_RATIO, v2, game, director, Prefab, instantiate, CCInteger } from 'cc';
+import { _decorator, Component, Node, PhysicsSystem2D, PHYSICS_2D_PTM_RATIO, v2, game, director, Prefab, instantiate, CCInteger, Vec3 } from 'cc';
 import { GroundCube } from './Cube/groundCube';
 import mapManager from './MapManager';
 import { PlayerController } from './PlayerController';
@@ -34,7 +34,7 @@ export enum GameState {
 @ccclass('GameManager')
 export class GameManager extends Component {
     @property({ type: CCInteger })
-    public captureNum: number = 1;
+    public captureNum: number = 0;
 
     // 控制的玩家对象
     @property({ type: PlayerController })
@@ -93,6 +93,7 @@ export class GameManager extends Component {
     @property({ type:Prefab})
     public boxCubePrfb: Prefab | null = null;
 
+    public _skipPos: Vec3 = new Vec3(1087, 525, 0);//跳转的位置
 
     start() {
         this.curState = GameState.GS_INIT;
@@ -238,12 +239,17 @@ export class GameManager extends Component {
     }
 
     onNextButtonClicked() {
-        director.loadScene('caption-1');
+        this.generateRoad(1);
+        if(this.playerCtrl){
+            this.playerCtrl.setInputActive(true);
+            this.playerCtrl.player?.setWorldPosition(350, 300, 0);
+        }
+        //director.loadScene('caption-1');
     }
 
     update(deltaTime: number) {
         if(this.playerCtrl?.skipJudge){
-            this.playerCtrl.player.setWorldPosition(1087, 525, 0);
+            this.playerCtrl.player?.setWorldPosition(this._skipPos);
             this.playerCtrl.skipJudge = false;
         }
     }

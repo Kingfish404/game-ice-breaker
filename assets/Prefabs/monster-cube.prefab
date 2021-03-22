@@ -35,7 +35,7 @@
       }
     ],
     "_prefab": {
-      "__id__": 12
+      "__id__": 11
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -148,11 +148,11 @@
     "__prefab": {
       "__id__": 7
     },
-    "enabledContactListener": false,
+    "enabledContactListener": true,
     "bullet": false,
     "awakeOnLoad": true,
     "_group": 1,
-    "_type": 0,
+    "_type": 1,
     "_allowSleep": true,
     "_gravityScale": 1,
     "_linearDamping": 0,
@@ -211,14 +211,8 @@
       "__id__": 1
     },
     "_enabled": true,
-    "__prefab": {
-      "__id__": 11
-    },
+    "__prefab": null,
     "_id": ""
-  },
-  {
-    "__type__": "cc.CompPrefabInfo",
-    "fileId": "65VqKEyj9Atrc0VN77bjL3"
   },
   {
     "__type__": "cc.PrefabInfo",

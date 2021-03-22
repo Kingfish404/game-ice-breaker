@@ -126,7 +126,7 @@ class MapManager {
             road[2].fill(CubeType.CUBE_GROUND, 15, 16);
             road[2].fill(CubeType.CUBE_CLOUD, 24, 25);
             road[2].fill(CubeType.CUBE_BOX, 28, 29);
-            road[2].fill(CubeType.CUBE_MONSTER, 29, 30);
+            road[2].fill(CubeType.CUBE_GROUND, 29, 30);
             road[2].fill(CubeType.CUBE_GROUND, 30, 31);
             road[2].fill(CubeType.CUBE_BOX, 33, 34);
             road[2].fill(CubeType.CUBE_GRASS, 37, 40);

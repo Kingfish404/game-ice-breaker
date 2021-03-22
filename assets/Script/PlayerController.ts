@@ -1,6 +1,6 @@
 
 import { _decorator, Component, Node, systemEvent, SystemEvent, EventKeyboard, macro, Vec3, RigidBody2D, Vec2, Collider2D, Contact2DType, Camera, IPhysics2DContact, Animation, Sprite, SpriteFrame } from 'cc';
-import { CubeType, GameManager, GameState } from './GameManager';
+import { CubeType } from './GameManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('PlayerController')
@@ -23,7 +23,6 @@ export class PlayerController extends Component {
     public disappearTime: number = 500;//碰到消失方块消失前的间隔时间
     public recoverTime: number = 8500;//消失方块复原的时间
 
-    public _skipPos: Vec3 = new Vec3(10 * 40, 29 * 40, 0);
     public _cloudPos: Vec3 | null = null;
     public _playerPos: Vec3 | null = null;
 
@@ -46,10 +45,6 @@ export class PlayerController extends Component {
     @property({ type: Camera })
     public playerCamera: Camera | null = null;
 
-    // 游戏控制对象
-    @property({ type: Component })
-    public gameCtrl: GameManager | null = null;
-
     start() {
         if (this.player) {
             this._initPos = this.player.getPosition();
@@ -63,31 +58,6 @@ export class PlayerController extends Component {
             const rigidBody2d: RigidBody2D | null = this.player.getComponent(RigidBody2D);
             if (this._initPos) {
                 this.player.setPosition(this._initPos);
-            }
-            if (collider) {
-                // 设定碰撞事件
-                let that = this;
-                collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
-                collider.on(Contact2DType.PRE_SOLVE, this.onPreSolve, this);
-            }
-            if (rigidBody2d) {
-                // 禁止主角旋转
-                rigidBody2d.fixedRotation = true;
-            }
-            if (this.playerCamera) {
-                const pos: Vec3 = this.playerCamera.node.getPosition();
-                console.log(pos);
-                // this.playerCamera.node.setPosition(new Vec3(0, 0, 0));
-            }
-        }
-    }
-
-    skip() {
-        if (this.player) {
-            const collider: Collider2D | null = this.player.getComponent(Collider2D);
-            const rigidBody2d: RigidBody2D | null = this.player.getComponent(RigidBody2D);
-            if (this._initPos) {
-                this.player.setPosition(this._skipPos);
             }
             if (collider) {
                 // 设定碰撞事件
@@ -159,8 +129,8 @@ export class PlayerController extends Component {
         if (otherCollider.node.name == String(CubeType.CUBE_CLOUD)) {
             this._cloudPos = otherCollider.node.getWorldPosition();
             this._playerPos = selfCollider.node.getWorldPosition();
-            console.log('cloud:', this._cloudPos);
-            console.log('player:', this._playerPos);
+            /*console.log('cloud:', this._cloudPos);
+            console.log('player:', this._playerPos);*/
             // 接触位置在云块下方
             if (this._cloudPos.y > this._playerPos.y) {
                 contact.disabled = true; // 禁用contact使玩家穿过云块,禁用contact仅在本次有效
