@@ -111,8 +111,8 @@ class MapManager {
             road[1].fill(CubeType.CUBE_GROUND, 15, 16);
             road[1].fill(CubeType.CUBE_WATER, 16, 24);
             road[1].fill(CubeType.CUBE_GROUND, 24, 25);
-            road[1].fill(CubeType.CUBE_ICE, 27, 28);
-            road[1].fill(CubeType.CUBE_GROUND, 28, 31);
+            road[1].fill(CubeType.CUBE_ICE, 27, 29);
+            road[1].fill(CubeType.CUBE_GROUND, 29, 31);
             road[1].fill(CubeType.CUBE_ICE, 31, 34);
             road[1].fill(CubeType.CUBE_GRASS, 34, 37);
             road[1].fill(CubeType.CUBE_GROUND, 37, 40);
@@ -120,13 +120,13 @@ class MapManager {
             road[2].fill(CubeType.CUBE_GROUND, 0, 2);
             road[2].fill(CubeType.CUBE_DISAPPEAR, 2, 5);
             road[2].fill(CubeType.CUBE_GROUND, 5, 6);
-            road[2].fill(CubeType.CUBE_MONSTER, 8, 9);
-            road[2].fill(CubeType.CUBE_GROUND, 9, 10);
+            road[2].fill(CubeType.CUBE_MONSTER, 7, 8);
+            road[2].fill(CubeType.CUBE_GRASS, 9, 10);
             road[2].fill(CubeType.CUBE_DISAPPEAR, 10, 11);
             road[2].fill(CubeType.CUBE_GROUND, 15, 16);
             road[2].fill(CubeType.CUBE_CLOUD, 24, 25);
-            road[2].fill(CubeType.CUBE_BOX, 28, 29);
-            road[2].fill(CubeType.CUBE_GROUND, 29, 30);
+            //road[2].fill(CubeType.CUBE_BOX, 28, 29);
+            road[2].fill(CubeType.CUBE_MONSTER, 29, 30);//monster
             road[2].fill(CubeType.CUBE_GROUND, 30, 31);
             road[2].fill(CubeType.CUBE_BOX, 33, 34);
             road[2].fill(CubeType.CUBE_GRASS, 37, 40);

@@ -1,4 +1,3 @@
-
 import { _decorator, Component, Node, Collider2D, RigidBody2D, Contact2DType, IPhysics2DContact, Vec3, Vec2 } from 'cc';
 import { CubeType } from '../GameManager';
 const { ccclass, property } = _decorator;
@@ -8,7 +7,7 @@ const { ccclass, property } = _decorator;
 export class MonsterCube extends Component {
 
     public isLeft: boolean = true;//判断运动的方向
-    public step: number = 2;//方块移动的距离
+    public speed: number = 2;//方块移动的距离
 
     start () {
         // 怪物方块
@@ -33,7 +32,6 @@ export class MonsterCube extends Component {
 
     onBeginContact(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | any | null) {
         if(otherCollider.node.name == String(CubeType.CUBE_GROUND)){
-            console.log("groundcube");
             this.isLeft = !this.isLeft;
         }
     }
@@ -45,13 +43,11 @@ export class MonsterCube extends Component {
             if (rigidbody2d) {
                 const velocity = rigidbody2d.linearVelocity;
                 if(this.isLeft){
-                    velocity.x = -this.step;
+                    velocity.x = -this.speed;
                 }
                 else{
-                    velocity.x = this.step;
+                    velocity.x = this.speed;
                 }
-                console.log(this.isLeft);
-                console.log(velocity.x);
                 rigidbody2d.linearVelocity = velocity;
             }
         }

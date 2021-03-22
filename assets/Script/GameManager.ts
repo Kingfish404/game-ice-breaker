@@ -242,7 +242,7 @@ export class GameManager extends Component {
         this.generateRoad(1);
         if(this.playerCtrl){
             this.playerCtrl.setInputActive(true);
-            this.playerCtrl.player?.setWorldPosition(350, 300, 0);
+            this.playerCtrl.player?.setWorldPosition(1500, 300, 0);
         }
         //director.loadScene('caption-1');
     }
