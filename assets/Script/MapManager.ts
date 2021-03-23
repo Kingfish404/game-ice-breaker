@@ -1,6 +1,11 @@
 import { CubeType } from "./GameManager";
+import { Vec3 } from 'cc';
 
 class MapManager {
+
+    public skipPos: Array<Vec3> = [new Vec3(1087, 525, 0), new Vec3(820, 300, 0)];//初始位置
+    public initPos: Array<Vec3> = [new Vec3(500, 250, 0), new Vec3(1500, 300, 0)]//跳转位置
+
     generate(captureNum: number): Array<Array<CubeType>> | null {
         let road = null;
         if (captureNum == 0) {

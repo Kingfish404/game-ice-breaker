@@ -1,6 +1,7 @@
 
 import { _decorator, Component, Node, systemEvent, SystemEvent, EventKeyboard, macro, Vec3, RigidBody2D, Vec2, Collider2D, Contact2DType, Camera, IPhysics2DContact, Animation, Sprite, SpriteFrame } from 'cc';
 import { CubeType } from './GameManager';
+import MapManager from './MapManager'
 const { ccclass, property } = _decorator;
 
 @ccclass('PlayerController')
@@ -15,7 +16,8 @@ export class PlayerController extends Component {
     private _yForce: number = 0;
     private _force: number = 100;
     private isUping: boolean = false;
-    private _initPos: Vec3 | null = null;
+    public _initPos: Vec3 | null = null;
+    public _startPos: Vec3  = new Vec3(1500, 300, 0);
     public maxspeed: number = 10;
 
     public skipJudge: boolean = false;
@@ -44,20 +46,23 @@ export class PlayerController extends Component {
     // 玩家摄像头
     @property({ type: Camera })
     public playerCamera: Camera | null = null;
+    
+    public cameraPos: Vec3 = new Vec3(-20, 70, 1000);//摄像头初始位置
 
     start() {
         if (this.player) {
-            this._initPos = this.player.getPosition();
+            this._initPos = MapManager.initPos[0];
         }
-        this.init();
+        this.init(0);
     }
 
-    init() {
+    init(captureNum: number) {
+        this._initPos = MapManager.initPos[captureNum];
         if (this.player) {
             const collider: Collider2D | null = this.player.getComponent(Collider2D);
             const rigidBody2d: RigidBody2D | null = this.player.getComponent(RigidBody2D);
             if (this._initPos) {
-                this.player.setPosition(this._initPos);
+                this.player.setWorldPosition(this._initPos);
             }
             if (collider) {
                 // 设定碰撞事件
@@ -71,6 +76,7 @@ export class PlayerController extends Component {
             }
             if (this.playerCamera) {
                 const pos: Vec3 = this.playerCamera.node.getPosition();
+                this.playerCamera.node.setPosition(this.cameraPos);//控制初始化时相机的位置
                 console.log(pos);
                 // this.playerCamera.node.setPosition(new Vec3(0, 0, 0));
             }

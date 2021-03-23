@@ -93,7 +93,8 @@ export class GameManager extends Component {
     @property({ type:Prefab})
     public boxCubePrfb: Prefab | null = null;
 
-    public _skipPos: Vec3 = new Vec3(1087, 525, 0);//跳转的位置
+    public initPos: Vec3 | null = null;//保存出生点
+    public skipPos: Vec3 | null = null;//保存跳跃点
 
     start() {
         this.curState = GameState.GS_INIT;
@@ -111,6 +112,7 @@ export class GameManager extends Component {
     }
 
     init() {
+        this.captureNum = 0;//将关卡初始化为0
         if (this.startMenu) {
             this.startMenu.active = true;
         }
@@ -204,16 +206,25 @@ export class GameManager extends Component {
                     this.startMenu.active = false;
                 }
                 if (this.playerCtrl) {
-                    this.playerCtrl.init();
+                    this.playerCtrl.init(this.captureNum);
                     this.playerCtrl.setInputActive(true);
                 }
                 this.generateRoad(this.captureNum);
+                //设置初始位置和跳转位置
+                this.skipPos = mapManager.skipPos[this.captureNum];
+                this.initPos = mapManager.initPos[this.captureNum];
                 break;
             case GameState.GS_END:
-                this.init();
+                /*this.init();
                 if (this.playerCtrl) {
                     this.playerCtrl.setInputActive(false);
                     this.playerCtrl.init();
+                }*/
+                if(this.playerCtrl){
+                    if(this.playerCtrl.player){
+                        this.playerCtrl.setInputActive(true);
+                        this.playerCtrl.player.setWorldPosition(this.initPos);
+                    }
                 }
                 break;
         }
@@ -239,17 +250,14 @@ export class GameManager extends Component {
     }
 
     onNextButtonClicked() {
-        this.generateRoad(1);
-        if(this.playerCtrl){
-            this.playerCtrl.setInputActive(true);
-            this.playerCtrl.player?.setWorldPosition(1500, 300, 0);
-        }
+        this.captureNum = 1;//修改关卡值
+        this.curState = GameState.GS_PLAYING;//重新设置游戏地图
         //director.loadScene('caption-1');
     }
 
     update(deltaTime: number) {
         if(this.playerCtrl?.skipJudge){
-            this.playerCtrl.player?.setWorldPosition(this._skipPos);
+            this.playerCtrl.player?.setWorldPosition(this.skipPos);//根据当前关卡跳转位置
             this.playerCtrl.skipJudge = false;
         }
     }
