@@ -38,8 +38,8 @@ export class MonsterCube extends Component {
 
     update(){
         if (this.node) {
-            const player = this.node;
-            const rigidbody2d: RigidBody2D | null = player.getComponent(RigidBody2D);
+            const monster = this.node;
+            const rigidbody2d: RigidBody2D | null = monster.getComponent(RigidBody2D);
             if (rigidbody2d) {
                 const velocity = rigidbody2d.linearVelocity;
                 if(this.isLeft){

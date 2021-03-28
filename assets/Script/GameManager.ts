@@ -220,12 +220,13 @@ export class GameManager extends Component {
                     this.playerCtrl.setInputActive(false);
                     this.playerCtrl.init();
                 }*/
-                if(this.playerCtrl){
+                /*if(this.playerCtrl){
                     if(this.playerCtrl.player){
                         this.playerCtrl.setInputActive(true);
                         this.playerCtrl.player.setWorldPosition(this.initPos);
                     }
-                }
+                }*/
+                this.curState = GameState.GS_PLAYING;
                 break;
         }
         this._curState = value;

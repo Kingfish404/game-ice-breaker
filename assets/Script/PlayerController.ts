@@ -46,8 +46,10 @@ export class PlayerController extends Component {
     // 玩家摄像头
     @property({ type: Camera })
     public playerCamera: Camera | null = null;
-    
+
     public cameraPos: Vec3 = new Vec3(-20, 70, 1000);//摄像头初始位置
+
+    public boxIsMoving: boolean = false;//判断j键是否按下
 
     start() {
         if (this.player) {
@@ -69,6 +71,7 @@ export class PlayerController extends Component {
                 let that = this;
                 collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
                 collider.on(Contact2DType.PRE_SOLVE, this.onPreSolve, this);
+                collider.on(Contact2DType.END_CONTACT, this.onEndSolve, this);
             }
             if (rigidBody2d) {
                 // 禁止主角旋转
@@ -100,15 +103,12 @@ export class PlayerController extends Component {
         }
         // 碰到穿越方块
         if (otherCollider.node.name == String(CubeType.CUBE_SKIPIN)) {
-            console.log("skipcube");
             if (!this.skipJudge) {
                 this.skipJudge = true;
             }
         }
         // 碰到弹跳方块
         if (otherCollider.node.name == String(CubeType.CUBE_BOUNCE)) {
-            console.log('bouncecube');
-            console.log(this.player?.position);
             if (!this.isUping) {
                 this.isUping = true;
                 this._yForce = 2 * this._force;
@@ -120,7 +120,6 @@ export class PlayerController extends Component {
         }
         // 碰到消失方块
         if (otherCollider.node.name == String(CubeType.CUBE_DISAPPEAR)) {
-            console.log('disappearcube');
             setTimeout(() => {
                 otherCollider.node.active = false;
             }, this.disappearTime);//延时0.5s消失
@@ -135,13 +134,35 @@ export class PlayerController extends Component {
         if (otherCollider.node.name == String(CubeType.CUBE_CLOUD)) {
             this._cloudPos = otherCollider.node.getWorldPosition();
             this._playerPos = selfCollider.node.getWorldPosition();
-            /*console.log('cloud:', this._cloudPos);
-            console.log('player:', this._playerPos);*/
             // 接触位置在云块下方
             if (this._cloudPos.y > this._playerPos.y) {
                 contact.disabled = true; // 禁用contact使玩家穿过云块,禁用contact仅在本次有效
                 // 禁用contact
                 // https://docs.cocos.com/creator/3.0/manual/zh/physics-2d/physics-2d-contact-callback.html
+            }
+        }
+        //碰到箱子方块通过按键j来移动
+        if(otherCollider.node.name == String(CubeType.CUBE_BOX) && this.boxIsMoving){
+            const box = otherCollider.node;
+            const rigidbody2d: RigidBody2D | null = box.getComponent(RigidBody2D);
+            if (rigidbody2d) {
+                const velocity = rigidbody2d.linearVelocity;
+                velocity.x = this._xForce / 50;
+                velocity.y = this._yForce / 50;
+                rigidbody2d.linearVelocity = velocity;
+            }
+        }
+    }
+
+    onEndSolve(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | any | null){
+        if(otherCollider.node.name == String(CubeType.CUBE_BOX)){
+            const box = otherCollider.node;
+            const rigidbody2d: RigidBody2D | null = box.getComponent(RigidBody2D);
+            if (rigidbody2d) {
+                const velocity = rigidbody2d.linearVelocity;
+                velocity.x = 0;
+                velocity.y = 0;
+                rigidbody2d.linearVelocity = velocity;
             }
         }
     }
@@ -179,6 +200,7 @@ export class PlayerController extends Component {
                 break;
             case macro.KEY.w:
             case macro.KEY.up:
+            case macro.KEY.space:
                 if (!this.isUping) {
                     if (this.playAnim) {
                         if (this._playerFaceRigth) {
@@ -199,6 +221,10 @@ export class PlayerController extends Component {
             case macro.KEY.down:
                 this._yForce = 0;
                 break;
+            case macro.KEY.j:
+                this.boxIsMoving = true;
+                break;
+
         }
     }
 
@@ -214,7 +240,11 @@ export class PlayerController extends Component {
                 break;
             case macro.KEY.w:
             case macro.KEY.s:
+            case macro.KEY.space:
                 this._yForce = 0;
+                break;
+            case macro.KEY.j:
+                this.boxIsMoving = false;
                 break;
         }
     }
