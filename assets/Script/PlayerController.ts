@@ -1,5 +1,5 @@
 
-import { _decorator, Component, Node, systemEvent, SystemEvent, EventKeyboard, macro, Vec3, RigidBody2D, Vec2, Collider2D, Contact2DType, Camera, IPhysics2DContact, Animation, Sprite, SpriteFrame } from 'cc';
+import { _decorator, Component, Node, systemEvent, SystemEvent, EventKeyboard, macro, Vec3, RigidBody2D, Vec2, Collider2D, Contact2DType, Camera, IPhysics2DContact, Animation, Sprite, SpriteFrame, BoxCollider2D } from 'cc';
 import { CubeType } from './GameManager';
 import MapManager from './MapManager'
 const { ccclass, property } = _decorator;
@@ -55,7 +55,7 @@ export class PlayerController extends Component {
         if (this.player) {
             this._initPos = MapManager.initPos[0];
         }
-        this.init(0);
+        this.init(2);
     }
 
     init(captureNum: number) {
@@ -66,6 +66,14 @@ export class PlayerController extends Component {
             if (this._initPos) {
                 this.player.setWorldPosition(this._initPos);
             }
+
+            // 设定玩家高度
+            const box: BoxCollider2D | null = this.player.getComponent(BoxCollider2D);
+            console.log('player:start>box', box);
+            if (box) {
+                console.log('box.size:', box.size);
+            }
+
             if (collider) {
                 // 设定碰撞事件
                 let that = this;

@@ -7,7 +7,7 @@ const { ccclass, property } = _decorator;
 @ccclass('BoxCube')
 export class BoxCube extends Component {
 
-    start () {
+    start() {
         // 箱子方块
         this.node.name = String(CubeType.CUBE_BOX);
     }

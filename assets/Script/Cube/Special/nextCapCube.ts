@@ -1,5 +1,5 @@
 
-import { _decorator, Component } from 'cc';
+import { _decorator, Component, Node } from 'cc';
 import { CubeType } from '../../GameManager';
 const { ccclass, property } = _decorator;
 
@@ -9,5 +9,4 @@ export class NextCapCube extends Component {
     start() {
         this.node.name = String(CubeType.CUDE_NEXT_CAPE);
     }
-
 }

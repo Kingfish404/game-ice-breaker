@@ -11,7 +11,7 @@ export enum CubeType {
     CUBE_GROUND,
     CUBE_WATER,
     CUBE_WALL,
-    CUBE_BOUNCE,
+    CUBE_BOUNCE,    // TODO:补充注释
     CUBE_DISAPPEAR,
     CUBE_SKIPIN,
     CUBE_SKIPOUT,
@@ -94,8 +94,8 @@ export class GameManager extends Component {
     @property({ type: Prefab })
     public boxCubePrfb: Prefab | null = null;
 
-    @property({ type: Prefab })
-    public nextCubePrfb: Prefab | null = null;
+    @property({ type: Node })
+    public nextCubePrfb: Node | null = null;
 
     public initPos: Vec3 | null = null;//保存出生点
     public skipPos: Vec3 | null = null;//保存跳跃点
@@ -117,13 +117,16 @@ export class GameManager extends Component {
     }
 
     init() {
-        this.captureNum = 0;//将关卡初始化为0
+        this.captureNum = 2;    // 将关卡初始化为0
         if (this.startMenu) {
             this.startMenu.active = true;
         }
         if (this.playerCtrl) {
             this.playerCtrl.setInputActive(true);
         }
+
+        // TODO:delete me
+        this.onStartButtonClicked();
 
         PhysicsSystem2D.instance.enable = true;
         PhysicsSystem2D.instance.gravity = v2(0, -20 * PHYSICS_2D_PTM_RATIO);
@@ -245,6 +248,10 @@ export class GameManager extends Component {
     }
 
     onNextCape() {
+        if (this.captureNum == mapManager.initPos.length - 1) {
+            // 已经到最后一关
+            return;
+        }
         this.captureNum = this.captureNum + 1;  //修改关卡值
         this.curState = GameState.GS_PLAYING;   //重新设置游戏地图
     }
@@ -261,11 +268,6 @@ export class GameManager extends Component {
 
     onBackButtonClicked() {
         this.curState = GameState.GS_INIT;
-    }
-
-    onNextButtonClicked() {
-        this.captureNum = 1;//修改关卡值
-        this.curState = GameState.GS_PLAYING;//重新设置游戏地图
     }
 
     update(deltaTime: number) {
