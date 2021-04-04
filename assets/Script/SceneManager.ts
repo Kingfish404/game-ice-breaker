@@ -15,9 +15,9 @@ export class SceneManager extends Component {
     start() {
         // [3]
         // 预加载关卡
-        director.preloadScene('caption-1', () => {
-            console.log('Preloaded successed!');
-        })
+        // director.preloadScene('caption-1', () => {
+        //     console.log('Preloaded successed!');
+        // })
     }
 
     // update (deltaTime: number) {

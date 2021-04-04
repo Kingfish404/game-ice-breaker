@@ -141,6 +141,9 @@
     "boxCubePrfb": {
       "__uuid__": "08b919bb-81c4-4e5c-a51f-43e44e358ec1"
     },
+    "nextCubePrfb": {
+      "__uuid__": "51d2b5d1-9399-4db4-a133-e9384944db9e"
+    },
     "_id": "f4f/XpsDNJK73NeOCXUfHq"
   },
   {
@@ -1181,7 +1184,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 360,
+    "_orthoHeight": 658.867924528302,
     "_near": 1,
     "_far": 2000,
     "_color": {
@@ -1443,7 +1446,7 @@
     "_size": {
       "__type__": "cc.Size",
       "width": 33,
-      "height": 40
+      "height": 38
     },
     "_id": "edxsRJQx9LPqr6XDuvzfQF"
   },

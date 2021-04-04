@@ -17,7 +17,7 @@ export class PlayerController extends Component {
     private _force: number = 100;
     private isUping: boolean = false;
     public _initPos: Vec3 | null = null;
-    public _startPos: Vec3  = new Vec3(1500, 300, 0);
+    public _startPos: Vec3 = new Vec3(1500, 300, 0);
     public maxspeed: number = 10;
 
     public skipJudge: boolean = false;
@@ -111,7 +111,7 @@ export class PlayerController extends Component {
         if (otherCollider.node.name == String(CubeType.CUBE_BOUNCE)) {
             if (!this.isUping) {
                 this.isUping = true;
-                this._yForce = 2 * this._force;
+                this._yForce = 1.5 * this._force;
                 let that = this;
                 setTimeout(() => {
                     that._yForce = 0;
@@ -126,6 +126,18 @@ export class PlayerController extends Component {
             setTimeout(() => {
                 otherCollider.node.active = true;
             }, this.recoverTime)//再8秒后将active再设置为true
+        }
+
+        // 碰到下一关方块
+        if (otherCollider.node.name == String(CubeType.CUDE_NEXT_CAPE)) {
+            console.log('next cape!');
+            // 下一关
+            this.setInputActive(false);
+            this._xForce = 0;
+            this._yForce = 0;
+            setTimeout(() => {
+                this.node.emit('next');
+            }, 100)
         }
     }
 
@@ -142,20 +154,20 @@ export class PlayerController extends Component {
             }
         }
         //碰到箱子方块通过按键j来移动
-        if(otherCollider.node.name == String(CubeType.CUBE_BOX) && this.boxIsMoving){
+        if (otherCollider.node.name == String(CubeType.CUBE_BOX) && this.boxIsMoving) {
             const box = otherCollider.node;
             const rigidbody2d: RigidBody2D | null = box.getComponent(RigidBody2D);
             if (rigidbody2d) {
                 const velocity = rigidbody2d.linearVelocity;
-                velocity.x = this._xForce / 50;
-                velocity.y = this._yForce / 50;
+                velocity.x = this._xForce / 10;
+                velocity.y = this._yForce / 10;
                 rigidbody2d.linearVelocity = velocity;
             }
         }
     }
 
-    onEndSolve(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | any | null){
-        if(otherCollider.node.name == String(CubeType.CUBE_BOX)){
+    onEndSolve(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | any | null) {
+        if (otherCollider.node.name == String(CubeType.CUBE_BOX)) {
             const box = otherCollider.node;
             const rigidbody2d: RigidBody2D | null = box.getComponent(RigidBody2D);
             if (rigidbody2d) {
@@ -210,7 +222,7 @@ export class PlayerController extends Component {
                         }
                     }
                     this.isUping = true;
-                    this._yForce = this._force;
+                    this._yForce = this._force * 0.9;
                     let that = this;
                     setTimeout(() => {
                         that._yForce = 0;

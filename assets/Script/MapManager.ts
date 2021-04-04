@@ -75,6 +75,8 @@ class MapManager {
             road[12].fill(CubeType.CUBE_GROUND, 11, 12);
             road[12].fill(CubeType.CUBE_GROUND, 21, 31);
 
+            road[13].fill(CubeType.CUDE_NEXT_CAPE, 5, 6);
+
             road[13].fill(CubeType.CUBE_ICE, 11, 12);
             road[13].fill(CubeType.CUBE_CLOUD, 15, 16);
             road[13].fill(CubeType.CUBE_GROUND, 21, 31);
@@ -92,10 +94,10 @@ class MapManager {
             road[16].fill(CubeType.CUBE_WATER, 25, 26);
             road[16].fill(CubeType.CUBE_ICE, 26, 29);
 
-
+            console.log(JSON.stringify(road));
         }
 
-        else if(captureNum == 1){
+        else if (captureNum == 1) {
             // 第二关的地图
             road = new Array(25);
             for (let i = 0; i < road.length; i++) {

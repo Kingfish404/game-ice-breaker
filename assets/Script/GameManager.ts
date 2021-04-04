@@ -20,7 +20,8 @@ export enum CubeType {
     CUBE_GRASS,
     CUBE_MONSTER,
     CUBE_LASER,
-    CUBE_BOX
+    CUBE_BOX,
+    CUDE_NEXT_CAPE,         // 下一关，胜利碰撞方块
 }
 
 // 游戏状态
@@ -63,35 +64,38 @@ export class GameManager extends Component {
     @property({ type: Prefab })
     public waterCubePrfb: Prefab | null = null;
 
-    @property({ type: Prefab})
+    @property({ type: Prefab })
     public bounceCubePrfb: Prefab | null = null;
 
-    @property({ type: Prefab})
+    @property({ type: Prefab })
     public disappearCubePrfb: Prefab | null = null;
 
-    @property({ type: Prefab})
+    @property({ type: Prefab })
     public skipInCubePrfb: Prefab | null = null;
 
-    @property({ type: Prefab})
+    @property({ type: Prefab })
     public skipOutCubePrfb: Prefab | null = null;
 
-    @property({ type: Prefab})
+    @property({ type: Prefab })
     public cloudCubePrfb: Prefab | null = null;
 
-    @property({ type: Prefab})
+    @property({ type: Prefab })
     public grassCubePrfb: Prefab | null = null;
 
-    @property({ type: Prefab})
+    @property({ type: Prefab })
     public iceCubePrfb: Prefab | null = null;
 
-    @property({ type:Prefab})
+    @property({ type: Prefab })
     public monsterCubePrfb: Prefab | null = null;
 
-    @property({ type:Prefab})
+    @property({ type: Prefab })
     public laserCubePrfb: Prefab | null = null;
 
-    @property({ type:Prefab})
+    @property({ type: Prefab })
     public boxCubePrfb: Prefab | null = null;
+
+    @property({ type: Prefab })
+    public nextCubePrfb: Prefab | null = null;
 
     public initPos: Vec3 | null = null;//保存出生点
     public skipPos: Vec3 | null = null;//保存跳跃点
@@ -104,6 +108,7 @@ export class GameManager extends Component {
 
         if (this.playerCtrl) {
             this.playerCtrl.node.on('dead', this.onGameEnd, this);
+            this.playerCtrl.node.on('next', this.onNextCape, this);
         }
 
         // 设置当前节点为常驻节点
@@ -149,7 +154,7 @@ export class GameManager extends Component {
 
     // 根据类型返回方块
     spawnCubeByType(type: CubeType) {
-        if (!this.groundCubePrfb || !this.waterCubePrfb || !this.bounceCubePrfb || !this.disappearCubePrfb || !this.skipInCubePrfb || !this.skipOutCubePrfb|| !this.cloudCubePrfb || !this.iceCubePrfb || !this.grassCubePrfb || !this.boxCubePrfb || !this.monsterCubePrfb || !this.laserCubePrfb) {
+        if (!this.groundCubePrfb || !this.waterCubePrfb || !this.bounceCubePrfb || !this.disappearCubePrfb || !this.skipInCubePrfb || !this.skipOutCubePrfb || !this.cloudCubePrfb || !this.iceCubePrfb || !this.grassCubePrfb || !this.boxCubePrfb || !this.monsterCubePrfb || !this.laserCubePrfb) {
             return null;
         } else {
             let block: Node | null = null;
@@ -189,6 +194,9 @@ export class GameManager extends Component {
                     break;
                 case CubeType.CUBE_BOX:
                     block = instantiate(this.boxCubePrfb);
+                    break;
+                case CubeType.CUDE_NEXT_CAPE:
+                    block = instantiate(this.nextCubePrfb);
                     break;
             }
 
@@ -236,6 +244,11 @@ export class GameManager extends Component {
         this.curState = GameState.GS_END;
     }
 
+    onNextCape() {
+        this.captureNum = this.captureNum + 1;  //修改关卡值
+        this.curState = GameState.GS_PLAYING;   //重新设置游戏地图
+    }
+
     onStartButtonClicked() {
         this.curState = GameState.GS_PLAYING;
     }
@@ -253,11 +266,10 @@ export class GameManager extends Component {
     onNextButtonClicked() {
         this.captureNum = 1;//修改关卡值
         this.curState = GameState.GS_PLAYING;//重新设置游戏地图
-        //director.loadScene('caption-1');
     }
 
     update(deltaTime: number) {
-        if(this.playerCtrl?.skipJudge){
+        if (this.playerCtrl?.skipJudge && this.skipPos) {
             this.playerCtrl.player?.setWorldPosition(this.skipPos);//根据当前关卡跳转位置
             this.playerCtrl.skipJudge = false;
         }
