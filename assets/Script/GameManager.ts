@@ -258,19 +258,27 @@ export class GameManager extends Component {
             }
             switch (this.captureNum) {
                 case 0:
-                case 1:
+                    this.bgImages[4].active = true;
                     this.bgImages[0].active = true;
                     break;
+                case 1:
+                    this.bgImages[5].active = true;
+                    this.bgImages[1].active = true;
+                    break;
                 case 2:
+                    this.bgImages[5].active = true;
                     this.bgImages[1].active = true;
                     break;
                 case 3:
+                    this.bgImages[5].active = true;
                     this.bgImages[2].active = true;
                     break;
                 case 4:
+                    this.bgImages[5].active = true;
                     this.bgImages[3].active = true;
                     break;
                 default:
+                    this.bgImages[5].active = true;
                     this.bgImages[0].active = true;
                     break;
             }

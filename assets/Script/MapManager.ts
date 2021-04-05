@@ -5,8 +5,10 @@ class MapManager {
 
     public skipPos: Array<Vec3> =
         [
-            new Vec3(1087, 525, 0),
-            new Vec3(820, 300, 0)
+            new Vec3(1087, 550, 0),
+            new Vec3(820, 300, 0),
+            new Vec3(1520, 300, 0),
+            new Vec3(820, 300, 0),
         ];  //跳转位置
     public initPos: Array<Vec3> =
         [
@@ -21,9 +23,9 @@ class MapManager {
         let road = null;
         if (captureNum == 0) {
             // 第一关的地图
-            road = new Array(20);
+            road = new Array(21);
             for (let i = 0; i < road.length; i++) {
-                road[i] = new Array(38).fill(CubeType.EMPTY);
+                road[i] = new Array(39).fill(CubeType.EMPTY);
             }
 
             // 填充地图数组
@@ -104,6 +106,16 @@ class MapManager {
             road[16].fill(CubeType.CUBE_ICE, 23, 25);
             road[16].fill(CubeType.CUBE_WATER, 25, 26);
             road[16].fill(CubeType.CUBE_ICE, 26, 29);
+
+            for (let i = road.length - 1; i > 0; --i) {
+                for (let j = 0; j < road[0].length; j++) {
+                    road[i][j] = road[i - 1][j];
+                    road[i][0] = CubeType.CUBE_GROUND;
+                    road[i][road[i].length - 1] = CubeType.CUBE_GROUND;
+                }
+            }
+            road[0].fill(CubeType.CUBE_GROUND);
+            road[road.length - 1].fill(CubeType.CUBE_GROUND);
         }
 
         else if (captureNum == 1) {
@@ -111,6 +123,7 @@ class MapManager {
             road = new Array(25);
             for (let i = 0; i < road.length; i++) {
                 road[i] = new Array(40).fill(CubeType.EMPTY);
+                road[i][0] = CubeType.CUBE_GROUND;
             }
 
             road[0].fill(CubeType.CUBE_GROUND, 0, 25);
@@ -295,6 +308,11 @@ class MapManager {
 
             road[24].fill(CubeType.CUBE_GROUND, 0, 40);
 
+            for (let i = 0; i < road.length; i++) {
+                for (let j = 0; j < road[0].length; j++) {
+                    road[i][road[0].length - 1] = CubeType.CUBE_GROUND;
+                }
+            }
         }
 
         else if (captureNum == 2) {
