@@ -119,7 +119,7 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "b730527c-3233-41c2-aaf7-7cdab58f9749@f9941"
+      "__uuid__": "846f19c9-cdbd-4d3c-8845-885176b2ac49@f9941"
     },
     "_type": 0,
     "_fillType": 0,
@@ -217,6 +217,7 @@
     "__prefab": {
       "__id__": 11
     },
+    "laserAnim": null,
     "_id": ""
   },
   {

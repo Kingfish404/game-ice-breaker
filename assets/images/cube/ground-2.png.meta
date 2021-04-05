@@ -2,7 +2,7 @@
   "ver": "1.0.21",
   "importer": "image",
   "imported": true,
-  "uuid": "356e1273-3007-45ca-8f60-b117f9b8c77b",
+  "uuid": "c0016ab3-ee71-4823-b7df-0e9ea8912e8b",
   "files": [
     ".png",
     ".json"
@@ -10,7 +10,7 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "356e1273-3007-45ca-8f60-b117f9b8c77b@6c48a",
+      "uuid": "c0016ab3-ee71-4823-b7df-0e9ea8912e8b@6c48a",
       "displayName": "ground-2",
       "id": "6c48a",
       "name": "texture",
@@ -22,7 +22,7 @@
         "mipfilter": "none",
         "anisotropy": 1,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "356e1273-3007-45ca-8f60-b117f9b8c77b"
+        "imageUuidOrDatabaseUri": "c0016ab3-ee71-4823-b7df-0e9ea8912e8b"
       },
       "ver": "1.0.20",
       "imported": true,
@@ -33,7 +33,7 @@
     },
     "f9941": {
       "importer": "sprite-frame",
-      "uuid": "356e1273-3007-45ca-8f60-b117f9b8c77b@f9941",
+      "uuid": "c0016ab3-ee71-4823-b7df-0e9ea8912e8b@f9941",
       "displayName": "ground-2",
       "id": "f9941",
       "name": "spriteFrame",
@@ -41,12 +41,12 @@
         "trimType": "auto",
         "trimThreshold": 1,
         "rotated": false,
-        "offsetX": -3.5,
-        "offsetY": -277.5,
-        "trimX": 329,
-        "trimY": 624,
-        "width": 1383,
-        "height": 1355,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 0,
+        "trimY": 0,
+        "width": 2048,
+        "height": 2048,
         "rawWidth": 2048,
         "rawHeight": 2048,
         "borderTop": 0,
@@ -55,7 +55,7 @@
         "borderRight": 0,
         "packable": true,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "356e1273-3007-45ca-8f60-b117f9b8c77b@6c48a",
+        "imageUuidOrDatabaseUri": "c0016ab3-ee71-4823-b7df-0e9ea8912e8b@6c48a",
         "atlasUuid": ""
       },
       "ver": "1.0.9",
@@ -69,6 +69,6 @@
   "userData": {
     "hasAlpha": true,
     "type": "sprite-frame",
-    "redirect": "356e1273-3007-45ca-8f60-b117f9b8c77b@f9941"
+    "redirect": "c0016ab3-ee71-4823-b7df-0e9ea8912e8b@f9941"
   }
 }

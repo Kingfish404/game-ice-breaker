@@ -9,19 +9,20 @@ const { ccclass, property } = _decorator;
 export enum CubeType {
     EMPTY,
     CUBE_GROUND,
-    CUBE_WATER,
-    CUBE_WALL,
-    CUBE_BOUNCE,    // TODO:补充注释
-    CUBE_DISAPPEAR,
-    CUBE_SKIPIN,
-    CUBE_SKIPOUT,
-    CUBE_CLOUD,
-    CUBE_ICE,
+    CUBE_WATER,     // TODO:补充注释
+    CUBE_WALL,      // TODO:补充注释
+    CUBE_BOUNCE,    // 反弹方块
+    CUBE_DISAPPEAR, // TODO:补充注释
+    CUBE_SKIPIN,    // TODO:补充注释
+    CUBE_SKIPOUT,   // TODO:补充注释
+    CUBE_CLOUD,     // TODO:补充注释
+    CUBE_ICE,       // TODO:补充注释
     CUBE_GRASS,
     CUBE_MONSTER,
     CUBE_LASER,
     CUBE_BOX,
     CUDE_NEXT_CAPE,         // 下一关，胜利碰撞方块
+    CUDE_GROUND_FAKE,       // 无实体的地面物块
 }
 
 // 游戏状态
@@ -94,8 +95,14 @@ export class GameManager extends Component {
     @property({ type: Prefab })
     public boxCubePrfb: Prefab | null = null;
 
-    @property({ type: Node })
-    public nextCubePrfb: Node | null = null;
+    @property({ type: Prefab })
+    public nextCubePrfb: Prefab | null = null;
+
+    @property({ type: Prefab })
+    public groundFakePrfb: Prefab | null = null;
+
+    @property({ type: [Node] })
+    public bgImages: Node[] | null = null;
 
     public initPos: Vec3 | null = null;//保存出生点
     public skipPos: Vec3 | null = null;//保存跳跃点
@@ -117,16 +124,13 @@ export class GameManager extends Component {
     }
 
     init() {
-        this.captureNum = 2;    // 将关卡初始化为0
+        this.captureNum = 0;    // 将关卡初始化为0
         if (this.startMenu) {
             this.startMenu.active = true;
         }
         if (this.playerCtrl) {
             this.playerCtrl.setInputActive(true);
         }
-
-        // TODO:delete me
-        this.onStartButtonClicked();
 
         PhysicsSystem2D.instance.enable = true;
         PhysicsSystem2D.instance.gravity = v2(0, -20 * PHYSICS_2D_PTM_RATIO);
@@ -201,6 +205,9 @@ export class GameManager extends Component {
                 case CubeType.CUDE_NEXT_CAPE:
                     block = instantiate(this.nextCubePrfb);
                     break;
+                case CubeType.CUDE_GROUND_FAKE:
+                    block = instantiate(this.groundFakePrfb);
+                    break;
             }
 
             return block;
@@ -220,6 +227,7 @@ export class GameManager extends Component {
                     this.playerCtrl.init(this.captureNum);
                     this.playerCtrl.setInputActive(true);
                 }
+                this.setBGImage();
                 this.generateRoad(this.captureNum);
                 //设置初始位置和跳转位置
                 this.skipPos = mapManager.skipPos[this.captureNum];
@@ -241,6 +249,32 @@ export class GameManager extends Component {
                 break;
         }
         this._curState = value;
+    }
+
+    setBGImage() {
+        if (this.bgImages) {
+            for (let i = 0; i < this.bgImages.length; i++) {
+                this.bgImages[i].active = false;
+            }
+            switch (this.captureNum) {
+                case 0:
+                case 1:
+                    this.bgImages[0].active = true;
+                    break;
+                case 2:
+                    this.bgImages[1].active = true;
+                    break;
+                case 3:
+                    this.bgImages[2].active = true;
+                    break;
+                case 4:
+                    this.bgImages[3].active = true;
+                    break;
+                default:
+                    this.bgImages[0].active = true;
+                    break;
+            }
+        }
     }
 
     onGameEnd() {

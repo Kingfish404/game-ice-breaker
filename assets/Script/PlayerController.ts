@@ -55,7 +55,7 @@ export class PlayerController extends Component {
         if (this.player) {
             this._initPos = MapManager.initPos[0];
         }
-        this.init(2);
+        this.init(0);
     }
 
     init(captureNum: number) {
@@ -70,9 +70,6 @@ export class PlayerController extends Component {
             // 设定玩家高度
             const box: BoxCollider2D | null = this.player.getComponent(BoxCollider2D);
             console.log('player:start>box', box);
-            if (box) {
-                console.log('box.size:', box.size);
-            }
 
             if (collider) {
                 // 设定碰撞事件
