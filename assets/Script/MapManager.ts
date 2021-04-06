@@ -7,7 +7,7 @@ class MapManager {
         [
             new Vec3(1087, 550, 0),
             new Vec3(820, 300, 0),
-            new Vec3(1520, 300, 0),
+            new Vec3(1270, 300, 0),
             new Vec3(820, 300, 0),
         ];  //跳转位置
     public initPos: Array<Vec3> =
