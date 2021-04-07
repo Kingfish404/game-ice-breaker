@@ -1,5 +1,5 @@
 
-import { _decorator, Component, Node, Animation } from 'cc';
+import { _decorator, Component, Node, Animation, Collider2D } from 'cc';
 import { CubeType } from '../GameManager';
 const { ccclass, property } = _decorator;
 
@@ -18,5 +18,12 @@ export class LaserCube extends Component {
         }
     }
 
+    update(){
+        const collider : Collider2D | null = this.node.getComponent(Collider2D);
+        if(collider){
+            collider.apply();
+        }
+        //使用apply函数动态修改刚体
+    }
 
 }

@@ -7,6 +7,6 @@ const { ccclass, property } = _decorator;
 export class NextCapCube extends Component {
 
     start() {
-        this.node.name = String(CubeType.CUDE_NEXT_CAPE);
+        this.node.name = String(CubeType.CUBE_NEXT_CAPE);
     }
 }

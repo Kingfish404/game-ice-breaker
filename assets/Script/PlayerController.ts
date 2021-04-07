@@ -134,7 +134,7 @@ export class PlayerController extends Component {
         }
 
         // 碰到下一关方块
-        if (otherCollider.node.name == String(CubeType.CUDE_NEXT_CAPE)) {
+        if (otherCollider.node.name == String(CubeType.CUBE_NEXT_CAPE)) {
             console.log('next cape!');
             // 下一关
             this.setInputActive(false);
@@ -142,6 +142,18 @@ export class PlayerController extends Component {
             this._yForce = 0;
             setTimeout(() => {
                 this.node.emit('next');
+            }, 100)
+        }
+
+        //碰到激光方块
+        if(otherCollider.node.name == String(CubeType.CUBE_LASER)){
+            console.log("dead!");
+            // 发送死亡事件
+            this.setInputActive(false);
+            this._xForce = 0;
+            this._yForce = 0;
+            setTimeout(() => {
+                this.node.emit('dead');
             }, 100)
         }
     }
