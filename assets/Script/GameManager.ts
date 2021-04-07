@@ -21,8 +21,8 @@ export enum CubeType {
     CUBE_MONSTER,
     CUBE_LASER,
     CUBE_BOX,
-    CUDE_NEXT_CAPE,         // 下一关，胜利碰撞方块
-    CUDE_GROUND_FAKE,       // 无实体的地面物块
+    CUBE_NEXT_CAPE,         // 下一关，胜利碰撞方块
+    CUBE_GROUND_FAKE,       // 无实体的地面物块
 }
 
 // 游戏状态
@@ -202,10 +202,10 @@ export class GameManager extends Component {
                 case CubeType.CUBE_BOX:
                     block = instantiate(this.boxCubePrfb);
                     break;
-                case CubeType.CUDE_NEXT_CAPE:
+                case CubeType.CUBE_NEXT_CAPE:
                     block = instantiate(this.nextCubePrfb);
                     break;
-                case CubeType.CUDE_GROUND_FAKE:
+                case CubeType.CUBE_GROUND_FAKE:
                     block = instantiate(this.groundFakePrfb);
                     break;
             }
