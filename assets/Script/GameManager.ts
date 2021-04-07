@@ -1,6 +1,5 @@
 
 import { _decorator, Component, Node, PhysicsSystem2D, PHYSICS_2D_PTM_RATIO, v2, game, director, Prefab, instantiate, CCInteger, Vec3 } from 'cc';
-import { GroundCube } from './Cube/groundCube';
 import mapManager from './MapManager';
 import { PlayerController } from './PlayerController';
 const { ccclass, property } = _decorator;
