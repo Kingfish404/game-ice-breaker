@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "laser-cube",
+    "_name": "laser-up-cube-1",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -113,9 +113,9 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 25,
-      "g": 235,
-      "b": 168,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_spriteFrame": {
@@ -171,7 +171,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "52s6xooaxON4uEsnwSoYYZ"
+    "fileId": "a4NuGKqo5H/5E5UV2M7vFe"
   },
   {
     "__type__": "cc.BoxCollider2D",
@@ -204,10 +204,10 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "95gWrL3OtCPphxGrgSmdZ3"
+    "fileId": "aeyWu43KNHwqchOnfJVqK6"
   },
   {
-    "__type__": "4de54cKHDpKw64ScGXO6KrR",
+    "__type__": "1fe3d9tCq5DKoIddaWlUNDA",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -217,12 +217,14 @@
     "__prefab": {
       "__id__": 11
     },
-    "laserAnim": null,
+    "laserAnim": {
+      "__id__": 12
+    },
     "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "536Ta1CaVPfqefEMNlDUki"
+    "fileId": "18hUCSgUhLdYXIa+YhYJrI"
   },
   {
     "__type__": "cc.Animation",
@@ -235,20 +237,23 @@
     "__prefab": {
       "__id__": 13
     },
-    "playOnLoad": true,
+    "playOnLoad": false,
     "_clips": [
       {
-        "__uuid__": "bf5ae95e-943b-4b1e-9a13-2a4eefc5f387"
+        "__uuid__": "d16c628d-f2d0-4b4b-b300-976a726d6d64"
+      },
+      {
+        "__uuid__": "d825e57c-dcf3-4d3e-b8bd-5c07b74b5adc"
       }
     ],
     "_defaultClip": {
-      "__uuid__": "bf5ae95e-943b-4b1e-9a13-2a4eefc5f387"
+      "__uuid__": "d825e57c-dcf3-4d3e-b8bd-5c07b74b5adc"
     },
     "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "b51CrP2TpAroEnyDOSFxHb"
+    "fileId": "8fvSDzJ/tL96Oy/AkabrrC"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -258,6 +263,6 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "b9quEPyEFMG4DBiDKuA5t4"
+    "fileId": "eddWVHC+5KiaVTUOBvL2Ti"
   }
 ]

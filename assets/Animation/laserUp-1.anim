@@ -1,30 +1,71 @@
 [
   {
     "__type__": "cc.AnimationClip",
-    "_name": "laser",
+    "_name": "laserUp-1",
     "_objFlags": 0,
     "_native": "",
     "sample": 60,
-    "speed": 1,
+    "speed": 0.3,
     "wrapMode": 2,
     "events": [],
     "_duration": 0.5833333333333334,
     "_keys": [
       [
         0,
-        0.5,
-        0.5166666666666667,
+        0.4166666666666667,
+        0.43333333333333335,
         0.5833333333333334
       ],
       [
         0,
-        0.5,
-        0.5166666666666667,
+        0.4166666666666667,
+        0.43333333333333335,
+        0.5833333333333334
+      ],
+      [
+        0,
+        0.4166666666666667,
+        0.43333333333333335,
         0.5833333333333334
       ]
     ],
     "_stepness": 0,
     "_curves": [
+      {
+        "modifiers": [
+          "position"
+        ],
+        "data": {
+          "keys": 0,
+          "values": [
+            {
+              "__type__": "cc.Vec3",
+              "x": 760,
+              "y": 720,
+              "z": 0
+            },
+            {
+              "__type__": "cc.Vec3",
+              "x": 760,
+              "y": 720,
+              "z": 0
+            },
+            {
+              "__type__": "cc.Vec3",
+              "x": 760,
+              "y": 820,
+              "z": 0
+            },
+            {
+              "__type__": "cc.Vec3",
+              "x": 760,
+              "y": 820,
+              "z": 0
+            }
+          ],
+          "easingMethods": {}
+        }
+      },
       {
         "modifiers": [
           {
@@ -33,16 +74,11 @@
           "contentSize"
         ],
         "data": {
-          "keys": 0,
+          "keys": 1,
           "values": [
             {
               "__type__": "cc.Size",
-              "width": 400,
-              "height": 40
-            },
-            {
-              "__type__": "cc.Size",
-              "width": 400,
+              "width": 40,
               "height": 40
             },
             {
@@ -53,7 +89,12 @@
             {
               "__type__": "cc.Size",
               "width": 40,
-              "height": 40
+              "height": 240
+            },
+            {
+              "__type__": "cc.Size",
+              "width": 40,
+              "height": 240
             }
           ],
           "easingMethods": {}
@@ -67,16 +108,11 @@
           "size"
         ],
         "data": {
-          "keys": 1,
+          "keys": 2,
           "values": [
             {
               "__type__": "cc.Size",
-              "width": 400,
-              "height": 40
-            },
-            {
-              "__type__": "cc.Size",
-              "width": 400,
+              "width": 40,
               "height": 40
             },
             {
@@ -87,7 +123,12 @@
             {
               "__type__": "cc.Size",
               "width": 40,
-              "height": 40
+              "height": 240
+            },
+            {
+              "__type__": "cc.Size",
+              "width": 40,
+              "height": 240
             }
           ],
           "easingMethods": {}
@@ -95,7 +136,7 @@
       }
     ],
     "_commonTargets": [],
-    "_hash": 722478936
+    "_hash": 1324835968
   },
   {
     "__type__": "cc.animation.ComponentPath",

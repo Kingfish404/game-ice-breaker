@@ -1,20 +1,19 @@
 
 import { _decorator, Component, Node, Animation, Collider2D } from 'cc';
-import { CubeType } from '../GameManager';
+import { CubeType } from '../../GameManager';
 const { ccclass, property } = _decorator;
 
-// 激光方块脚本
-@ccclass('LaserCube')
-export class LaserCube extends Component {
-
+@ccclass('LaserCubeUp1')
+export class LaserCubeUp1 extends Component {
+    
     @property({type : Animation})
     public laserAnim: Animation | null = null;
 
     start () {
         // 激光方块
-        this.node.name = String(CubeType.CUBE_LASER);
+        this.node.name = String(CubeType.CUBE_LASER_UP_1);
         if(this.laserAnim){
-            this.laserAnim.play("laser");
+            this.laserAnim.play("laserUp-1");
         }
     }
 
@@ -25,5 +24,4 @@ export class LaserCube extends Component {
         }
         //使用apply函数动态修改刚体
     }
-
 }

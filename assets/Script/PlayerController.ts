@@ -146,7 +146,7 @@ export class PlayerController extends Component {
         }
 
         //碰到激光方块
-        if(otherCollider.node.name == String(CubeType.CUBE_LASER)){
+        if(otherCollider.node.name == String(CubeType.CUBE_LASER_RIGHT || otherCollider.node.name == String(CubeType.CUBE_LASER_UP_1) || otherCollider.node.name == String(CubeType.CUBE_LASER_UP_2))){
             console.log("dead!");
             // 发送死亡事件
             this.setInputActive(false);

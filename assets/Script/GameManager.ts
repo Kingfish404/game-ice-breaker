@@ -8,20 +8,22 @@ const { ccclass, property } = _decorator;
 export enum CubeType {
     EMPTY,
     CUBE_GROUND,
-    CUBE_WATER,     // TODO:补充注释
-    CUBE_WALL,      // TODO:补充注释
+    CUBE_WATER,     // 水方块
+    CUBE_WALL,      // 墙
     CUBE_BOUNCE,    // 反弹方块
-    CUBE_DISAPPEAR, // TODO:补充注释
-    CUBE_SKIPIN,    // TODO:补充注释
-    CUBE_SKIPOUT,   // TODO:补充注释
-    CUBE_CLOUD,     // TODO:补充注释
-    CUBE_ICE,       // TODO:补充注释
-    CUBE_GRASS,
-    CUBE_MONSTER,
-    CUBE_LASER,
-    CUBE_BOX,
+    CUBE_DISAPPEAR, // 碰到后一段时间后消失方块
+    CUBE_SKIPIN,    // 跳转入口方块
+    CUBE_SKIPOUT,   // 跳转出口方块
+    CUBE_CLOUD,     // 云方块
+    CUBE_ICE,       // 积雪方块
+    CUBE_GRASS,     //草皮方块
+    CUBE_MONSTER,   //自由移动方块
+    CUBE_LASER_RIGHT,   //向右发射激光
+    CUBE_BOX,       //可由人物移动控制的方块
     CUBE_NEXT_CAPE,         // 下一关，胜利碰撞方块
     CUBE_GROUND_FAKE,       // 无实体的地面物块
+    CUBE_LASER_UP_1,    //向上发射激光方块1
+    CUBE_LASER_UP_2     //向上发射激光方块2
 }
 
 // 游戏状态
@@ -89,7 +91,7 @@ export class GameManager extends Component {
     public monsterCubePrfb: Prefab | null = null;
 
     @property({ type: Prefab })
-    public laserCubePrfb: Prefab | null = null;
+    public laserCubeRightPrfb: Prefab | null = null;
 
     @property({ type: Prefab })
     public boxCubePrfb: Prefab | null = null;
@@ -102,6 +104,12 @@ export class GameManager extends Component {
 
     @property({ type: [Node] })
     public bgImages: Node[] | null = null;
+
+    @property({ type: Prefab})
+    public laserCubeUpPrfb1: Prefab | null = null;
+
+    @property({ type: Prefab})
+    public laserCubeUpPrfb2: Prefab | null = null;
 
     public initPos: Vec3 | null = null;//保存出生点
     public skipPos: Vec3 | null = null;//保存跳跃点
@@ -160,7 +168,7 @@ export class GameManager extends Component {
 
     // 根据类型返回方块
     spawnCubeByType(type: CubeType) {
-        if (!this.groundCubePrfb || !this.waterCubePrfb || !this.bounceCubePrfb || !this.disappearCubePrfb || !this.skipInCubePrfb || !this.skipOutCubePrfb || !this.cloudCubePrfb || !this.iceCubePrfb || !this.grassCubePrfb || !this.boxCubePrfb || !this.monsterCubePrfb || !this.laserCubePrfb) {
+        if (!this.groundCubePrfb || !this.waterCubePrfb || !this.bounceCubePrfb || !this.disappearCubePrfb || !this.skipInCubePrfb || !this.skipOutCubePrfb || !this.cloudCubePrfb || !this.iceCubePrfb || !this.grassCubePrfb || !this.boxCubePrfb || !this.monsterCubePrfb || !this.laserCubeRightPrfb || !this.laserCubeUpPrfb1 || !this.laserCubeUpPrfb2 || !this.nextCubePrfb || !this.groundFakePrfb) {
             return null;
         } else {
             let block: Node | null = null;
@@ -192,8 +200,8 @@ export class GameManager extends Component {
                 case CubeType.CUBE_GRASS:
                     block = instantiate(this.grassCubePrfb);
                     break;
-                case CubeType.CUBE_LASER:
-                    block = instantiate(this.laserCubePrfb);
+                case CubeType.CUBE_LASER_RIGHT:
+                    block = instantiate(this.laserCubeRightPrfb);
                     break;
                 case CubeType.CUBE_MONSTER:
                     block = instantiate(this.monsterCubePrfb);
@@ -206,6 +214,12 @@ export class GameManager extends Component {
                     break;
                 case CubeType.CUBE_GROUND_FAKE:
                     block = instantiate(this.groundFakePrfb);
+                    break;
+                case CubeType.CUBE_LASER_UP_1:
+                    block = instantiate(this.laserCubeUpPrfb1);
+                    break;
+                case CubeType.CUBE_LASER_UP_2:
+                    block = instantiate(this.laserCubeUpPrfb2);
                     break;
             }
 
