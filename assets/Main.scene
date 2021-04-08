@@ -1468,7 +1468,7 @@
     "_priority": 100,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 320,
+    "_orthoHeight": 458.8679245283019,
     "_near": 1,
     "_far": 2000,
     "_color": {
@@ -2460,7 +2460,7 @@
     "_size": {
       "__type__": "cc.Size",
       "width": 22,
-      "height": 38
+      "height": 40
     },
     "_id": "edxsRJQx9LPqr6XDuvzfQF"
   },
