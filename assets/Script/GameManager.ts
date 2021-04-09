@@ -19,11 +19,13 @@ export enum CubeType {
     CUBE_GRASS,     //草皮方块
     CUBE_MONSTER,   //自由移动方块
     CUBE_LASER_RIGHT,   //向右发射激光
-    CUBE_BOX,       //可由人物移动控制的方块
+    CUBE_BOX,           //可由人物移动控制的方块
     CUBE_NEXT_CAPE,         // 下一关，胜利碰撞方块
     CUBE_GROUND_FAKE,       // 无实体的地面物块
-    CUBE_LASER_UP_1,    //向上发射激光方块1
-    CUBE_LASER_UP_2     //向上发射激光方块2
+    CUBE_LASER_UP_1,        //向上发射激光方块1
+    CUBE_LASER_UP_2,        //向上发射激光方块2
+    TOOL_FIRE,              // 火焰道具
+    TOOL_SHOSE,             // 鞋子道具
 }
 
 // 游戏状态
@@ -105,11 +107,17 @@ export class GameManager extends Component {
     @property({ type: [Node] })
     public bgImages: Node[] | null = null;
 
-    @property({ type: Prefab})
+    @property({ type: Prefab })
     public laserCubeUpPrfb1: Prefab | null = null;
 
-    @property({ type: Prefab})
+    @property({ type: Prefab })
     public laserCubeUpPrfb2: Prefab | null = null;
+
+    @property({ type: Prefab })
+    public fireToolPrfb: Prefab | null = null;
+
+    @property({ type: Prefab })
+    public shoseToolPrfb: Prefab | null = null;
 
     public initPos: Vec3 | null = null;//保存出生点
     public skipPos: Vec3 | null = null;//保存跳跃点
@@ -220,6 +228,12 @@ export class GameManager extends Component {
                     break;
                 case CubeType.CUBE_LASER_UP_2:
                     block = instantiate(this.laserCubeUpPrfb2);
+                    break;
+                case CubeType.TOOL_FIRE:
+                    block = instantiate(this.fireToolPrfb);
+                    break;
+                case CubeType.TOOL_SHOSE:
+                    block = instantiate(this.shoseToolPrfb);
                     break;
             }
 

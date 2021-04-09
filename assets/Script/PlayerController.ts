@@ -39,13 +39,13 @@ export class PlayerController extends Component {
     @property({ type: Animation })
     public playAnim: Animation | null = null;
 
-    // 角色静态图片资源
-    @property({ type: SpriteFrame })
-    public playFrame_Right: SpriteFrame | null = null;
-
     // 玩家摄像头
     @property({ type: Camera })
     public playerCamera: Camera | null = null;
+
+    // 设置界面
+    @property({ type: Node })
+    public backMenu: Node | null = null;
 
     public cameraPos: Vec3 = new Vec3(-20, 70, 1000);//摄像头初始位置
 
@@ -66,7 +66,9 @@ export class PlayerController extends Component {
             if (this._initPos) {
                 this.player.setWorldPosition(this._initPos);
             }
-
+            if (this.backMenu) {
+                this.backMenu.active = false;
+            }
             // 设定玩家高度
             const box: BoxCollider2D | null = this.player.getComponent(BoxCollider2D);
             console.log('player:start>box', box);
@@ -103,7 +105,7 @@ export class PlayerController extends Component {
             this._xForce = 0;
             this._yForce = 0;
             setTimeout(() => {
-                this.node.emit('dead');
+                this.onDead();
             }, 500)
         }
         // 碰到穿越方块
@@ -123,7 +125,7 @@ export class PlayerController extends Component {
                 }, 150)
             }
         }
-        // 碰到消失方块
+        // 碰到暂时消失方块
         if (otherCollider.node.name == String(CubeType.CUBE_DISAPPEAR)) {
             setTimeout(() => {
                 otherCollider.node.active = false;
@@ -131,6 +133,15 @@ export class PlayerController extends Component {
             setTimeout(() => {
                 otherCollider.node.active = true;
             }, this.recoverTime)//再8秒后将active再设置为true
+        }
+
+        // 碰到永久消失方块
+        if (otherCollider.node.name == String(CubeType.TOOL_FIRE) ||
+            otherCollider.node.name == String(CubeType.TOOL_SHOSE)
+        ) {
+            setTimeout(() => {
+                otherCollider.node.active = false;
+            }, 0);//延时0.5s消失
         }
 
         // 碰到下一关方块
@@ -153,7 +164,7 @@ export class PlayerController extends Component {
             this._xForce = 0;
             this._yForce = 0;
             setTimeout(() => {
-                this.node.emit('dead');
+                this.onDead();
             }, 100)
         }
     }
@@ -196,6 +207,16 @@ export class PlayerController extends Component {
         }
     }
 
+    onDead() {
+        this.node.emit('dead');
+    }
+
+    onContiune() {
+        if (this.backMenu) {
+            this.backMenu.active = false;
+        }
+    }
+
     setInputActive(active: boolean) {
         if (active) {
             systemEvent.on(SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
@@ -211,6 +232,9 @@ export class PlayerController extends Component {
         switch (event.keyCode) {
             case macro.KEY.a:
             case macro.KEY.left:
+                if (this.backMenu?.active) {
+                    return;
+                }
                 if (this.playAnim && !this.playAnim.getState('playmove-left').isPlaying) {
                     this.playAnim.play('playmove-left');
                 }
@@ -220,6 +244,9 @@ export class PlayerController extends Component {
                 break;
             case macro.KEY.d:
             case macro.KEY.right:
+                if (this.backMenu?.active) {
+                    return;
+                }
                 if (this.playAnim && !this.playAnim.getState('playmove-right').isPlaying) {
                     this.playAnim.play('playmove-right');
                 }
@@ -230,6 +257,9 @@ export class PlayerController extends Component {
             case macro.KEY.w:
             case macro.KEY.up:
             case macro.KEY.space:
+                if (this.backMenu?.active) {
+                    return;
+                }
                 if (!this.isUping) {
                     if (this.playAnim) {
                         if (this._playerFaceRigth) {
@@ -251,9 +281,16 @@ export class PlayerController extends Component {
                 this._yForce = 0;
                 break;
             case macro.KEY.j:
+                if (this.backMenu?.active) {
+                    return;
+                }
                 this.boxIsMoving = true;
                 break;
-
+            case macro.KEY.escape:
+                if (this.backMenu) {
+                    this.backMenu.active = this.backMenu.active ? false : true;
+                }
+                break;
         }
     }
 
