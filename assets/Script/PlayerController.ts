@@ -146,7 +146,7 @@ export class PlayerController extends Component {
         }
 
         //碰到激光方块
-        if(otherCollider.node.name == String(CubeType.CUBE_LASER_RIGHT || otherCollider.node.name == String(CubeType.CUBE_LASER_UP_1) || otherCollider.node.name == String(CubeType.CUBE_LASER_UP_2))){
+        if (otherCollider.node.name == String(CubeType.CUBE_LASER_RIGHT || otherCollider.node.name == String(CubeType.CUBE_LASER_UP_1) || otherCollider.node.name == String(CubeType.CUBE_LASER_UP_2))) {
             console.log("dead!");
             // 发送死亡事件
             this.setInputActive(false);
@@ -211,7 +211,7 @@ export class PlayerController extends Component {
         switch (event.keyCode) {
             case macro.KEY.a:
             case macro.KEY.left:
-                if (this.playAnim) {
+                if (this.playAnim && !this.playAnim.getState('playmove-left').isPlaying) {
                     this.playAnim.play('playmove-left');
                 }
                 this._playerFaceRigth = false;
@@ -220,7 +220,7 @@ export class PlayerController extends Component {
                 break;
             case macro.KEY.d:
             case macro.KEY.right:
-                if (this.playAnim) {
+                if (this.playAnim && !this.playAnim.getState('playmove-right').isPlaying) {
                     this.playAnim.play('playmove-right');
                 }
                 this._playerFaceRigth = true;
