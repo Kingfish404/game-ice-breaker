@@ -130,6 +130,11 @@ export class GameManager extends Component {
     @property({ type: Prefab })
     public shoseToolPrfb: Prefab | null = null;
 
+    @property({ type: Node })
+    public particleNode: Node | null = null;
+
+    public particleButtonClicked: boolean = false;
+
     public initPos: Vec3 | null = null;//保存出生点
     public skipPos: Vec3 | null = null;//保存跳跃点
 
@@ -392,6 +397,12 @@ export class GameManager extends Component {
 
     onStartButtonClicked() {
         this.curState = GameState.GS_PLAYING;
+    }
+
+    onParticleButtonClicked(){
+        if(this.particleNode){
+            this.particleNode.active = this.particleNode.active ? false : true;
+        }
     }
 
     onTipsButtonClicked() {
