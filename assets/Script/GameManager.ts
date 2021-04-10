@@ -1,5 +1,5 @@
 
-import { _decorator, Component, Node, PhysicsSystem2D, PHYSICS_2D_PTM_RATIO, v2, game, director, Prefab, instantiate, CCInteger, Vec3 } from 'cc';
+import { _decorator, Component, Node, PhysicsSystem2D, PHYSICS_2D_PTM_RATIO, v2, game, director, Prefab, instantiate, CCInteger, Vec3, systemEvent, EventKeyboard, SystemEvent, macro } from 'cc';
 import mapManager from './MapManager';
 import { PlayerController } from './PlayerController';
 const { ccclass, property } = _decorator;
@@ -58,6 +58,17 @@ export class GameManager extends Component {
 
     @property({ type: Node })
     public map: Node | null = null;
+
+    // 设置界面
+    @property({ type: Node })
+    public backMenu: Node | null = null;
+
+    // 关卡结算
+    @property({ type: [Node] })
+    public endPage: Node[] | null = null;
+
+    // 显示关卡结算
+    private _isOnEndPage: boolean = false;
 
     // 设置当前游戏状态
     private _curState: GameState = GameState.GS_INIT;
@@ -147,11 +158,43 @@ export class GameManager extends Component {
             this.playerCtrl.setInputActive(true);
         }
 
+        if (this.backMenu) {
+            this.backMenu.active = false;
+        }
+
+        this.setInput()
+
         PhysicsSystem2D.instance.enable = true;
         PhysicsSystem2D.instance.gravity = v2(0, -20 * PHYSICS_2D_PTM_RATIO);
 
         // enable debug for Physics
         // PhysicsSystem2D.instance.debugDrawFlags = EPhysics2DDrawFlags.Aabb;
+    }
+
+    setInput() {
+        systemEvent.on(SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
+    }
+
+    onKeyDown(event: EventKeyboard) {
+        switch (event.keyCode) {
+            case macro.KEY.escape:
+                // 绑定设置界面的快捷键
+                if (this.backMenu) {
+                    this.backMenu.active = this.backMenu.active ? false : true;
+                    if (this.backMenu.active) {
+                        this.playerCtrl?.setInputActive(false);
+                    } else {
+                        this.playerCtrl?.setInputActive(true);
+                    }
+                }
+                break;
+        }
+    }
+
+    onContiune() {
+        if (this.backMenu) {
+            this.backMenu.active = false;
+        }
     }
 
     generateRoad(captureNum: number) {
@@ -317,12 +360,34 @@ export class GameManager extends Component {
     }
 
     onNextCape() {
+        if (!this._isOnEndPage) {
+            this._isOnEndPage = true;
+            this.playerCtrl?.setInputActive(false);
+            if (this.endPage && this.captureNum < this.endPage.length) {
+                this.endPage[this.captureNum].active = true;
+                return;
+            }
+        }
         if (this.captureNum == mapManager.initPos.length - 1) {
             // 已经到最后一关
             return;
         }
         this.captureNum = this.captureNum + 1;  //修改关卡值
         this.curState = GameState.GS_PLAYING;   //重新设置游戏地图
+        this._isOnEndPage = false;
+    }
+
+    onEndPageClick() {
+        if (this.endPage && this.captureNum < this.endPage.length) {
+            this.endPage[this.captureNum].active = false;
+        }
+        if (this.captureNum == mapManager.initPos.length - 1) {
+            // 已经到最后一关
+            return;
+        }
+        this.captureNum = this.captureNum + 1;  //修改关卡值
+        this.curState = GameState.GS_PLAYING;   //重新设置游戏地图
+        this._isOnEndPage = false;
     }
 
     onStartButtonClicked() {

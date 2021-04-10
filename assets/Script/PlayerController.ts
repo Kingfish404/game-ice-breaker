@@ -43,10 +43,6 @@ export class PlayerController extends Component {
     @property({ type: Camera })
     public playerCamera: Camera | null = null;
 
-    // 设置界面
-    @property({ type: Node })
-    public backMenu: Node | null = null;
-
     public cameraPos: Vec3 = new Vec3(-20, 70, 1000);//摄像头初始位置
 
     public boxIsMoving: boolean = false;//判断j键是否按下
@@ -65,9 +61,6 @@ export class PlayerController extends Component {
             const rigidBody2d: RigidBody2D | null = this.player.getComponent(RigidBody2D);
             if (this._initPos) {
                 this.player.setWorldPosition(this._initPos);
-            }
-            if (this.backMenu) {
-                this.backMenu.active = false;
             }
             // 设定玩家高度
             const box: BoxCollider2D | null = this.player.getComponent(BoxCollider2D);
@@ -211,12 +204,6 @@ export class PlayerController extends Component {
         this.node.emit('dead');
     }
 
-    onContiune() {
-        if (this.backMenu) {
-            this.backMenu.active = false;
-        }
-    }
-
     setInputActive(active: boolean) {
         if (active) {
             systemEvent.on(SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
@@ -232,9 +219,7 @@ export class PlayerController extends Component {
         switch (event.keyCode) {
             case macro.KEY.a:
             case macro.KEY.left:
-                if (this.backMenu?.active) {
-                    return;
-                }
+
                 if (this.playAnim && !this.playAnim.getState('playmove-left').isPlaying) {
                     this.playAnim.play('playmove-left');
                 }
@@ -244,9 +229,7 @@ export class PlayerController extends Component {
                 break;
             case macro.KEY.d:
             case macro.KEY.right:
-                if (this.backMenu?.active) {
-                    return;
-                }
+
                 if (this.playAnim && !this.playAnim.getState('playmove-right').isPlaying) {
                     this.playAnim.play('playmove-right');
                 }
@@ -257,9 +240,6 @@ export class PlayerController extends Component {
             case macro.KEY.w:
             case macro.KEY.up:
             case macro.KEY.space:
-                if (this.backMenu?.active) {
-                    return;
-                }
                 if (!this.isUping) {
                     if (this.playAnim) {
                         if (this._playerFaceRigth) {
@@ -281,15 +261,7 @@ export class PlayerController extends Component {
                 this._yForce = 0;
                 break;
             case macro.KEY.j:
-                if (this.backMenu?.active) {
-                    return;
-                }
                 this.boxIsMoving = true;
-                break;
-            case macro.KEY.escape:
-                if (this.backMenu) {
-                    this.backMenu.active = this.backMenu.active ? false : true;
-                }
                 break;
         }
     }
