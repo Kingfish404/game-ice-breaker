@@ -32,13 +32,10 @@
       },
       {
         "__id__": 10
-      },
-      {
-        "__id__": 12
       }
     ],
     "_prefab": {
-      "__id__": 14
+      "__id__": 12
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -155,7 +152,7 @@
     "bullet": false,
     "awakeOnLoad": true,
     "_group": 1,
-    "_type": 2,
+    "_type": 0,
     "_allowSleep": true,
     "_gravityScale": 1,
     "_linearDamping": 0,
@@ -217,40 +214,11 @@
     "__prefab": {
       "__id__": 11
     },
-    "laserAnim": {
-      "__id__": 12
-    },
     "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
     "fileId": "10bVe4039NS6QcsROYq3i8"
-  },
-  {
-    "__type__": "cc.Animation",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "__prefab": {
-      "__id__": 13
-    },
-    "playOnLoad": false,
-    "_clips": [
-      {
-        "__uuid__": "d825e57c-dcf3-4d3e-b8bd-5c07b74b5adc"
-      }
-    ],
-    "_defaultClip": {
-      "__uuid__": "d825e57c-dcf3-4d3e-b8bd-5c07b74b5adc"
-    },
-    "_id": ""
-  },
-  {
-    "__type__": "cc.CompPrefabInfo",
-    "fileId": "d6eHR7y3JC77eiu79BD7Rt"
   },
   {
     "__type__": "cc.PrefabInfo",

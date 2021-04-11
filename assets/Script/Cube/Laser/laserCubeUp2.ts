@@ -5,23 +5,11 @@ const { ccclass, property } = _decorator;
 @ccclass('LaserCubeUp2')
 export class LaserCubeUp2 extends Component {
 
-    @property({type : Animation})
-    public laserAnim: Animation | null = null;
-
     start () {
         // 激光方块
         this.node.name = String(CubeType.CUBE_LASER_UP_2);
-        if(this.laserAnim){
-            this.laserAnim.play("laserUp-2");
-        }
+        console.log(this.node.position);
     }
 
-    update(){
-        const collider : Collider2D | null = this.node.getComponent(Collider2D);
-        if(collider){
-            collider.apply();
-        }
-        //使用apply函数动态修改刚体
-    }
 }
 

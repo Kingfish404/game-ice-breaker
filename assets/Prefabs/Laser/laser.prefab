@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "laser-up-cube-2",
+    "_name": "laser",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -32,10 +32,13 @@
       },
       {
         "__id__": 10
+      },
+      {
+        "__id__": 12
       }
     ],
     "_prefab": {
-      "__id__": 12
+      "__id__": 14
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -47,8 +50,8 @@
       "__type__": "cc.Quat",
       "x": 0,
       "y": 0,
-      "z": 0.7071067811865475,
-      "w": 0.7071067811865476
+      "z": 0,
+      "w": 1
     },
     "_lscale": {
       "__type__": "cc.Vec3",
@@ -61,7 +64,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 90
+      "z": 0
     },
     "_id": ""
   },
@@ -79,8 +82,8 @@
     "_priority": 0,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 40
+      "width": 20,
+      "height": 20
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -110,17 +113,17 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 228,
+      "g": 49,
+      "b": 49,
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "846f19c9-cdbd-4d3c-8845-885176b2ac49@f9941"
+      "__uuid__": "b730527c-3233-41c2-aaf7-7cdab58f9749@f9941"
     },
     "_type": 0,
     "_fillType": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillCenter": {
       "__type__": "cc.Vec2",
       "x": 0,
@@ -168,7 +171,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "732d6ueI5GZbcE8EbzpZJZ"
+    "fileId": "4cozZe8R9J55R0KXUtDu89"
   },
   {
     "__type__": "cc.BoxCollider2D",
@@ -194,17 +197,17 @@
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 40
+      "width": 20,
+      "height": 20
     },
     "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "1cRWfqfu5PbqL2GWfashkv"
+    "fileId": "95dT3jDohNuLXw5cr/PHov"
   },
   {
-    "__type__": "e55d8ZtAN9FQY79r0V2xu14",
+    "__type__": "3b284W/u5BM2rKzIwiwayR6",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -214,11 +217,58 @@
     "__prefab": {
       "__id__": 11
     },
+    "laser": {
+      "__id__": 12
+    },
     "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "dftvJMo71GRboXco3WuhuT"
+    "fileId": "93CV4fny9K5YuvmR4Cuzwx"
+  },
+  {
+    "__type__": "cc.Animation",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 13
+    },
+    "playOnLoad": false,
+    "_clips": [
+      {
+        "__uuid__": "a9c4ffc1-de89-4cd0-a3df-4a6690e5fe44"
+      },
+      {
+        "__uuid__": "c50bb648-5841-4df3-833c-221ebd34430e"
+      },
+      {
+        "__uuid__": "75569901-cc7a-4b8e-b6dc-cf58a7da265f"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "_defaultClip": null,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "9fwCzRW/ZKcK5GGOA8h2AF"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -228,6 +278,6 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "06NyTy0dJELqLFhtdFBwQX"
+    "fileId": "18dlNL8u9P+r9Oj6TYhl3q"
   }
 ]
