@@ -211,6 +211,11 @@ export class PlayerController extends Component {
         } else {
             systemEvent.off(SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
             systemEvent.off(SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+            // 立即结束当前的所有运动
+            this._yForce = 0;
+            this._xForce = 0;
+            this.isUping = false;
+            this.playAnim?.stop();
         }
     }
 

@@ -346,7 +346,7 @@ export class GameManager extends Component {
                     break;
                 case 1:
                     this.bgImages[5].active = true;
-                    this.bgImages[1].active = true;
+                    this.bgImages[0].active = true;
                     break;
                 case 2:
                     this.bgImages[6].active = true;

@@ -2,7 +2,7 @@
   "ver": "1.0.21",
   "importer": "image",
   "imported": true,
-  "uuid": "ebc26548-cf74-470f-968b-df12f1dd1f9a",
+  "uuid": "b43f3e95-b9e0-4ec7-8bfc-33230e94459d",
   "files": [
     ".png",
     ".json"
@@ -10,8 +10,8 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "ebc26548-cf74-470f-968b-df12f1dd1f9a@6c48a",
-      "displayName": "game-front-2",
+      "uuid": "b43f3e95-b9e0-4ec7-8bfc-33230e94459d@6c48a",
+      "displayName": "3",
       "id": "6c48a",
       "name": "texture",
       "userData": {
@@ -22,7 +22,7 @@
         "mipfilter": "none",
         "anisotropy": 1,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "ebc26548-cf74-470f-968b-df12f1dd1f9a"
+        "imageUuidOrDatabaseUri": "b43f3e95-b9e0-4ec7-8bfc-33230e94459d"
       },
       "ver": "1.0.20",
       "imported": true,
@@ -33,19 +33,19 @@
     },
     "f9941": {
       "importer": "sprite-frame",
-      "uuid": "ebc26548-cf74-470f-968b-df12f1dd1f9a@f9941",
-      "displayName": "game-front-2",
+      "uuid": "b43f3e95-b9e0-4ec7-8bfc-33230e94459d@f9941",
+      "displayName": "3",
       "id": "f9941",
       "name": "spriteFrame",
       "userData": {
         "trimType": "auto",
         "trimThreshold": 1,
         "rotated": false,
-        "offsetX": 26.5,
+        "offsetX": 94.5,
         "offsetY": 0,
-        "trimX": 78,
+        "trimX": 214,
         "trimY": 0,
-        "width": 3993,
+        "width": 3857,
         "height": 2160,
         "rawWidth": 4096,
         "rawHeight": 2160,
@@ -55,7 +55,7 @@
         "borderRight": 0,
         "packable": true,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "ebc26548-cf74-470f-968b-df12f1dd1f9a@6c48a",
+        "imageUuidOrDatabaseUri": "b43f3e95-b9e0-4ec7-8bfc-33230e94459d@6c48a",
         "atlasUuid": ""
       },
       "ver": "1.0.9",
@@ -69,6 +69,6 @@
   "userData": {
     "hasAlpha": true,
     "type": "sprite-frame",
-    "redirect": "ebc26548-cf74-470f-968b-df12f1dd1f9a@f9941"
+    "redirect": "b43f3e95-b9e0-4ec7-8bfc-33230e94459d@f9941"
   }
 }
