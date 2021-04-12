@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.AnimationClip",
-    "_name": "laser-4",
+    "_name": "laser-5",
     "_objFlags": 0,
     "_native": "",
     "sample": 60,
@@ -50,26 +50,26 @@
           "values": [
             {
               "__type__": "cc.Vec3",
-              "x": 360,
-              "y": 400,
+              "x": 600,
+              "y": 880,
               "z": 0
             },
             {
               "__type__": "cc.Vec3",
-              "x": 360,
-              "y": 400,
+              "x": 600,
+              "y": 880,
               "z": 0
             },
             {
               "__type__": "cc.Vec3",
-              "x": 360,
-              "y": 540,
+              "x": 320,
+              "y": 880,
               "z": 0
             },
             {
               "__type__": "cc.Vec3",
-              "x": 360,
-              "y": 540,
+              "x": 320,
+              "y": 880,
               "z": 0
             }
           ],
@@ -98,38 +98,38 @@
             },
             {
               "__type__": "cc.Size",
-              "width": 10,
-              "height": 320
+              "width": 600,
+              "height": 10
             },
             {
               "__type__": "cc.Size",
-              "width": 10,
-              "height": 320
+              "width": 600,
+              "height": 10
             },
             {
               "__type__": "cc.Size",
-              "width": 10,
-              "height": 320
+              "width": 600,
+              "height": 10
             },
             {
               "__type__": "cc.Size",
-              "width": 10,
-              "height": 320
+              "width": 600,
+              "height": 10
             },
             {
               "__type__": "cc.Size",
-              "width": 20,
-              "height": 320
+              "width": 600,
+              "height": 10
             },
             {
               "__type__": "cc.Size",
-              "width": 40,
-              "height": 320
+              "width": 600,
+              "height": 40
             },
             {
               "__type__": "cc.Size",
-              "width": 40,
-              "height": 320
+              "width": 600,
+              "height": 40
             }
           ],
           "easingMethods": {}
@@ -182,13 +182,13 @@
             },
             {
               "__type__": "cc.Size",
-              "width": 40,
-              "height": 320
+              "width": 600,
+              "height": 40
             },
             {
               "__type__": "cc.Size",
-              "width": 40,
-              "height": 320
+              "width": 600,
+              "height": 40
             }
           ],
           "easingMethods": {}
@@ -196,7 +196,7 @@
       }
     ],
     "_commonTargets": [],
-    "_hash": 2919108899
+    "_hash": 2000160776
   },
   {
     "__type__": "cc.animation.ComponentPath",

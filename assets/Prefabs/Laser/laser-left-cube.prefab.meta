@@ -2,12 +2,12 @@
   "ver": "1.1.27",
   "importer": "prefab",
   "imported": true,
-  "uuid": "5228c9ff-4a46-4206-8898-894292215458",
+  "uuid": "7d330c9f-d6b1-4686-bbd1-a7cd866900fa",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "laser-up-cube-2"
+    "syncNodeName": "laser-left-cube"
   }
 }

@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "laser-up-cube-2",
+    "_name": "laser-left-cube",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -47,8 +47,8 @@
       "__type__": "cc.Quat",
       "x": 0,
       "y": 0,
-      "z": 0.7071067811865475,
-      "w": 0.7071067811865476
+      "z": 0,
+      "w": 1
     },
     "_lscale": {
       "__type__": "cc.Vec3",
@@ -61,7 +61,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 90
+      "z": 0
     },
     "_id": ""
   },
@@ -168,7 +168,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "732d6ueI5GZbcE8EbzpZJZ"
+    "fileId": "4cozZe8R9J55R0KXUtDu89"
   },
   {
     "__type__": "cc.BoxCollider2D",
@@ -201,7 +201,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "1cRWfqfu5PbqL2GWfashkv"
+    "fileId": "95dT3jDohNuLXw5cr/PHov"
   },
   {
     "__type__": "e55d8ZtAN9FQY79r0V2xu14",
@@ -218,7 +218,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "dftvJMo71GRboXco3WuhuT"
+    "fileId": "01WIuZhX9ORJ5RlrmSviEF"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -228,6 +228,6 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "06NyTy0dJELqLFhtdFBwQX"
+    "fileId": "18dlNL8u9P+r9Oj6TYhl3q"
   }
 ]

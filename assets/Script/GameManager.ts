@@ -22,11 +22,11 @@ export enum CubeType {
     CUBE_BOX,           //可由人物移动控制的方块
     CUBE_NEXT_CAPE,         // 下一关，胜利碰撞方块
     CUBE_GROUND_FAKE,       // 无实体的地面物块
-    CUBE_LASER_UP_1,        //向上发射激光方块1
-    CUBE_LASER_UP_2,        //向上发射激光方块2
+    CUBE_LASER_UP,        //向上发射激光方块1
+    CUBE_LASER_LEFT,        //向上发射激光方块2
     TOOL_FIRE,              // 火焰道具
     TOOL_SHOSE,             // 鞋子道具
-    CUBE_LASER_1            //激光
+    CUBE_LASER_1           //激光
 }
 
 // 游戏状态
@@ -123,9 +123,6 @@ export class GameManager extends Component {
     public laserCubeUpPrfb1: Prefab | null = null;
 
     @property({ type: Prefab })
-    public laserCubeUpPrfb2: Prefab | null = null;
-
-    @property({ type: Prefab })
     public fireToolPrfb: Prefab | null = null;
 
     @property({ type: Prefab })
@@ -134,10 +131,11 @@ export class GameManager extends Component {
     @property({ type: Node })
     public particleNode: Node | null = null;
 
-    @property( {type: Prefab})
+    @property({ type: Prefab})
     public laserPrfb_1: Prefab | null = null;//激光的释放
 
-    public particleButtonClicked: boolean = false;
+    @property( {type: Prefab})
+    public laserCubeLeftPrfb: Prefab | null = null;
 
     public initPos: Vec3 | null = null;//保存出生点
     public skipPos: Vec3 | null = null;//保存跳跃点
@@ -228,7 +226,7 @@ export class GameManager extends Component {
 
     // 根据类型返回方块
     spawnCubeByType(type: CubeType) {
-        if (!this.groundCubePrfb || !this.waterCubePrfb || !this.bounceCubePrfb || !this.disappearCubePrfb || !this.skipInCubePrfb || !this.skipOutCubePrfb || !this.cloudCubePrfb || !this.iceCubePrfb || !this.grassCubePrfb || !this.boxCubePrfb || !this.monsterCubePrfb || !this.laserCubeRightPrfb || !this.laserCubeUpPrfb1 || !this.laserCubeUpPrfb2 || !this.nextCubePrfb || !this.groundFakePrfb || !this.fireToolPrfb || !this.shoseToolPrfb || !this.laserPrfb_1) {
+        if (!this.groundCubePrfb || !this.waterCubePrfb || !this.bounceCubePrfb || !this.disappearCubePrfb || !this.skipInCubePrfb || !this.skipOutCubePrfb || !this.cloudCubePrfb || !this.iceCubePrfb || !this.grassCubePrfb || !this.boxCubePrfb || !this.monsterCubePrfb || !this.laserCubeRightPrfb || !this.laserCubeUpPrfb1 || !this.laserCubeLeftPrfb || !this.nextCubePrfb || !this.groundFakePrfb || !this.fireToolPrfb || !this.shoseToolPrfb || !this.laserPrfb_1) {
             return null;
         } else {
             let block: Node | null = null;
@@ -275,11 +273,11 @@ export class GameManager extends Component {
                 case CubeType.CUBE_GROUND_FAKE:
                     block = instantiate(this.groundFakePrfb);
                     break;
-                case CubeType.CUBE_LASER_UP_1:
+                case CubeType.CUBE_LASER_UP:
                     block = instantiate(this.laserCubeUpPrfb1);
                     break;
-                case CubeType.CUBE_LASER_UP_2:
-                    block = instantiate(this.laserCubeUpPrfb2);
+                case CubeType.CUBE_LASER_LEFT:
+                    block = instantiate(this.laserCubeLeftPrfb);
                     break;
                 case CubeType.TOOL_FIRE:
                     block = instantiate(this.fireToolPrfb);
@@ -289,7 +287,6 @@ export class GameManager extends Component {
                     break;
                 case CubeType.CUBE_LASER_1:
                     block = instantiate(this.laserPrfb_1);
-                    console.log("1");
                     break;
             }
 
