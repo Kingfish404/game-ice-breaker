@@ -88,7 +88,13 @@ export class PlayerController extends Component {
 
     onBeginContact(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | any | null) {
         // 只在两个碰撞体开始接触时被调用一次的碰撞函数
-        this.isUping = false;
+
+        let otherPos = otherCollider.node.getWorldPosition();
+        this._playerPos = selfCollider.node.getWorldPosition();
+        if (this._playerPos.y > otherPos.y) {
+            // 接触位置在上方，才能获得碰撞
+            this.isUping = false;
+        }
 
         // 判断是否碰到了水
         if (otherCollider.node.name == String(CubeType.CUBE_WATER)) {
@@ -254,7 +260,7 @@ export class PlayerController extends Component {
                         }
                     }
                     this.isUping = true;
-                    this._yForce = this._force * 0.9;
+                    this._yForce = this._force * 0.6;
                     let that = this;
                     setTimeout(() => {
                         that._yForce = 0;
