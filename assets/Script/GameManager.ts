@@ -22,8 +22,8 @@ export enum CubeType {
     CUBE_BOX,           //可由人物移动控制的方块
     CUBE_NEXT_CAPE,         // 下一关，胜利碰撞方块
     CUBE_GROUND_FAKE,       // 无实体的地面物块
-    CUBE_LASER_UP,        //向上发射激光方块1
-    CUBE_LASER_LEFT,        //向上发射激光方块2
+    CUBE_LASER_UP,        //向上发射激光方块
+    CUBE_LASER_LEFT,        //向左发射激光方块
     TOOL_FIRE,              // 火焰道具
     TOOL_SHOSE,             // 鞋子道具
     CUBE_LASER_1           //激光

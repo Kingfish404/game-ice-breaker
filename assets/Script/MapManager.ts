@@ -26,8 +26,14 @@ class MapManager {
             new Vec3(760, 760, 0),
             new Vec3(840, 760, 0),
             new Vec3(360, 400, 0),
-            new Vec3(600, 880, 0),
-            new Vec3(1040, 920, 0)
+            new Vec3(1000, 960, 0),
+            new Vec3(1440, 640, 0),
+            new Vec3(1440, 680, 0),
+            new Vec3(960, 680, 0),
+            new Vec3(960, 440, 0),
+            new Vec3(960, 320, 0),
+            new Vec3(960, 240, 0),
+            new Vec3(960, 520, 0)
         ]//保存laser位置
 
     generate(captureNum: number): Array<Array<CubeType>> | null {
