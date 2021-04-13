@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.AnimationClip",
-    "_name": "laser-6",
+    "_name": "laser-7",
     "_objFlags": 0,
     "_native": "",
     "sample": 60,
@@ -51,25 +51,25 @@
             {
               "__type__": "cc.Vec3",
               "x": 1440,
-              "y": 640,
+              "y": 680,
               "z": 0
             },
             {
               "__type__": "cc.Vec3",
               "x": 1440,
-              "y": 640,
+              "y": 680,
               "z": 0
             },
             {
               "__type__": "cc.Vec3",
               "x": 1240,
-              "y": 640,
+              "y": 680,
               "z": 0
             },
             {
               "__type__": "cc.Vec3",
               "x": 1240,
-              "y": 640,
+              "y": 680,
               "z": 0
             }
           ],
@@ -196,7 +196,7 @@
       }
     ],
     "_commonTargets": [],
-    "_hash": 1815153246
+    "_hash": 3351245732
   },
   {
     "__type__": "cc.animation.ComponentPath",

@@ -50,26 +50,26 @@
           "values": [
             {
               "__type__": "cc.Vec3",
-              "x": 600,
-              "y": 880,
+              "x": 1000,
+              "y": 960,
               "z": 0
             },
             {
               "__type__": "cc.Vec3",
-              "x": 600,
-              "y": 880,
+              "x": 1000,
+              "y": 960,
               "z": 0
             },
             {
               "__type__": "cc.Vec3",
-              "x": 320,
-              "y": 880,
+              "x": 960,
+              "y": 960,
               "z": 0
             },
             {
               "__type__": "cc.Vec3",
-              "x": 320,
-              "y": 880,
+              "x": 960,
+              "y": 960,
               "z": 0
             }
           ],
@@ -98,37 +98,37 @@
             },
             {
               "__type__": "cc.Size",
-              "width": 600,
+              "width": 120,
               "height": 10
             },
             {
               "__type__": "cc.Size",
-              "width": 600,
+              "width": 120,
               "height": 10
             },
             {
               "__type__": "cc.Size",
-              "width": 600,
+              "width": 120,
               "height": 10
             },
             {
               "__type__": "cc.Size",
-              "width": 600,
+              "width": 120,
               "height": 10
             },
             {
               "__type__": "cc.Size",
-              "width": 600,
+              "width": 120,
               "height": 10
             },
             {
               "__type__": "cc.Size",
-              "width": 600,
+              "width": 120,
               "height": 40
             },
             {
               "__type__": "cc.Size",
-              "width": 600,
+              "width": 120,
               "height": 40
             }
           ],
@@ -182,12 +182,12 @@
             },
             {
               "__type__": "cc.Size",
-              "width": 600,
+              "width": 120,
               "height": 40
             },
             {
               "__type__": "cc.Size",
-              "width": 600,
+              "width": 120,
               "height": 40
             }
           ],
@@ -196,7 +196,7 @@
       }
     ],
     "_commonTargets": [],
-    "_hash": 2000160776
+    "_hash": 3881860284
   },
   {
     "__type__": "cc.animation.ComponentPath",
