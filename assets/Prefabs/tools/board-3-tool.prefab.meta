@@ -2,12 +2,12 @@
   "ver": "1.1.27",
   "importer": "prefab",
   "imported": true,
-  "uuid": "3a2b731d-9b28-4618-8235-89ada4e665a7",
+  "uuid": "c40e597b-408c-41b7-b5f0-dd59dbf16539",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "shose-tool"
+    "syncNodeName": "board-3-tool"
   }
 }

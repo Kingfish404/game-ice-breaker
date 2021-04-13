@@ -2,7 +2,7 @@
 import { _decorator, Component, Node, PhysicsSystem2D, PHYSICS_2D_PTM_RATIO, v2, game, director, Prefab, instantiate, CCInteger, Vec3, systemEvent, EventKeyboard, SystemEvent, macro } from 'cc';
 import mapManager from './MapManager';
 import { PlayerController } from './PlayerController';
-const { ccclass, property } = _decorator;
+const { ccclass, property, type } = _decorator;
 
 // 方块类型
 export enum CubeType {
@@ -26,7 +26,10 @@ export enum CubeType {
     CUBE_LASER_LEFT,        //向上发射激光方块2
     TOOL_FIRE,              // 火焰道具
     TOOL_SHOSE,             // 鞋子道具
-    CUBE_LASER_1           //激光
+    CUBE_LASER_1,           // 激光
+    TOOL_BOARD,             // 滑板
+    TOOL_HELMET,            // 头盔
+    TOOL_DRESS,             // 裙子
 }
 
 // 游戏状态
@@ -131,14 +134,23 @@ export class GameManager extends Component {
     @property({ type: Node })
     public particleNode: Node | null = null;
 
-    @property({ type: Prefab})
+    @property({ type: Prefab })
     public laserPrfb_1: Prefab | null = null;//激光的释放
 
-    @property( {type: Prefab})
+    @property({ type: Prefab })
     public laserCubeLeftPrfb: Prefab | null = null;
 
-    public initPos: Vec3 | null = null;//保存出生点
-    public skipPos: Vec3 | null = null;//保存跳跃点
+    @property({ type: Prefab })
+    public BoardPrfb: Prefab | null = null;
+
+    @property({ type: Prefab })
+    public HelmetPrfb: Prefab | null = null;
+
+    @property({ type: Prefab })
+    public DressPrfb: Prefab | null = null;
+
+    public initPos: Vec3 | null = null; //保存出生点
+    public skipPos: Vec3 | null = null; //保存跳跃点
 
     start() {
         this.curState = GameState.GS_INIT;
@@ -282,11 +294,20 @@ export class GameManager extends Component {
                 case CubeType.TOOL_FIRE:
                     block = instantiate(this.fireToolPrfb);
                     break;
+                case CubeType.CUBE_LASER_1:
+                    block = instantiate(this.laserPrfb_1);
+                    break;
                 case CubeType.TOOL_SHOSE:
                     block = instantiate(this.shoseToolPrfb);
                     break;
-                case CubeType.CUBE_LASER_1:
-                    block = instantiate(this.laserPrfb_1);
+                case CubeType.TOOL_HELMET:
+                    block = instantiate(this.BoardPrfb);
+                    break;
+                case CubeType.TOOL_BOARD:
+                    block = instantiate(this.BoardPrfb);
+                    break;
+                case CubeType.TOOL_DRESS:
+                    block = instantiate(this.BoardPrfb);
                     break;
             }
 
@@ -404,8 +425,8 @@ export class GameManager extends Component {
         this.curState = GameState.GS_PLAYING;
     }
 
-    onParticleButtonClicked(){
-        if(this.particleNode){
+    onParticleButtonClicked() {
+        if (this.particleNode) {
             this.particleNode.active = this.particleNode.active ? false : true;
         }
     }

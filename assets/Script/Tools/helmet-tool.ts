@@ -7,8 +7,8 @@ const { ccclass, property } = _decorator;
 @ccclass('ShoseTool')
 export class ShoseTool extends Component {
 
-    start() {
+    start () {
         // 鞋子道具
-        this.node.name = String(CubeType.TOOL_SHOSE);
+        this.node.name = String(CubeType.TOOL_HELMET);
     }
 }

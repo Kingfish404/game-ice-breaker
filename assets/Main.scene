@@ -265,6 +265,15 @@
     "laserCubeLeftPrfb": {
       "__uuid__": "7d330c9f-d6b1-4686-bbd1-a7cd866900fa"
     },
+    "BoardPrfb": {
+      "__uuid__": "c40e597b-408c-41b7-b5f0-dd59dbf16539"
+    },
+    "HelmetPrfb": {
+      "__uuid__": "d2835380-81ee-4585-89c1-1a4a29fd9662"
+    },
+    "DressPrfb": {
+      "__uuid__": "c018a276-aadf-4205-a1d0-37351919945e"
+    },
     "_id": "f4f/XpsDNJK73NeOCXUfHq"
   },
   {

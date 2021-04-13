@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "shose-tool",
+    "_name": "board-3-tool",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -116,7 +116,7 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "d29521fc-4569-4ea3-b797-12e0d1818ad9@f9941"
+      "__uuid__": "4d8c5f48-552c-444f-aede-3e6c06d16af3@f9941"
     },
     "_type": 0,
     "_fillType": 0,
@@ -204,7 +204,7 @@
     "fileId": "cfpNtK3DRLIKtUS0SmwJu/"
   },
   {
-    "__type__": "688b5NmOxJPSL+M1A0TitdW",
+    "__type__": "58d37h4nsFMB7kVUwYr7bvg",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -218,7 +218,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "5dcrfEZFNHVYzFPgpRonue"
+    "fileId": "d3tvD1IfJDSawR4ZErEfQS"
   },
   {
     "__type__": "cc.PrefabInfo",
