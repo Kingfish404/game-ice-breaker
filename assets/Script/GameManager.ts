@@ -26,7 +26,7 @@ export enum CubeType {
     CUBE_LASER_LEFT,        //向左发射激光方块
     TOOL_FIRE,              // 火焰道具
     TOOL_SHOSE,             // 鞋子道具
-    CUBE_LASER_1,           // 激光
+    CUBE_LASER,           // 激光
     TOOL_BOARD,             // 滑板
     TOOL_HELMET,            // 头盔
     TOOL_DRESS,             // 裙子
@@ -123,7 +123,7 @@ export class GameManager extends Component {
     public bgImages: Node[] | null = null;
 
     @property({ type: Prefab })
-    public laserCubeUpPrfb1: Prefab | null = null;
+    public laserCubeUpPrfb: Prefab | null = null;
 
     @property({ type: Prefab })
     public fireToolPrfb: Prefab | null = null;
@@ -135,7 +135,7 @@ export class GameManager extends Component {
     public particleNode: Node | null = null;
 
     @property({ type: Prefab })
-    public laserPrfb_1: Prefab | null = null;//激光的释放
+    public laserPrfb: Prefab | null = null;//激光的释放
 
     @property({ type: Prefab })
     public laserCubeLeftPrfb: Prefab | null = null;
@@ -238,7 +238,7 @@ export class GameManager extends Component {
 
     // 根据类型返回方块
     spawnCubeByType(type: CubeType) {
-        if (!this.groundCubePrfb || !this.waterCubePrfb || !this.bounceCubePrfb || !this.disappearCubePrfb || !this.skipInCubePrfb || !this.skipOutCubePrfb || !this.cloudCubePrfb || !this.iceCubePrfb || !this.grassCubePrfb || !this.boxCubePrfb || !this.monsterCubePrfb || !this.laserCubeRightPrfb || !this.laserCubeUpPrfb1 || !this.laserCubeLeftPrfb || !this.nextCubePrfb || !this.groundFakePrfb || !this.fireToolPrfb || !this.shoseToolPrfb || !this.laserPrfb_1) {
+        if (!this.groundCubePrfb || !this.waterCubePrfb || !this.bounceCubePrfb || !this.disappearCubePrfb || !this.skipInCubePrfb || !this.skipOutCubePrfb || !this.cloudCubePrfb || !this.iceCubePrfb || !this.grassCubePrfb || !this.boxCubePrfb || !this.monsterCubePrfb || !this.laserCubeRightPrfb || !this.laserCubeUpPrfb || !this.laserCubeLeftPrfb || !this.nextCubePrfb || !this.groundFakePrfb || !this.fireToolPrfb || !this.shoseToolPrfb || !this.laserPrfb || !this.BoardPrfb || !this.DressPrfb || !this.HelmetPrfb) {
             return null;
         } else {
             let block: Node | null = null;
@@ -286,7 +286,7 @@ export class GameManager extends Component {
                     block = instantiate(this.groundFakePrfb);
                     break;
                 case CubeType.CUBE_LASER_UP:
-                    block = instantiate(this.laserCubeUpPrfb1);
+                    block = instantiate(this.laserCubeUpPrfb);
                     break;
                 case CubeType.CUBE_LASER_LEFT:
                     block = instantiate(this.laserCubeLeftPrfb);
@@ -294,8 +294,8 @@ export class GameManager extends Component {
                 case CubeType.TOOL_FIRE:
                     block = instantiate(this.fireToolPrfb);
                     break;
-                case CubeType.CUBE_LASER_1:
-                    block = instantiate(this.laserPrfb_1);
+                case CubeType.CUBE_LASER:
+                    block = instantiate(this.laserPrfb);
                     break;
                 case CubeType.TOOL_SHOSE:
                     block = instantiate(this.shoseToolPrfb);

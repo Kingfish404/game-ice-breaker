@@ -247,7 +247,7 @@
         "__id__": 39
       }
     ],
-    "laserCubeUpPrfb1": {
+    "laserCubeUpPrfb": {
       "__uuid__": "5d4c3cd1-db4d-4b5c-89af-1ebe0f824930"
     },
     "fireToolPrfb": {
@@ -259,7 +259,7 @@
     "particleNode": {
       "__id__": 43
     },
-    "laserPrfb_1": {
+    "laserPrfb": {
       "__uuid__": "47d20bc6-1df6-4992-8bd0-5f4fab5d9d9c"
     },
     "laserCubeLeftPrfb": {
