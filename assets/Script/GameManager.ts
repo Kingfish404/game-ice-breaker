@@ -1,5 +1,5 @@
 
-import { _decorator, Component, Node, PhysicsSystem2D, PHYSICS_2D_PTM_RATIO, v2, game, director, Prefab, instantiate, CCInteger, Vec3, systemEvent, EventKeyboard, SystemEvent, macro } from 'cc';
+import { _decorator, Component, Node, PhysicsSystem2D, PHYSICS_2D_PTM_RATIO, v2, game, director, Prefab, instantiate, CCInteger, Vec3, systemEvent, EventKeyboard, SystemEvent, macro, VideoPlayer } from 'cc';
 import mapManager from './MapManager';
 import { PlayerController } from './PlayerController';
 const { ccclass, property, type } = _decorator;
@@ -30,7 +30,7 @@ export enum CubeType {
     TOOL_BOARD,             // 滑板
     TOOL_HELMET,            // 头盔
     TOOL_DRESS,             // 裙子
-    TOOL_CAMERA,             // 可播放相机
+    TOOL_CAMERA,            // 可播放相机
 }
 
 // 游戏状态
@@ -153,6 +153,9 @@ export class GameManager extends Component {
     @property({ type: Prefab })
     public cameraPrfb: Prefab | null = null;
 
+    @property({ type: Node })
+    public ToolsTipsCamera: Node | null = null;     // 播放视频的相机
+
     public initPos: Vec3 | null = null; //保存出生点
     public skipPos: Vec3 | null = null; //保存跳跃点
 
@@ -165,6 +168,7 @@ export class GameManager extends Component {
         if (this.playerCtrl) {
             this.playerCtrl.node.on('dead', this.onGameEnd, this);
             this.playerCtrl.node.on('next', this.onNextCape, this);
+            this.playerCtrl.node.on('tips', this.onTips, this);
         }
 
         // 设置当前节点为常驻节点
@@ -245,7 +249,7 @@ export class GameManager extends Component {
         if (!this.groundCubePrfb || !this.waterCubePrfb || !this.bounceCubePrfb || !this.disappearCubePrfb || !this.skipInCubePrfb || !this.skipOutCubePrfb || !this.cloudCubePrfb || !this.iceCubePrfb || !this.grassCubePrfb || !this.boxCubePrfb || !this.monsterCubePrfb || !this.laserCubeRightPrfb || !this.laserCubeUpPrfb || !this.laserCubeLeftPrfb || !this.nextCubePrfb || !this.groundFakePrfb || !this.fireToolPrfb || !this.shoseToolPrfb || !this.laserPrfb || !this.BoardPrfb || !this.DressPrfb || !this.HelmetPrfb) {
             return null;
         } else {
-            let block: Node | null = null;
+            let block: Node | any | null = null;
             switch (type) {
                 case CubeType.CUBE_GROUND:
                     block = instantiate(this.groundCubePrfb);
@@ -413,6 +417,33 @@ export class GameManager extends Component {
         this.captureNum = this.captureNum + 1;  //修改关卡值
         this.curState = GameState.GS_PLAYING;   //重新设置游戏地图
         this._isOnEndPage = false;
+    }
+
+    onTips(args: number) {
+        // 处理道具的提示
+        console.log(args);
+        if (args == CubeType.TOOL_CAMERA) {
+            if (this.ToolsTipsCamera) {
+                this.ToolsTipsCamera.active = true;
+                let video = this.ToolsTipsCamera.getChildByName('VideoPlayer');
+                if (video) {
+                    video.getComponent(VideoPlayer)?.play();
+                }
+                this.playerCtrl?.setInputActive(false);
+                setTimeout(() => {
+                    if (this.ToolsTipsCamera) {
+                        this.ToolsTipsCamera.active = false;
+                        let video = this.ToolsTipsCamera.getChildByName('VideoPlayer');
+                        if (video) {
+                            video.getComponent(VideoPlayer)?.stop();
+                        }
+                    }
+                    this.playerCtrl?.setInputActive(true);
+                }, 20000);
+            }
+        } else {
+
+        }
     }
 
     onEndPageClick() {

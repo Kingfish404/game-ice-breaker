@@ -64,7 +64,7 @@ export class PlayerController extends Component {
             }
             // 设定玩家高度
             const box: BoxCollider2D | null = this.player.getComponent(BoxCollider2D);
-            console.log('player:start>box', box);
+            // console.log('player:start>box', box);
 
             if (collider) {
                 // 设定碰撞事件
@@ -80,7 +80,7 @@ export class PlayerController extends Component {
             if (this.playerCamera) {
                 const pos: Vec3 = this.playerCamera.node.getPosition();
                 this.playerCamera.node.setPosition(this.cameraPos);//控制初始化时相机的位置
-                console.log(pos);
+                // console.log(pos);
                 // this.playerCamera.node.setPosition(new Vec3(0, 0, 0));
             }
         }
@@ -136,8 +136,20 @@ export class PlayerController extends Component {
 
         // 碰到永久消失方块
         if (otherCollider.node.name == String(CubeType.TOOL_FIRE) ||
-            otherCollider.node.name == String(CubeType.TOOL_SHOSE)
+            otherCollider.node.name == String(CubeType.TOOL_SHOSE) ||
+            otherCollider.node.name == String(CubeType.TOOL_BOARD) ||
+            otherCollider.node.name == String(CubeType.TOOL_HELMET) ||
+            otherCollider.node.name == String(CubeType.TOOL_DRESS) ||
+            otherCollider.node.name == String(CubeType.TOOL_CAMERA)
         ) {
+            let otherColliderName = otherCollider.node.name;
+            if (otherColliderName == String(CubeType.TOOL_CAMERA)) {
+                // 碰到的是相机
+                this.node.emit('tips', CubeType.TOOL_CAMERA);
+            } else {
+                // 碰到的是普通的道具
+                this.node.emit('tips', 0);
+            }
             setTimeout(() => {
                 otherCollider.node.active = false;
             }, 0);//延时0.5s消失
@@ -156,7 +168,7 @@ export class PlayerController extends Component {
         }
 
         //碰到激光方块
-        if (otherCollider.node.name == String(CubeType.CUBE_LASER_1)) {
+        if (otherCollider.node.name == String(CubeType.CUBE_LASER)) {
             console.log("dead!");
             // 发送死亡事件
             this.setInputActive(false);

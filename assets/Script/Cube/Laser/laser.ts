@@ -12,7 +12,7 @@ export class Laser1 extends Component {
     public currentPos: Vec3 | null = null
 
     start(){
-        this.node.name = String(CubeType.CUBE_LASER_1);
+        this.node.name = String(CubeType.CUBE_LASER);
         this.currentPos = this.node.position;
         console.log(this.currentPos);
         let laserAnim : string = "laser-";

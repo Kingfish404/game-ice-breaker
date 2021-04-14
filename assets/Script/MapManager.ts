@@ -16,7 +16,7 @@ class MapManager {
             new Vec3(500, 250, 0),
             new Vec3(1700, 300, 0),
             new Vec3(580, 300, 0),
-            // new Vec3(1480, 600, 0), // test camera in capt 3
+            // new Vec3(1480, 600, 0), //dd test camera in capt 3
             new Vec3(1600, 200, 0),
             new Vec3(600, 300, 0),
         ]  //初始位置
