@@ -30,6 +30,7 @@ export enum CubeType {
     TOOL_BOARD,             // 滑板
     TOOL_HELMET,            // 头盔
     TOOL_DRESS,             // 裙子
+    TOOL_CAMERA,             // 可播放相机
 }
 
 // 游戏状态
@@ -148,6 +149,9 @@ export class GameManager extends Component {
 
     @property({ type: Prefab })
     public DressPrfb: Prefab | null = null;
+
+    @property({ type: Prefab })
+    public cameraPrfb: Prefab | null = null;
 
     public initPos: Vec3 | null = null; //保存出生点
     public skipPos: Vec3 | null = null; //保存跳跃点
@@ -308,6 +312,9 @@ export class GameManager extends Component {
                     break;
                 case CubeType.TOOL_DRESS:
                     block = instantiate(this.BoardPrfb);
+                    break;
+                case CubeType.TOOL_CAMERA:
+                    block = instantiate(this.cameraPrfb);
                     break;
             }
 

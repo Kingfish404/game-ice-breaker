@@ -4,11 +4,11 @@ import { CubeType } from '../GameManager';
 const { ccclass, property } = _decorator;
 
 // 鞋子道具脚本
-@ccclass('HelmetTool')
-export class HelmetTool extends Component {
+@ccclass('CameraTool')
+export class CameraTool extends Component {
 
-    start () {
+    start() {
         // 鞋子道具
-        this.node.name = String(CubeType.TOOL_HELMET);
+        this.node.name = String(CubeType.TOOL_CAMERA);
     }
 }

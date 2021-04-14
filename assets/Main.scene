@@ -274,6 +274,9 @@
     "DressPrfb": {
       "__uuid__": "c018a276-aadf-4205-a1d0-37351919945e"
     },
+    "cameraPrfb": {
+      "__uuid__": "1a668675-2e2a-4f6c-a6ff-41050f9ce9a1"
+    },
     "_id": "f4f/XpsDNJK73NeOCXUfHq"
   },
   {
@@ -1814,7 +1817,7 @@
     "_priority": 100,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 320,
+    "_orthoHeight": 458.8679245283019,
     "_near": 1,
     "_far": 2000,
     "_color": {
