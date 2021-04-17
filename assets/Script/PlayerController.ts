@@ -39,6 +39,10 @@ export class PlayerController extends Component {
     @property({ type: Animation })
     public playAnim: Animation | null = null;
 
+    // 对话组件
+    @property({ type: Animation })
+    public talksAnim: Animation | null = null;
+
     // 玩家摄像头
     @property({ type: Camera })
     public playerCamera: Camera | null = null;
@@ -95,7 +99,6 @@ export class PlayerController extends Component {
             // 接触位置在上方，才能获得碰撞
             this.isUping = false;
         }
-
         // 判断是否碰到了水
         if (otherCollider.node.name == String(CubeType.CUBE_WATER)) {
             console.log('dead!');
@@ -108,13 +111,13 @@ export class PlayerController extends Component {
             }, 500)
         }
         // 碰到穿越方块
-        if (otherCollider.node.name == String(CubeType.CUBE_SKIPIN)) {
+        else if (otherCollider.node.name == String(CubeType.CUBE_SKIPIN)) {
             if (!this.skipJudge) {
                 this.skipJudge = true;
             }
         }
         // 碰到弹跳方块
-        if (otherCollider.node.name == String(CubeType.CUBE_BOUNCE)) {
+        else if (otherCollider.node.name == String(CubeType.CUBE_BOUNCE)) {
             if (!this.isUping) {
                 this.isUping = true;
                 this._yForce = 1.5 * this._force;
@@ -125,7 +128,7 @@ export class PlayerController extends Component {
             }
         }
         // 碰到暂时消失方块
-        if (otherCollider.node.name == String(CubeType.CUBE_DISAPPEAR)) {
+        else if (otherCollider.node.name == String(CubeType.CUBE_DISAPPEAR)) {
             setTimeout(() => {
                 otherCollider.node.active = false;
             }, this.disappearTime);//延时0.5s消失
@@ -133,9 +136,8 @@ export class PlayerController extends Component {
                 otherCollider.node.active = true;
             }, this.recoverTime)//再8秒后将active再设置为true
         }
-
         // 碰到永久消失方块
-        if (otherCollider.node.name == String(CubeType.TOOL_FIRE) ||
+        else if (otherCollider.node.name == String(CubeType.TOOL_FIRE) ||
             otherCollider.node.name == String(CubeType.TOOL_SHOSE) ||
             otherCollider.node.name == String(CubeType.TOOL_BOARD) ||
             otherCollider.node.name == String(CubeType.TOOL_HELMET) ||
@@ -154,9 +156,8 @@ export class PlayerController extends Component {
                 otherCollider.node.active = false;
             }, 0);//延时0.5s消失
         }
-
         // 碰到下一关方块
-        if (otherCollider.node.name == String(CubeType.CUBE_NEXT_CAPE)) {
+        else if (otherCollider.node.name == String(CubeType.CUBE_NEXT_CAPE)) {
             console.log('next cape!');
             // 下一关
             this.setInputActive(false);
@@ -166,9 +167,8 @@ export class PlayerController extends Component {
                 this.node.emit('next');
             }, 100)
         }
-
         //碰到激光方块
-        if (otherCollider.node.name == String(CubeType.CUBE_LASER)) {
+        else if (otherCollider.node.name == String(CubeType.CUBE_LASER)) {
             console.log("dead!");
             // 发送死亡事件
             this.setInputActive(false);
@@ -177,6 +177,17 @@ export class PlayerController extends Component {
             setTimeout(() => {
                 this.onDead();
             }, 100)
+        }
+        else if (otherCollider.node.name == String(CubeType.NPC_2)) {
+            // 碰到npc-2
+            if (this.talksAnim && !this.talksAnim.getState('npc-2-talk').isPlaying) {
+                this.talksAnim.play('npc-2-talk');
+            }
+        } else if (otherCollider.node.name == String(CubeType.NPC_4)) {
+            // 碰到npc-4
+            if (this.talksAnim && !this.talksAnim.getState('npc-4-talk').isPlaying) {
+                this.talksAnim.play('npc-4-talk');
+            }
         }
     }
 

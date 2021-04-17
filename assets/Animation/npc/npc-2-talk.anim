@@ -1,0 +1,202 @@
+[
+  {
+    "__type__": "cc.AnimationClip",
+    "_name": "npc-2-talk",
+    "_objFlags": 0,
+    "_native": "",
+    "sample": 60,
+    "speed": 0.3,
+    "wrapMode": 1,
+    "events": [],
+    "_duration": 5,
+    "_keys": [
+      [
+        0,
+        0.3333333333333333,
+        0.6666666666666666,
+        1,
+        1.3333333333333333,
+        1.6666666666666667,
+        2,
+        2.3333333333333335,
+        2.6666666666666665,
+        3,
+        3.6666666666666665,
+        4.666666666666667
+      ],
+      [
+        0,
+        0.3333333333333333,
+        0.6666666666666666,
+        1,
+        1.3333333333333333,
+        3,
+        3.6666666666666665,
+        4.666666666666667,
+        5
+      ],
+      [
+        0,
+        0.3333333333333333,
+        0.6666666666666666,
+        1,
+        1.3333333333333333,
+        1.6666666666666667,
+        2,
+        2.3333333333333335,
+        2.6666666666666665,
+        3,
+        3.6666666666666665,
+        4,
+        4.333333333333333,
+        4.666666666666667
+      ],
+      [
+        0.3333333333333333,
+        0.6666666666666666,
+        1,
+        1.3333333333333333,
+        3,
+        3.3333333333333335,
+        3.6666666666666665,
+        4.666666666666667,
+        5
+      ]
+    ],
+    "_stepness": 0,
+    "_curves": [
+      {
+        "modifiers": [
+          {
+            "__id__": 1
+          },
+          "active"
+        ],
+        "data": {
+          "keys": 0,
+          "values": [
+            true,
+            false,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            false
+          ],
+          "easingMethods": {}
+        }
+      },
+      {
+        "modifiers": [
+          {
+            "__id__": 2
+          },
+          "active"
+        ],
+        "data": {
+          "keys": 1,
+          "values": [
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false
+          ],
+          "easingMethods": {}
+        }
+      },
+      {
+        "modifiers": [
+          {
+            "__id__": 3
+          },
+          {
+            "__id__": 4
+          },
+          "string"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            "嘿！",
+            "",
+            "你好，我叫Leo",
+            "",
+            "说来话长，我和我\n的同伴一起旅行至此",
+            "但是一天前\n在暴风雪中我们失散了",
+            "不知不觉我就走到了这里",
+            "不知道我的同伴\n们现在怎么样了",
+            "我现在好担心他们",
+            "",
+            "我们之前约定\n过集合的地点",
+            "但是我现在身上\n的装备都弄丢了",
+            "可以借用你的指南针吗？",
+            ""
+          ],
+          "easingMethods": {}
+        }
+      },
+      {
+        "modifiers": [
+          {
+            "__id__": 5
+          },
+          {
+            "__id__": 6
+          },
+          "string"
+        ],
+        "data": {
+          "keys": 3,
+          "values": [
+            "！",
+            "0",
+            "你好 \n一个人在这里做什么呢",
+            "你好 \n一个人在这里做什么呢",
+            "你的同伴们肯定会没事的",
+            "那有什么\n我可以帮助你的吗？",
+            "那有什么\n我可以帮助你的吗？",
+            "当然，祝你好运",
+            ""
+          ],
+          "easingMethods": {}
+        }
+      }
+    ],
+    "_commonTargets": [],
+    "_hash": 1948613595
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "talk-2"
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "talk-me"
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "talk-2/Label"
+  },
+  {
+    "__type__": "cc.animation.ComponentPath",
+    "component": "cc.Label"
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "talk-me/Label"
+  },
+  {
+    "__type__": "cc.animation.ComponentPath",
+    "component": "cc.Label"
+  }
+]

@@ -18,19 +18,21 @@ export enum CubeType {
     CUBE_ICE,       // 积雪方块
     CUBE_GRASS,     //草皮方块
     CUBE_MONSTER,   //自由移动方块
-    CUBE_LASER_RIGHT,   //向右发射激光
-    CUBE_BOX,           //可由人物移动控制的方块
+    CUBE_LASER_RIGHT,       //向右发射激光
+    CUBE_BOX,               //可由人物移动控制的方块
     CUBE_NEXT_CAPE,         // 下一关，胜利碰撞方块
     CUBE_GROUND_FAKE,       // 无实体的地面物块
-    CUBE_LASER_UP,        //向上发射激光方块
+    CUBE_LASER_UP,          //向上发射激光方块
     CUBE_LASER_LEFT,        //向左发射激光方块
     TOOL_FIRE,              // 火焰道具
     TOOL_SHOSE,             // 鞋子道具
-    CUBE_LASER,           // 激光
+    CUBE_LASER,             // 激光
     TOOL_BOARD,             // 滑板
     TOOL_HELMET,            // 头盔
     TOOL_DRESS,             // 裙子
     TOOL_CAMERA,            // 可播放相机
+    NPC_2,            // npc-2
+    NPC_4,            // npc-4
 }
 
 // 游戏状态
@@ -152,6 +154,12 @@ export class GameManager extends Component {
 
     @property({ type: Prefab })
     public cameraPrfb: Prefab | null = null;
+
+    @property({ type: Prefab })
+    public NPC2Prfb: Prefab | null = null;
+
+    @property({ type: Prefab })
+    public NPC4Prfb: Prefab | null = null;
 
     @property({ type: Node })
     public ToolsTipsCamera: Node | null = null;     // 播放视频的相机
@@ -320,6 +328,12 @@ export class GameManager extends Component {
                 case CubeType.TOOL_CAMERA:
                     block = instantiate(this.cameraPrfb);
                     break;
+                case CubeType.NPC_2:
+                    block = instantiate(this.NPC2Prfb);
+                    break;
+                case CubeType.NPC_4:
+                    block = instantiate(this.NPC4Prfb);
+                    break;
             }
 
             return block;
@@ -346,8 +360,8 @@ export class GameManager extends Component {
                 this.initPos = mapManager.initPos[this.captureNum];
                 break;
             case GameState.GS_END:
-                /*this.init();
-                if (this.playerCtrl) {
+                // this.init();
+                /*if (this.playerCtrl) {
                     this.playerCtrl.setInputActive(false);
                     this.playerCtrl.init();
                 }*/

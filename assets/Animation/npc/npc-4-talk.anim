@@ -1,0 +1,238 @@
+[
+  {
+    "__type__": "cc.AnimationClip",
+    "_name": "npc-4-talk",
+    "_objFlags": 0,
+    "_native": "",
+    "sample": 60,
+    "speed": 0.3,
+    "wrapMode": 1,
+    "events": [],
+    "_duration": 5.833333333333333,
+    "_keys": [
+      [
+        0,
+        0.3333333333333333,
+        0.6666666666666666,
+        1,
+        1.3333333333333333,
+        1.6666666666666667,
+        2,
+        2.3333333333333335,
+        2.6666666666666665,
+        3.6666666666666665,
+        4,
+        4.333333333333333,
+        4.666666666666667,
+        5,
+        5.333333333333333,
+        5.833333333333333
+      ],
+      [
+        0,
+        0.3333333333333333,
+        0.6666666666666666,
+        1,
+        1.3333333333333333,
+        1.6666666666666667,
+        2,
+        2.3333333333333335,
+        2.6666666666666665,
+        3.6666666666666665,
+        4,
+        4.333333333333333,
+        4.666666666666667,
+        5,
+        5.333333333333333,
+        5.833333333333333
+      ],
+      [
+        0
+      ],
+      [
+        0,
+        0.6666666666666666,
+        1.3333333333333333,
+        2,
+        2.6666666666666665,
+        3,
+        3.3333333333333335,
+        3.6666666666666665,
+        4,
+        4.666666666666667,
+        5.333333333333333
+      ],
+      [
+        0,
+        0.3333333333333333,
+        1,
+        1.6666666666666667,
+        2.3333333333333335,
+        3.6666666666666665,
+        4.333333333333333,
+        5
+      ]
+    ],
+    "_stepness": 0,
+    "_curves": [
+      {
+        "modifiers": [
+          {
+            "__id__": 1
+          },
+          "active"
+        ],
+        "data": {
+          "keys": 0,
+          "values": [
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false
+          ],
+          "easingMethods": {}
+        }
+      },
+      {
+        "modifiers": [
+          {
+            "__id__": 2
+          },
+          "active"
+        ],
+        "data": {
+          "keys": 1,
+          "values": [
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            false
+          ],
+          "easingMethods": {}
+        }
+      },
+      {
+        "modifiers": [
+          {
+            "__id__": 3
+          },
+          "active"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            false
+          ],
+          "easingMethods": {}
+        }
+      },
+      {
+        "modifiers": [
+          {
+            "__id__": 4
+          },
+          {
+            "__id__": 5
+          },
+          "string"
+        ],
+        "data": {
+          "keys": 3,
+          "values": [
+            "嗨！那边的冒险者",
+            "跟我来一决胜负吧！",
+            "别啰嗦，来跟我一决胜负！",
+            "我叫Smith，美国人",
+            "我是来这里寻找\n刺激的冒险者",
+            "在未知的世界中总\n有让我新奇的东西呢",
+            "总而言之，来和我比赛吗",
+            "总而言之，来和我比赛吗",
+            "看你的样子很疲倦啊\n是赶了很远路吗",
+            "这个给你吧\n能让你打起精神哦",
+            "那么我们有缘再会了哦\n下次见面，再决一胜负！"
+          ],
+          "easingMethods": {}
+        }
+      },
+      {
+        "modifiers": [
+          {
+            "__id__": 6
+          },
+          {
+            "__id__": 7
+          },
+          "string"
+        ],
+        "data": {
+          "keys": 4,
+          "values": [
+            "！",
+            "你是？",
+            "为什么呢？",
+            "（真是莫名其妙呢）\n 那个，请问你是？",
+            "你在这里做什么呢？",
+            "但是…",
+            "嗯，经历了很多事情",
+            "啊，谢谢你"
+          ],
+          "easingMethods": {}
+        }
+      }
+    ],
+    "_commonTargets": [],
+    "_hash": 1079570683
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "talk-4"
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "talk-me"
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "talk-2"
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "talk-4/Label"
+  },
+  {
+    "__type__": "cc.animation.ComponentPath",
+    "component": "cc.Label"
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "talk-me/Label"
+  },
+  {
+    "__type__": "cc.animation.ComponentPath",
+    "component": "cc.Label"
+  }
+]
