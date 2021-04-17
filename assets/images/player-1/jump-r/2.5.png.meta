@@ -24,7 +24,7 @@
         "isUuid": true,
         "imageUuidOrDatabaseUri": "f201c9b1-21e6-46e5-b03e-4f6a75ce4ce8"
       },
-      "ver": "1.0.20",
+      "ver": "1.0.21",
       "imported": true,
       "files": [
         ".json"

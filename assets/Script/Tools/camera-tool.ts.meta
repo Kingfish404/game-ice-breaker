@@ -1,1 +1,11 @@
-{"ver":"4.0.21","importer":"typescript","imported":true,"uuid":"e2a5b1c9-6378-4a5a-bad4-61909af212a4","files":[],"subMetas":{},"userData":{}}
+{
+  "ver": "4.0.22",
+  "importer": "typescript",
+  "imported": true,
+  "uuid": "e2a5b1c9-6378-4a5a-bad4-61909af212a4",
+  "files": [],
+  "subMetas": {},
+  "userData": {
+    "simulateGlobals": []
+  }
+}

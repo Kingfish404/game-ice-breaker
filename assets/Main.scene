@@ -11,7 +11,7 @@
   },
   {
     "__type__": "cc.Scene",
-    "_name": "",
+    "_name": "main",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -1664,9 +1664,9 @@
     "endRadiusVar": 0,
     "rotatePerS": 0,
     "rotatePerSVar": 0,
-    "preview": true,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
+    "preview": true,
     "_custom": false,
     "_file": {
       "__uuid__": "c7bf46c6-d7e7-4bf5-a703-5d651ba22d80"
@@ -5333,9 +5333,7 @@
         "__uuid__": "d51c7a50-8cee-4866-b82e-a21c8bdb7a33"
       }
     ],
-    "_defaultClip": {
-      "__uuid__": "773c0e93-185e-48b0-a47f-5c9143d15986"
-    },
+    "_defaultClip": null,
     "_id": "15uAqLXm5FQrgo1qWY9sW8"
   },
   {

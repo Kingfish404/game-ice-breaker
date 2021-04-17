@@ -13,3 +13,6 @@ cocos creator: ^3.0.0
 浏览器: Chrome  
 语言: typescript  
 
+## 规范
+
+要求所有资源必须英文命名
