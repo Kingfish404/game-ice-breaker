@@ -167,6 +167,8 @@ export class GameManager extends Component {
     public initPos: Vec3 | null = null; //保存出生点
     public skipPos: Vec3 | null = null; //保存跳跃点
 
+    public fireNum: Number = 0;
+
     start() {
         this.curState = GameState.GS_INIT;
 
@@ -186,6 +188,7 @@ export class GameManager extends Component {
 
     init() {
         this.captureNum = 0;    // 将关卡初始化为0
+        this.fireNum = 0;
         if (this.startMenu) {
             this.startMenu.active = true;
         }
@@ -346,6 +349,7 @@ export class GameManager extends Component {
                 this.init();
                 break;
             case GameState.GS_PLAYING:
+                this.fireNum = 0;
                 if (this.startMenu) {
                     this.startMenu.active = false;
                 }
