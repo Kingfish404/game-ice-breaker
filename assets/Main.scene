@@ -22,7 +22,7 @@
         "__id__": 4
       },
       {
-        "__id__": 255
+        "__id__": 256
       },
       {
         "__id__": 8
@@ -36,7 +36,7 @@
     "_prefab": null,
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 256
+      "__id__": 257
     },
     "_id": "f276aec9-36f0-45ae-98f6-f231e773328f"
   },
@@ -115,6 +115,9 @@
       },
       {
         "__id__": 254
+      },
+      {
+        "__id__": 255
       }
     ],
     "_prefab": null,
@@ -283,7 +286,9 @@
     "NPC4Prfb": {
       "__uuid__": "d688a589-58bb-474c-a18f-483b842ebe98"
     },
-    "finalFirePrfb": null,
+    "finalFirePrfb": {
+      "__uuid__": "55d7839b-98e2-429b-a3f8-875d1545ec84"
+    },
     "ToolsTipsCamera": {
       "__id__": 135
     },
@@ -5344,7 +5349,7 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "b2bf3cfb-ed26-46e6-b2ff-746eff120289@f9941"
+      "__uuid__": "dff46a39-5443-41c8-aa45-6b225c530bda@f9941"
     },
     "_type": 0,
     "_fillType": 0,
@@ -9234,6 +9239,17 @@
     "_id": "a016tCOqlIbqRSiMeTW5Oc"
   },
   {
+    "__type__": "c2a985fhkxAZobI/TlPulyp",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 4
+    },
+    "_enabled": true,
+    "__prefab": null,
+    "_id": "516macr49P+6+7xdjqVrFN"
+  },
+  {
     "__type__": "cc.Node",
     "_name": "SceneManager",
     "_objFlags": 0,
@@ -9275,16 +9291,16 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 257
-    },
-    "shadows": {
       "__id__": 258
     },
-    "_skybox": {
+    "shadows": {
       "__id__": 259
     },
-    "fog": {
+    "_skybox": {
       "__id__": 260
+    },
+    "fog": {
+      "__id__": 261
     }
   },
   {

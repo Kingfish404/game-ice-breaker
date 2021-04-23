@@ -33,6 +33,7 @@ export enum CubeType {
     TOOL_CAMERA,            // 可播放相机
     NPC_2,            // npc-2
     NPC_4,            // npc-4
+    CUBE_FINAL_FILE,    // 最后一关的火焰
 }
 
 // 游戏状态
@@ -339,6 +340,9 @@ export class GameManager extends Component {
                     break;
                 case CubeType.NPC_4:
                     block = instantiate(this.NPC4Prfb);
+                    break;
+                case CubeType.CUBE_FINAL_FILE:
+                    block = instantiate(this.finalFirePrfb);
                     break;
             }
 

@@ -5,7 +5,7 @@
     "_objFlags": 0,
     "_native": "",
     "sample": 60,
-    "speed": 1,
+    "speed": 0.8,
     "wrapMode": 1,
     "events": [],
     "_duration": 0.55,
@@ -43,55 +43,55 @@
           "keys": 0,
           "values": [
             {
-              "__uuid__": "49453ef4-eaf7-4208-89c7-effacd72762e@f9941"
+              "__uuid__": "fb01f2cd-3c71-488a-a999-f983bfec56b4@f9941"
             },
             {
-              "__uuid__": "7139aaae-9995-4448-8871-ee7047cd67bb@f9941"
+              "__uuid__": "b26e4b59-623c-449d-a261-5c144a0801d6@f9941"
             },
             {
-              "__uuid__": "293f831a-52de-4ef0-8bb0-0582a28a04dd@f9941"
+              "__uuid__": "aed7aefe-6f2c-4b97-8be0-3c8ffb81d78c@f9941"
             },
             {
-              "__uuid__": "cadbe7cd-3e7f-47ec-8f23-6d1d9c6380ac@f9941"
+              "__uuid__": "29d40fa5-adbc-44e3-95ce-0ce1f56fc62b@f9941"
             },
             {
-              "__uuid__": "1e970460-5423-45a0-a454-5b43b0f24dcd@f9941"
+              "__uuid__": "135d5857-7df2-49ee-acd2-ffbbe49296a2@f9941"
             },
             {
-              "__uuid__": "b27545c7-05c5-436b-9433-8e4a69c80057@f9941"
+              "__uuid__": "7be0c871-2a79-4ade-9f3e-bbee9c4c3296@f9941"
             },
             {
-              "__uuid__": "1d0a4313-a4cf-46cd-b0e5-48c47e80b88f@f9941"
+              "__uuid__": "7dda807f-451e-4104-9138-e46299822cb8@f9941"
             },
             {
-              "__uuid__": "ae888421-adac-4dc2-bdcb-81237e9b77c0@f9941"
+              "__uuid__": "7bc40030-8138-48cb-b075-092efa0df0f1@f9941"
             },
             {
-              "__uuid__": "0cafcd41-d68d-453a-99d4-70c2785dd2b8@f9941"
+              "__uuid__": "c963376e-851b-44ff-8ab0-b9a9ee9c0a7e@f9941"
             },
             {
-              "__uuid__": "95621d8c-0d66-4071-b612-668611af970c@f9941"
+              "__uuid__": "9583179f-db73-45ef-b6fa-515804875a1a@f9941"
             },
             {
-              "__uuid__": "e89ea9db-438a-4277-a8fc-8e125acaaf7a@f9941"
+              "__uuid__": "119b7ce9-b7c4-49b2-b35a-a8e7fd8c7bb8@f9941"
             },
             {
-              "__uuid__": "7d633f1e-fc90-497c-b6fc-6a377c26cd65@f9941"
+              "__uuid__": "699866d2-0bc0-4980-a0e4-4949dc8819db@f9941"
             },
             {
-              "__uuid__": "f9a4e4f0-b5a3-4f2b-a203-2ba8989cddbd@f9941"
+              "__uuid__": "9b6e04da-0390-42a1-ac11-2f130f4585be@f9941"
             },
             {
-              "__uuid__": "94ef3a63-95a6-4a27-9d6e-541fc503a7bc@f9941"
+              "__uuid__": "a9180a38-733b-40e6-8b58-9f1d084081a7@f9941"
             },
             {
-              "__uuid__": "3787d804-ba9f-4b59-b407-810690bbaf37@f9941"
+              "__uuid__": "ee9418cd-d712-4cff-b9f5-db0a271e5b5b@f9941"
             },
             {
-              "__uuid__": "70bf6ed6-c3b3-4182-a671-02ac00e8ed33@f9941"
+              "__uuid__": "65ed4276-366a-4326-8b03-51c1c70e9579@f9941"
             },
             {
-              "__uuid__": "8c7737a6-f916-4248-a6c5-a1669214cbb8@f9941"
+              "__uuid__": "39e64cd2-12bd-4a9a-91a5-ca79b73641fc@f9941"
             }
           ],
           "easingMethods": {}
@@ -99,7 +99,7 @@
       }
     ],
     "_commonTargets": [],
-    "_hash": 3340198806
+    "_hash": 1996573899
   },
   {
     "__type__": "cc.animation.ComponentPath",

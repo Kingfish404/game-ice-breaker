@@ -158,7 +158,9 @@ export class PlayerController extends Component {
             }, 0);//延时0.5s消失
         }
         // 碰到下一关方块
-        else if (otherCollider.node.name == String(CubeType.CUBE_NEXT_CAPE)) {
+        else if (otherCollider.node.name == String(CubeType.CUBE_NEXT_CAPE ||
+            otherCollider.node.name == String(CubeType.CUBE_FINAL_FILE)
+        )) {
             console.log('next cape!');
             // 下一关
             this.setInputActive(false);

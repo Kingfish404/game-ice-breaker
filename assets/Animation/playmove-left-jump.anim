@@ -8,15 +8,14 @@
     "speed": 1,
     "wrapMode": 1,
     "events": [],
-    "_duration": 0.85,
+    "_duration": 0.8333333333333334,
     "_keys": [
       [
         0,
         0.16666666666666666,
         0.3333333333333333,
-        0.5,
         0.6666666666666666,
-        0.8333333333333334
+        0.8166666666666667
       ]
     ],
     "_stepness": 0,
@@ -32,22 +31,19 @@
           "keys": 0,
           "values": [
             {
-              "__uuid__": "32c733f1-f0ea-4a6a-8c0c-497427e9f3af@f9941"
+              "__uuid__": "39e64cd2-12bd-4a9a-91a5-ca79b73641fc@f9941"
             },
             {
-              "__uuid__": "af0a3dec-e953-453f-892b-cb951d542098@f9941"
+              "__uuid__": "15febc6b-01e6-4894-8c4c-10af096f69d2@f9941"
             },
             {
-              "__uuid__": "afc6a02c-2922-47db-8d1b-780a53da14fc@f9941"
+              "__uuid__": "7fcc59e0-fe93-4f05-83bd-28b3b7bc3c3c@f9941"
             },
             {
-              "__uuid__": "72182b91-a03c-481e-86d8-7e77a1e8223a@f9941"
+              "__uuid__": "d261df6f-e818-4fc0-a1a9-a52bfbe841e4@f9941"
             },
             {
-              "__uuid__": "9bbe1cb1-838d-4f66-93e4-815267075a2b@f9941"
-            },
-            {
-              "__uuid__": "49453ef4-eaf7-4208-89c7-effacd72762e@f9941"
+              "__uuid__": "39e64cd2-12bd-4a9a-91a5-ca79b73641fc@f9941"
             }
           ],
           "easingMethods": {}
@@ -55,7 +51,7 @@
       }
     ],
     "_commonTargets": [],
-    "_hash": 3485426931
+    "_hash": 2035723494
   },
   {
     "__type__": "cc.animation.ComponentPath",
