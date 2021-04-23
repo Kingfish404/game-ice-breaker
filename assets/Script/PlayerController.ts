@@ -14,16 +14,17 @@ export class PlayerController extends Component {
 
     private _xForce: number = 0;
     private _yForce: number = 0;
-    private _force: number = 100;
     private isUping: boolean = false;
     public _initPos: Vec3 | null = null;
     public _startPos: Vec3 = new Vec3(1500, 300, 0);
-    public maxspeed: number = 10;
 
     public skipJudge: boolean = false;
 
-    public disappearTime: number = 500;//碰到消失方块消失前的间隔时间
-    public recoverTime: number = 8500;//消失方块复原的时间
+    public readonly _force: number = 100;
+    public readonly maxspeed: number = 10;
+
+    public readonly disappearTime: number = 500;//碰到消失方块消失前的间隔时间
+    public readonly recoverTime: number = 8500;//消失方块复原的时间
 
     public _cloudPos: Vec3 | null = null;
     public _playerPos: Vec3 | null = null;
@@ -120,7 +121,7 @@ export class PlayerController extends Component {
         else if (otherCollider.node.name == String(CubeType.CUBE_BOUNCE)) {
             if (!this.isUping) {
                 this.isUping = true;
-                this._yForce = 1.5 * this._force;
+                this._yForce = 1 * this._force;
                 let that = this;
                 setTimeout(() => {
                     that._yForce = 0;

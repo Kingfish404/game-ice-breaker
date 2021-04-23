@@ -283,6 +283,7 @@
     "NPC4Prfb": {
       "__uuid__": "d688a589-58bb-474c-a18f-483b842ebe98"
     },
+    "finalFirePrfb": null,
     "ToolsTipsCamera": {
       "__id__": 135
     },
@@ -1829,7 +1830,7 @@
     "_priority": 100,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 654.1654571843252,
+    "_orthoHeight": 320,
     "_near": 1,
     "_far": 2000,
     "_color": {

@@ -161,6 +161,9 @@ export class GameManager extends Component {
     @property({ type: Prefab })
     public NPC4Prfb: Prefab | null = null;
 
+    @property({ type: Prefab })
+    public finalFirePrfb: Prefab | null = null;     // 最终火炬
+
     @property({ type: Node })
     public ToolsTipsCamera: Node | null = null;     // 播放视频的相机
 
