@@ -596,7 +596,7 @@ export class GameManager extends Component {
                             times = 257000;
                         }
                         break;
-                    case 4:
+                    case 3:
                         if (this.IntroVideo4) {
                             IntroVideo = this.IntroVideo4;
                             this.IntroVideo4.active = true;
