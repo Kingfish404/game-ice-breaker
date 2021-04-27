@@ -6,30 +6,31 @@ const { ccclass, property } = _decorator;
 @ccclass('Laser1')
 export class Laser1 extends Component {
 
-    @property({type: Animation})
+    @property({ type: Animation })
     public laser: Animation | null = null;
 
     public currentPos: Vec3 | null = null
 
-    start(){
+    start() {
         this.node.name = String(CubeType.CUBE_LASER);
         this.currentPos = this.node.position;
-        console.log(this.currentPos);
-        let laserAnim : string = "laser-";
+        // console.log('laser>start:', this.currentPos);
+        let laserAnim: string = "laser-";
 
-        for(var i = 0; i < MapManager.laserPos.length; i++){
-            if(this.currentPos.equals(MapManager.laserPos[i])){
+        for (var i = 0; i < MapManager.laserPos.length; i++) {
+            if (this.currentPos.equals(MapManager.laserPos[i])) {
                 laserAnim = laserAnim + String(i + 1);
-                console.log(laserAnim);
+                console.log('laser>start:', laserAnim);
                 break;
             }
         }//根据laser所在位置判断播放哪个Animation
 
-        if(this.laser){
+        if (this.laser) {
             this.laser.play(laserAnim);
         }
-        const collider : Collider2D | null = this.node.getComponent(Collider2D);
-        if(collider){
+        const collider: Collider2D | null = this.node.getComponent(Collider2D);
+        if (collider) {
+            // console.log('apply conllider');
             collider.apply();
             collider.apply();
             collider.apply();

@@ -19,7 +19,6 @@ class MapManager {
             // new Vec3(1480, 600, 0), //dd test camera in capt 3
             new Vec3(1600, 200, 0),
             new Vec3(300, 300, 0),
-            new Vec3(300, 300, 0),
         ]  //初始位置
 
     public laserPos: Array<Vec3> =

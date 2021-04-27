@@ -1,5 +1,5 @@
 
-import { _decorator, Component, Node, PhysicsSystem2D, PHYSICS_2D_PTM_RATIO, v2, game, director, Prefab, instantiate, CCInteger, Vec3, systemEvent, EventKeyboard, SystemEvent, macro, VideoPlayer } from 'cc';
+import { _decorator, Component, Node, PhysicsSystem2D, PHYSICS_2D_PTM_RATIO, v2, game, director, Prefab, instantiate, CCInteger, Vec3, systemEvent, EventKeyboard, SystemEvent, macro, VideoPlayer, Label } from 'cc';
 import mapManager from './MapManager';
 import { PlayerController } from './PlayerController';
 const { ccclass, property, type } = _decorator;
@@ -70,6 +70,10 @@ export class GameManager extends Component {
     // 设置界面
     @property({ type: Node })
     public backMenu: Node | null = null;
+
+    // 火焰数显示
+    @property({ type: Label })
+    public fire_num_label: Label | null = null;
 
     // 关卡结算
     @property({ type: [Node] })
@@ -168,10 +172,35 @@ export class GameManager extends Component {
     @property({ type: Node })
     public ToolsTipsCamera: Node | null = null;     // 播放视频的相机
 
+    @property({ type: Node })
+    public IntroVideo1: Node | null = null;    // 介绍视频1
+
+    @property({ type: Node })
+    public IntroVideo2: Node | null = null;    // 介绍视频2
+
+    @property({ type: Node })
+    public IntroVideo3: Node | null = null;    // 介绍视频3
+
+    @property({ type: Node })
+    public IntroVideo4: Node | null = null;    // 介绍视频4
+
+    @property({ type: Node })
+    public tip_shose: Node | null = null;    // 鞋子海报
+
+    @property({ type: Node })
+    public tip_helmet: Node | null = null;    // 头盔海报
+
+    @property({ type: Node })
+    public tip_board: Node | null = null;    // 滑板海报
+
+    @property({ type: Node })
+    public tip_dress: Node | null = null;    // 裙子海报
+
     public initPos: Vec3 | null = null; //保存出生点
     public skipPos: Vec3 | null = null; //保存跳跃点
 
-    public fireNum: Number = 0;
+    // 收集到的火焰数目
+    _fireNum = 0;
 
     start() {
         this.curState = GameState.GS_INIT;
@@ -183,6 +212,7 @@ export class GameManager extends Component {
             this.playerCtrl.node.on('dead', this.onGameEnd, this);
             this.playerCtrl.node.on('next', this.onNextCape, this);
             this.playerCtrl.node.on('tips', this.onTips, this);
+            this.playerCtrl.node.on('hit_fire', this.onHitFire, this);
         }
 
         // 设置当前节点为常驻节点
@@ -350,6 +380,17 @@ export class GameManager extends Component {
         }
     }
 
+    get fireNum() {
+        return this._fireNum;
+    }
+
+    set fireNum(value: number) {
+        if (this.fire_num_label) {
+            this.fire_num_label.string = String(value);
+        }
+        this._fireNum = value;
+    }
+
     set curState(value: GameState) {
         switch (value) {
             case GameState.GS_INIT:
@@ -358,11 +399,19 @@ export class GameManager extends Component {
             case GameState.GS_PLAYING:
                 this.fireNum = 0;
                 if (this.startMenu) {
+                    // 隐藏开始菜单
                     this.startMenu.active = false;
                 }
                 if (this.playerCtrl) {
+                    // 初始化玩家控制
                     this.playerCtrl.init(this.captureNum);
                     this.playerCtrl.setInputActive(true);
+                }
+                if (this.endPage) {
+                    // 默认隐藏关卡结束页面
+                    for (let i = 0; i < this.endPage.length; ++i) {
+                        this.endPage[i].active = false;
+                    }
                 }
                 this.setBGImage();
                 this.generateRoad(this.captureNum);
@@ -430,7 +479,11 @@ export class GameManager extends Component {
         if (!this._isOnEndPage) {
             this._isOnEndPage = true;
             this.playerCtrl?.setInputActive(false);
+            // console.log('GameManager>onNextCape', this.captureNum, this.endPage?.length);
             if (this.endPage && this.captureNum < this.endPage.length) {
+                for (let i = 0; i < this.endPage.length; ++i) {
+                    this.endPage[i].active = false;
+                }
                 this.endPage[this.captureNum].active = true;
                 return;
             }
@@ -444,13 +497,19 @@ export class GameManager extends Component {
         this._isOnEndPage = false;
     }
 
+    onHitFire() {
+        this.fireNum = this.fireNum + 1;
+    }
+
     onTips(args: number) {
         // 处理道具的提示
+        let times: number = 3000;
+        let that = this;
         console.log(args);
         if (args == CubeType.TOOL_CAMERA) {
             if (this.ToolsTipsCamera) {
                 this.ToolsTipsCamera.active = true;
-                let video = this.ToolsTipsCamera.getChildByName('VideoPlayer');
+                let video = this.ToolsTipsCamera.getChildByName('VideoPlayer-sport');
                 if (video) {
                     video.getComponent(VideoPlayer)?.play();
                 }
@@ -458,7 +517,7 @@ export class GameManager extends Component {
                 setTimeout(() => {
                     if (this.ToolsTipsCamera) {
                         this.ToolsTipsCamera.active = false;
-                        let video = this.ToolsTipsCamera.getChildByName('VideoPlayer');
+                        let video = this.ToolsTipsCamera.getChildByName('VideoPlayer-sport');
                         if (video) {
                             video.getComponent(VideoPlayer)?.stop();
                         }
@@ -466,22 +525,106 @@ export class GameManager extends Component {
                     this.playerCtrl?.setInputActive(true);
                 }, 20000);
             }
-        } else {
-
+        } else if (args == CubeType.TOOL_SHOSE) {
+            if (this.tip_shose) {
+                this.tip_shose.active = true;
+                setTimeout(() => {
+                    if (that.tip_shose) {
+                        that.tip_shose.active = false;
+                    }
+                }, times)
+            }
+        } else if (args == CubeType.TOOL_HELMET) {
+            if (this.tip_helmet) {
+                this.tip_helmet.active = true;
+                setTimeout(() => {
+                    if (that.tip_helmet) {
+                        that.tip_helmet.active = false;
+                    }
+                }, times)
+            }
+        } else if (args == CubeType.TOOL_BOARD) {
+            if (this.tip_board) {
+                this.tip_board.active = true;
+                setTimeout(() => {
+                    if (that.tip_board) {
+                        that.tip_board.active = false;
+                    }
+                }, times)
+            }
+        } else if (args == CubeType.TOOL_DRESS) {
+            if (this.tip_dress) {
+                this.tip_dress.active = true;
+                setTimeout(() => {
+                    if (that.tip_dress) {
+                        that.tip_dress.active = false;
+                    }
+                }, times)
+            }
         }
     }
 
     onEndPageClick() {
+        let times: number = 1000;
+        let IntroVideo: Node | null = null;
+        let isPlayingIntro: boolean = true; // 是否播放过关后的介绍视频
         if (this.endPage && this.captureNum < this.endPage.length) {
             this.endPage[this.captureNum].active = false;
+            if (isPlayingIntro) {
+                switch (this.captureNum) {
+                    case 0:
+                        if (this.IntroVideo1) {
+                            IntroVideo = this.IntroVideo1;
+                            this.IntroVideo1.active = true;
+                            this.IntroVideo1.getComponent(VideoPlayer)?.play();
+                            times = 205000;
+                        }
+                        break;
+                    case 1:
+                        if (this.IntroVideo2) {
+                            IntroVideo = this.IntroVideo2;
+                            this.IntroVideo2.active = true;
+                            this.IntroVideo2.getComponent(VideoPlayer)?.play();
+                            times = 1000;
+                        }
+                        break;
+                    case 2:
+                        if (this.IntroVideo3) {
+                            IntroVideo = this.IntroVideo3;
+                            this.IntroVideo3.active = true;
+                            this.IntroVideo3.getComponent(VideoPlayer)?.play();
+                            times = 257000;
+                        }
+                        break;
+                    case 4:
+                        if (this.IntroVideo4) {
+                            IntroVideo = this.IntroVideo4;
+                            this.IntroVideo4.active = true;
+                            this.IntroVideo4.getComponent(VideoPlayer)?.play();
+                            times = 211000;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
-        if (this.captureNum == mapManager.initPos.length - 1) {
+        // console.log('GameManager>onEndPageCLick:', this.captureNum, mapManager.initPos.length);
+        if (this.captureNum == mapManager.initPos.length) {
             // 已经到最后一关
+            this.curState = GameState.GS_INIT;
             return;
         }
-        this.captureNum = this.captureNum + 1;  //修改关卡值
-        this.curState = GameState.GS_PLAYING;   //重新设置游戏地图
-        this._isOnEndPage = false;
+        let that = this;
+        setTimeout(() => {
+            that.captureNum = that.captureNum + 1;  //修改关卡值
+            that.curState = GameState.GS_PLAYING;   //重新设置游戏地图
+            that._isOnEndPage = false;
+            if (IntroVideo) {
+                IntroVideo.active = false;
+                IntroVideo.getComponent(VideoPlayer)?.stop();
+            }
+        }, times);
     }
 
     onStartButtonClicked() {
@@ -504,10 +647,17 @@ export class GameManager extends Component {
         this.curState = GameState.GS_INIT;
     }
 
+    onStartSkip() {
+        if (this.playerCtrl && this.skipPos) {
+            this.playerCtrl.player?.setWorldPosition(this.skipPos);//根据当前关卡跳转位置
+        }
+    }
+
     update(deltaTime: number) {
         if (this.playerCtrl?.skipJudge && this.skipPos) {
-            this.playerCtrl.player?.setWorldPosition(this.skipPos);//根据当前关卡跳转位置
             this.playerCtrl.skipJudge = false;
+            setTimeout(this.onStartSkip.bind(this)
+                , 1000);
         }
     }
 }

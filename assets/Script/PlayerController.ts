@@ -8,7 +8,7 @@ const { ccclass, property } = _decorator;
 export class PlayerController extends Component {
 
     private _isMoving = false;
-    private _keydown: string | null = null;
+    private _keydown: number | null = null;
 
     private _pos: Vec3 = new Vec3(0, 0, 0);
 
@@ -96,12 +96,14 @@ export class PlayerController extends Component {
 
         let otherPos = otherCollider.node.getWorldPosition();
         this._playerPos = selfCollider.node.getWorldPosition();
+        let otherColliderName: number = Number(otherCollider.node.name);
+        console.log('PlayerController>onBeginContact:', otherColliderName);
         if (this._playerPos.y > otherPos.y) {
             // 接触位置在上方，才能获得碰撞
             this.isUping = false;
         }
         // 判断是否碰到了水
-        if (otherCollider.node.name == String(CubeType.CUBE_WATER)) {
+        if (otherColliderName == CubeType.CUBE_WATER) {
             console.log('dead!');
             // 发送死亡事件
             this.setInputActive(false);
@@ -112,13 +114,13 @@ export class PlayerController extends Component {
             }, 500)
         }
         // 碰到穿越方块
-        else if (otherCollider.node.name == String(CubeType.CUBE_SKIPIN)) {
+        else if (otherColliderName == CubeType.CUBE_SKIPIN) {
             if (!this.skipJudge) {
                 this.skipJudge = true;
             }
         }
         // 碰到弹跳方块
-        else if (otherCollider.node.name == String(CubeType.CUBE_BOUNCE)) {
+        else if (otherColliderName == CubeType.CUBE_BOUNCE) {
             if (!this.isUping) {
                 this.isUping = true;
                 this._yForce = 1 * this._force;
@@ -129,7 +131,7 @@ export class PlayerController extends Component {
             }
         }
         // 碰到暂时消失方块
-        else if (otherCollider.node.name == String(CubeType.CUBE_DISAPPEAR)) {
+        else if (otherColliderName == CubeType.CUBE_DISAPPEAR) {
             setTimeout(() => {
                 otherCollider.node.active = false;
             }, this.disappearTime);//延时0.5s消失
@@ -138,29 +140,30 @@ export class PlayerController extends Component {
             }, this.recoverTime)//再8秒后将active再设置为true
         }
         // 碰到永久消失方块
-        else if (otherCollider.node.name == String(CubeType.TOOL_FIRE) ||
-            otherCollider.node.name == String(CubeType.TOOL_SHOSE) ||
-            otherCollider.node.name == String(CubeType.TOOL_BOARD) ||
-            otherCollider.node.name == String(CubeType.TOOL_HELMET) ||
-            otherCollider.node.name == String(CubeType.TOOL_DRESS) ||
-            otherCollider.node.name == String(CubeType.TOOL_CAMERA)
+        else if (otherColliderName == CubeType.TOOL_FIRE ||
+            otherColliderName == CubeType.TOOL_SHOSE ||
+            otherColliderName == CubeType.TOOL_BOARD ||
+            otherColliderName == CubeType.TOOL_HELMET ||
+            otherColliderName == CubeType.TOOL_DRESS ||
+            otherColliderName == CubeType.TOOL_CAMERA
         ) {
-            let otherColliderName = otherCollider.node.name;
-            if (otherColliderName == String(CubeType.TOOL_CAMERA)) {
+            if (otherColliderName == CubeType.TOOL_CAMERA) {
                 // 碰到的是相机
                 this.node.emit('tips', CubeType.TOOL_CAMERA);
+            } else if (otherColliderName == CubeType.TOOL_FIRE) {
+                this.node.emit('hit_fire', CubeType.TOOL_FIRE);
             } else {
                 // 碰到的是普通的道具
-                this.node.emit('tips', 0);
+                this.node.emit('tips', otherColliderName);
             }
             setTimeout(() => {
                 otherCollider.node.active = false;
             }, 0);//延时0.5s消失
         }
         // 碰到下一关方块
-        else if (otherCollider.node.name == String(CubeType.CUBE_NEXT_CAPE ||
-            otherCollider.node.name == String(CubeType.CUBE_FINAL_FILE)
-        )) {
+        else if (otherColliderName == CubeType.CUBE_NEXT_CAPE ||
+            otherColliderName == CubeType.CUBE_FINAL_FILE
+        ) {
             console.log('next cape!');
             // 下一关
             this.setInputActive(false);
@@ -171,7 +174,7 @@ export class PlayerController extends Component {
             }, 100)
         }
         //碰到激光方块
-        else if (otherCollider.node.name == String(CubeType.CUBE_LASER)) {
+        else if (otherColliderName == CubeType.CUBE_LASER) {
             console.log("dead!");
             // 发送死亡事件
             this.setInputActive(false);
@@ -179,14 +182,14 @@ export class PlayerController extends Component {
             this._yForce = 0;
             setTimeout(() => {
                 this.onDead();
-            }, 100)
+            }, 0)
         }
-        else if (otherCollider.node.name == String(CubeType.NPC_2)) {
+        else if (otherColliderName == CubeType.NPC_2) {
             // 碰到npc-2
             if (this.talksAnim && !this.talksAnim.getState('npc-2-talk').isPlaying) {
                 this.talksAnim.play('npc-2-talk');
             }
-        } else if (otherCollider.node.name == String(CubeType.NPC_4)) {
+        } else if (otherColliderName == CubeType.NPC_4) {
             // 碰到npc-4
             if (this.talksAnim && !this.talksAnim.getState('npc-4-talk').isPlaying) {
                 this.talksAnim.play('npc-4-talk');
@@ -196,7 +199,9 @@ export class PlayerController extends Component {
 
     onPreSolve(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | any | null) {
         // 碰到云方块
-        if (otherCollider.node.name == String(CubeType.CUBE_CLOUD)) {
+        let otherColliderName: number = Number(otherCollider.node.name);
+
+        if (otherColliderName == CubeType.CUBE_CLOUD) {
             this._cloudPos = otherCollider.node.getWorldPosition();
             this._playerPos = selfCollider.node.getWorldPosition();
             // 接触位置在云块下方
@@ -207,7 +212,7 @@ export class PlayerController extends Component {
             }
         }
         //碰到箱子方块通过按键j来移动
-        if (otherCollider.node.name == String(CubeType.CUBE_BOX) && this.boxIsMoving) {
+        if (otherColliderName == CubeType.CUBE_BOX && this.boxIsMoving) {
             const box = otherCollider.node;
             const rigidbody2d: RigidBody2D | null = box.getComponent(RigidBody2D);
             if (rigidbody2d) {
@@ -220,7 +225,9 @@ export class PlayerController extends Component {
     }
 
     onEndSolve(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | any | null) {
-        if (otherCollider.node.name == String(CubeType.CUBE_BOX)) {
+        let otherColliderName: number = Number(otherCollider.node.name);
+
+        if (otherColliderName == CubeType.CUBE_BOX) {
             const box = otherCollider.node;
             const rigidbody2d: RigidBody2D | null = box.getComponent(RigidBody2D);
             if (rigidbody2d) {
@@ -300,12 +307,15 @@ export class PlayerController extends Component {
             case macro.KEY.j:
                 this.boxIsMoving = true;
                 break;
+            case macro.KEY.p:
+                this.node.emit('next');
+                break;
         }
     }
 
     onKeyUp(event: EventKeyboard) {
         this._isMoving = false;
-        this._keydown = String(event.keyCode);
+        this._keydown = event.keyCode;
         switch (event.keyCode) {
             case macro.KEY.a:
             case macro.KEY.left:
@@ -326,13 +336,12 @@ export class PlayerController extends Component {
 
     update(deltaTime: number) {
         if (this.player) {
-            const player = this.player;
-            const rigidbody2d: RigidBody2D | null = player.getComponent(RigidBody2D);
+            const rigidbody2d: RigidBody2D | null = this.player.getComponent(RigidBody2D);
             if (rigidbody2d) {
                 // 使用刚体运动
                 // https://docs.cocos.com/creator/3.0/manual/zh/physics/physics-collider.html
-                rigidbody2d?.applyForceToCenter(new Vec2(this._xForce, this._yForce), true);
-                const velocity: Vec2 = rigidbody2d?.linearVelocity;
+                rigidbody2d.applyForceToCenter(new Vec2(this._xForce, this._yForce), true);
+                const velocity: Vec2 = rigidbody2d.linearVelocity;
                 if (velocity) {
                     // 限制刚体速度
                     if (Math.abs(velocity.x) > this.maxspeed) {
