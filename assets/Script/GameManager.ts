@@ -354,13 +354,13 @@ export class GameManager extends Component {
                     block = instantiate(this.shoseToolPrfb);
                     break;
                 case CubeType.TOOL_HELMET:
-                    block = instantiate(this.BoardPrfb);
+                    block = instantiate(this.HelmetPrfb);
                     break;
                 case CubeType.TOOL_BOARD:
                     block = instantiate(this.BoardPrfb);
                     break;
                 case CubeType.TOOL_DRESS:
-                    block = instantiate(this.BoardPrfb);
+                    block = instantiate(this.DressPrfb);
                     break;
                 case CubeType.TOOL_CAMERA:
                     block = instantiate(this.cameraPrfb);
@@ -657,7 +657,7 @@ export class GameManager extends Component {
         if (this.playerCtrl?.skipJudge && this.skipPos) {
             this.playerCtrl.skipJudge = false;
             setTimeout(this.onStartSkip.bind(this)
-                , 1000);
+                , 500);
         }
     }
 }
