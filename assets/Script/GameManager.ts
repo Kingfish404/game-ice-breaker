@@ -657,7 +657,7 @@ export class GameManager extends Component {
         if (this.playerCtrl?.skipJudge && this.skipPos) {
             this.playerCtrl.skipJudge = false;
             setTimeout(this.onStartSkip.bind(this)
-                , 500);
+                , 200);
         }
     }
 }

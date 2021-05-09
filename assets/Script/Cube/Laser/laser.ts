@@ -3,8 +3,8 @@ import { CubeType } from '../../GameManager';
 import MapManager from '../../MapManager'
 const { ccclass, property } = _decorator;
 
-@ccclass('Laser1')
-export class Laser1 extends Component {
+@ccclass('Laser')
+export class Laser extends Component {
 
     @property({ type: Animation })
     public laser: Animation | null = null;
@@ -28,12 +28,11 @@ export class Laser1 extends Component {
         if (this.laser) {
             this.laser.play(laserAnim);
         }
+    }
+
+    update(){
         const collider: Collider2D | null = this.node.getComponent(Collider2D);
-        if (collider) {
-            // console.log('apply conllider');
-            collider.apply();
-            collider.apply();
-            collider.apply();
+        if(collider){
             collider.apply();
         }
     }

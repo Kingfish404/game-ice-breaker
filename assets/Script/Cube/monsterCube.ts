@@ -31,7 +31,7 @@ export class MonsterCube extends Component {
     }
 
     onBeginContact(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | any | null) {
-        if(otherCollider.node.name == String(CubeType.CUBE_GROUND)){
+        if(otherCollider.node.name == String(CubeType.CUBE_GROUND) || otherCollider.node.name == String(CubeType.CUBE_DISAPPEAR)){
             this.isLeft = !this.isLeft;
         }
     }
